@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-
-  get '/' => 'welcome#index', as: :root
+  root to: 'welcome#index'
 
   get '/sessions/new' => 'sessions#new', as: :login
   get '/users/new' => 'users#new', as: :signup
@@ -11,7 +10,7 @@ Rails.application.routes.draw do
 
   get '/checkout'  => 'orders#checkout', as: :checkout
 
-  get '/orders/confirm' => 'orders#confirm'
+  get '/orders/confirm' => 'orders#confirm', as: :confirm
 
   get '/users/:id/dash' => 'users#dash', as: :user_dash
 
