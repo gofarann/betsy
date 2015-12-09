@@ -1,7 +1,7 @@
 products = [
   # Emerald
   {name:"Emerald Sword", price: "20440" , user_id: "1", stock: "2" , photo_url: "http://www.pixelpapercraft.com/files/1351191430408-small.png", description: "Let this delightful emerald sword help you thwack your way through the world." }, 
-  {name: "Pure Emerald Block", price: "65500", user_id: "12", stock: "25", photo_url: "http://www.pixelpapercraft.com/files/1381466703842.png", description: "Use this lovely emerald block to build all the things."},
+  {name: "Pure Emerald Block", price: "65500", user_id: "12", stock: "25", ph5soto_url: "http://www.pixelpapercraft.com/files/1381466703842.png", description: "Use this lovely emerald block to build all the things."},
   {name: "Fancy Necklace", price: "6050", user_id: "14", stock: "22", photo_url: "http://www.faberge.com/images/thumbs/0006090_690.jpeg", description: "Look the best at your next fancy party."},
   {name: "Gaudy Is For Lovers", price: "8000", user_id: "4", stock: "1", photo_url: "http://i.ebayimg.com/00/s/MzAwWDMwMA==/z/ZiYAAOSwnDZUAAOK/$_35.JPG?set_id=2", description: "Bedeck your hands with this one-of-a-kind glory."},
   # Ruby
@@ -44,25 +44,25 @@ products = [
   {name: "Clear Rock", price: "542", user_id: "12", stock: "3", photo_url: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcScL2Au5edYrPpNNddkuNk20OmxspUfIqDmLyTg8P_5cI6nj0k7Fg", description: "Look at those crsip edges."},
   {name: "Prettier Pink Rock", price: "43256", user_id: "18", stock: "4", photo_url: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQeBacGzU61npNBaFDxetu2v9n_dQw8XJa9_Z08eAfEGkLXqOFL", description: "Throw it at someone if you need."},
 # Amethyst
-  {name: "", price: "", user_id: "18", stock: "", photo_url: "", description: ""},
-  {name: "", price: "", user_id: "8", stock: "", photo_url: "", description: ""},
-  {name: "", price: "", user_id: "9", stock: "", photo_url: "", description: ""},
-  {name: "", price: "", user_id: "10", stock: "", photo_url: "", description: ""},
-  {name: "", price: "", user_id: "", stock: "", photo_url: "", description: ""},
-  {name: "", price: "", user_id: "", stock: "", photo_url: "", description: ""},
+  {name: "Functional Paperweight", price: "32525", user_id: "18", stock: "3", photo_url: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR9ZdYBT9RPsNPtRq4Nv3s57KpkrPZUM54lBUmzVGH-KSMAbILPIQ", description: "Toss at your enemies, or pet for comfort."},
+  {name: "Egg on Stand", price: "352234", user_id: "8", stock: "4", photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-UyhnUBMJ8rsUhrhY7ntq688MTCzd7U_wjNq5Ezmzu-dIKqcKQA", description: "Because of course you need an inedbile egg. The gold stand is free!"},
+  {name: "Flat Geode Thing", price: "4325", user_id: "9", stock: "4", photo_url: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQa-wHb6aNhafTkibBQr1j1OtXecS2q_acji6E0fWVeSR5mWecxxQ", description: "Not a piece of sandwich bread."},
+  {name: "Amethyst Sword", price: "5425", user_id: "10", stock: "2", photo_url: "http://www.orespawn.com/uploads/2/5/3/5/25358181/2043216_orig.png", description: "Thwack thine enemies."},
+  {name: "Heart on Her Finger", price: "542", user_id: "17", stock: "3", photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDf9QsBbInlxPl_fXZSSU0E46zh2lk5nm71nQxeMvi8RhzUUpX", description: "Because sleeves are for chumps."},
+  {name: "Flutter-by Butterfly", price: "432", user_id: "7", stock: "5", photo_url: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSj21LIRFpwLJ717Nl3NFLq001uUnyW5v2Yr_czZ6B4kjAtYUK0", description: "Disclaimer: It doesn't really fly."},
 # Tourmaline
-  {name: "", price: "", user_id: "9", stock: "", photo_url: "", description: ""},
-  {name: "", price: "", user_id: "10", stock: "", photo_url: "", description: ""},
-  {name: "", price: "", user_id: "17", stock: "", photo_url: "", description: ""},
-  {name: "", price: "", user_id: "", stock: "", photo_url: "", description: ""},
-  {name: "", price: "", user_id: "", stock: "", photo_url: "", description: ""},
-  {name: "", price: "", user_id: "", stock: "", photo_url: "", description: ""},
+  {name: "Jolly Rancher", price: "4323", user_id: "9", stock: "3", photo_url: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRpAO3vwZgK_Ei7brkJLsYtLkeg7O7BH4-kJiieCFtD-D0M_WiO", description: "Not a candy necklace."},
+  {name: "Jormungand", price: "5435", user_id: "10", stock: "1", photo_url: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQKc_QG74TfTtFvS7yzv4IjMK_bOzezHLahSIE_Dfw0j3DNZ-8hww", description: "..."},
+  {name: "Gem Bracelet", price: "4324", user_id: "17", stock: "2", photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCe93wq6WsmHnNE8tZBpfebGqZb3xgR94Te0uwMLH2H9M-RfUwRg", description: "Can't pick one color? Get 'em all!"},
+  {name: "Earrings", price: "4352", user_id: "9", stock: "2", photo_url: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRpA5O0n89dJERD3xRNQ8VJ2bpgO0uMvlqp4ihw8Yt1Pb8TIhbQEw", description: "Make sure their ears are pierced first."},
+  {name: "Radioactive Butterfly", price: "4522", user_id: "14", stock: "4", photo_url: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTfeTfBprAtSAx30yerUy-Ps-DEHGiPMjgYxRfL126tlFE3lqAThw", description: "Not proven to cause cancer in humans."},
+  {name: "Inedible Watermelon", price: "32452", user_id: "7", stock: "2", photo_url: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQuR4zzXZ08xSF44BfkuKjyEMV53JSEppiysKf-L-YokMv2wVwdcQ", description: "Disclaimer: not a ring-pop."},
 
 # Turquoise
-  {name: "", price: "", user_id: "", stock: "", photo_url: "", description: ""},
-  {name: "", price: "", user_id: "", stock: "", photo_url: "", description: ""},
-  {name: "", price: "", user_id: "", stock: "", photo_url: "", description: ""},
-  {name: "", price: "", user_id: "", stock: "", photo_url: "", description: ""},
+  {name: "Turquoise Set", price: "342", user_id: "17", stock: "3", photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAT_lQaYED2EAswqwQ7LAfUrPTOcyvRathjpdNNoEv4VLfl6ty", description: "No need to mix and match."},
+  {name: "Probably Fake Turquoise Rings", price: "544", user_id: "10", stock: "6765", photo_url: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQoGPq0oTIxG8tXbaUH9YNqfZQWjS4N9oqGVES-iGt7-UHphsiL", description: "But you look cool until your fingers are green."},
+  {name: "T-Chainz", price: "3255", user_id: "14", stock: "23", photo_url: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkICYb8_5_qmplGiiLckwKY48s2WLOPittQt3JFWLZuAH9NN2A", description: "Cuter than handcuffs."},
+  {name: "T-Earth", price: "4325", user_id: "15", stock: "2", photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlkA8Z3x1WgIFcMxPAYnPB0ViPmYIQPyDyFUAQYlT3vqvvp6ck9w", description: "I actually like this one."},
 ]
 
 
