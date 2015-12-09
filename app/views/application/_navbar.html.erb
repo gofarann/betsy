@@ -1,6 +1,6 @@
 <div class='navbar navbar-default'>
   <%= link_to 'Home', root_path %> / 
-  <%= if @current_user %>
+  <% if @current_user %>
   <%= link_to "Dashboard", dashboard_path %>
   <%= link_to "My Orders", user_order_dash_path %>
   <%= link_to "My Products", user_products_dash_path %>
