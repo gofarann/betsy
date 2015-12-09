@@ -67,14 +67,6 @@ ActiveRecord::Schema.define(version: 20151209180850) do
     t.boolean  "retired"
   end
 
-  create_table "ratings", force: :cascade do |t|
-    t.integer  "rating"
-    t.integer  "product_id"
-    t.string   "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "reviews", force: :cascade do |t|
     t.integer  "rating"
     t.integer  "product_id"
