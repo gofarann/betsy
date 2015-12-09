@@ -1,9 +1,9 @@
 class Product < ActiveRecord::Base
   belongs_to :user
-  has_many :category_products
+  has_many :categories_products
   has_many :reviews
   has_many :order_items
-  has_many :categories, through: :category_products
+  has_many :categories, through: :categories_products
 
   validates :name, presence: true
   validates :name, uniqueness: true
@@ -14,5 +14,5 @@ class Product < ActiveRecord::Base
 
   validates :user_id, presence: true
 
-  validates_numericality_of :stock, :greater_than_or_equal_to => 0
+  validates_numericality_of :stock, :greater_than => 0
 end
