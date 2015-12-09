@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209180850) do
+ActiveRecord::Schema.define(version: 20151209222155) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -55,9 +55,9 @@ ActiveRecord::Schema.define(version: 20151209180850) do
     t.integer  "stock"
     t.string   "photo_url"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.boolean  "retired"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "retired",     default: false
   end
 
   create_table "reviews", force: :cascade do |t|
