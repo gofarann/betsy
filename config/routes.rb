@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/sessions/new' => 'sessions#new', as: :login
   get '/users/new' => 'users#new', as: :signup
 
+  get "/logout" => "sessions#destroy", as: :logout
+
   get '/cart' => 'orders#cart', as: :cart
 
   get '/checkout'  => 'orders#checkout', as: :checkout
