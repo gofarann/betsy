@@ -1,7 +1,7 @@
 products = [
   # Emerald
   {name:"Emerald Sword", price: "20440" , user_id: "1", stock: "2" , photo_url: "http://www.pixelpapercraft.com/files/1351191430408-small.png", description: "Let this delightful emerald sword help you thwack your way through the world." }, 
-  {name: "Pure Emerald Block", price: "65500", user_id: "12", stock: "25", ph5soto_url: "http://www.pixelpapercraft.com/files/1381466703842.png", description: "Use this lovely emerald block to build all the things."},
+  {name: "Pure Emerald Block", price: "65500", user_id: "12", stock: "25", photo_url: "http://www.pixelpapercraft.com/files/1381466703842.png", description: "Use this lovely emerald block to build all the things."},
   {name: "Fancy Necklace", price: "6050", user_id: "14", stock: "22", photo_url: "http://www.faberge.com/images/thumbs/0006090_690.jpeg", description: "Look the best at your next fancy party."},
   {name: "Gaudy Is For Lovers", price: "8000", user_id: "4", stock: "1", photo_url: "http://i.ebayimg.com/00/s/MzAwWDMwMA==/z/ZiYAAOSwnDZUAAOK/$_35.JPG?set_id=2", description: "Bedeck your hands with this one-of-a-kind glory."},
   # Ruby
@@ -61,7 +61,7 @@ products = [
 # Turquoise
   {name: "Turquoise Set", price: "342", user_id: "17", stock: "3", photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAT_lQaYED2EAswqwQ7LAfUrPTOcyvRathjpdNNoEv4VLfl6ty", description: "No need to mix and match."},
   {name: "Probably Fake Turquoise Rings", price: "544", user_id: "10", stock: "6765", photo_url: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQoGPq0oTIxG8tXbaUH9YNqfZQWjS4N9oqGVES-iGt7-UHphsiL", description: "But you look cool until your fingers are green."},
-  {name: "T-Chainz", price: "3255", user_id: "14", stock: "23", photo_url: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkICYb8_5_qmplGiiLckwKY48s2WLOPittQt3JFWLZuAH9NN2A", description: "Cuter than handcuffs."},
+  {name: "T-Chainz", price: "3255", user_id: "14", stock: "23", photo_url: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkICYb8_5_qmplGiiLckwKY48s2WLOPittQt3JFWLZuAH9N2A", description: "Cuter than handcuffs."},
   {name: "T-Earth", price: "4325", user_id: "15", stock: "2", photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlkA8Z3x1WgIFcMxPAYnPB0ViPmYIQPyDyFUAQYlT3vqvvp6ck9w", description: "I actually like this one."},
 ]
 
@@ -145,22 +145,22 @@ categories.each do |c|
   Category.create(c)
 end
 
-order_items.each do |o|
-  OrderItem.create(o)
-end
+# order_items.each do |o|
+#   OrderItem.create(o)
+# end
 
-users.each do |u|
-  User.create(u)
-end
+# users.each do |u|
+#   User.create(u)
+# end
 
-orders.each do |o|
-  Order.create(o)
-end
+# orders.each do |o|
+#   Order.create(o)
+# end
 
-item.each do |i|
-  Item.create(i)
-end
+# item.each do |i|
+#   Item.create(i)
+# end
 
 category_products.each do |c|
-  CategoryProduct.create(c)
+  CategoriesProduct.create(c)
 end
