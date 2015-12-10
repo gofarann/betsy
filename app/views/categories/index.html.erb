@@ -7,7 +7,10 @@
       <% group.each do |cat| %>
         <div class="col-sm-4">
         <%= link_to "#{cat.name}", category_path(cat), class: 'category-box' %>
-        <%= cat. %>
+        <% cat.top_four.each do |p| %>
+            <%= image_tag "#{p.photo_url}" %>
+            <%= link_to "#{p.name}", product_path(p) %>
+        <% end %>
         </div>
       <% end %>
     </div>
