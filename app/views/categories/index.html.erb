@@ -5,7 +5,7 @@
   <% @cat.to_ary.in_groups_of(3, false) do |group| %>
   <div class="row">
     <% group.each do |cat| %>
-      <div class="col-md-4">
+      <div class="col-xs-4">
       <%= link_to "#{cat.name}", category_path(cat), class: 'category-box' %>
       </div>
     <% end %>
