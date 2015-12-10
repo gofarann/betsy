@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
   def create
     data = params[:session_data]
-    @user = User.find_by_email(data[:email_address])
+    @user = User.find_by_email_address(data[:email_address])
 
     if !@user.nil?
       if @user.authenticate(data[:password])
