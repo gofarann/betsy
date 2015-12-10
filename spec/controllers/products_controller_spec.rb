@@ -1,4 +1,6 @@
 require 'rails_helper'
+require 'support/app_controller'
+
 
 RSpec.describe ProductsController, type: :controller do
   describe "GET 'new'" do
@@ -41,5 +43,5 @@ RSpec.describe ProductsController, type: :controller do
       expect(subject).to render_template :new
     end
   end
-
+  it_behaves_like "a quartzy controller"
 end
