@@ -8,7 +8,6 @@ class Product < ActiveRecord::Base
   validates :name, uniqueness: true
 
   validates :price, presence: true
-  validates :price, numericality: { only_integer: true }
   validates_numericality_of :price, :greater_than => 0
 
   validates :user_id, presence: true
