@@ -29,6 +29,15 @@ class ProductsController < ApplicationController
     @title = "Edit #{@product.name}"
   end
 
+  def update
+    @product = Product.update(params[:id], product_params)
+    if @product.save
+      redirect_to product_path(@product)
+    else
+      render :edit
+    end
+  end
+
   private
 
   def product_params
