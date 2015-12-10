@@ -20,7 +20,13 @@ class ProductsController < ApplicationController
     id = params[:id]
     @product = Product.find(id)
     @title = "#{@product.name} Info"
+  end
 
+  def edit
+    id = params[:id]
+    @product = Product.find(id)
+    @action = "update"
+    @title = "Edit #{@product.name}"
   end
 
   private
