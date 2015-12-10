@@ -1,0 +1,15 @@
+<!-- Render Category Nav bar Once It's Built -->
+
+<div class="row">
+  <h1><%= "#{@category.name}" %></h1>
+</div>
+
+<% @category.products.to_ary.in_groups_of(3) do |group| %>
+<div class="row">
+  <% group.each do |pro| %>
+    <div class="col-sm-4">
+      <%= pro.name %>
+    </div>
+  <% end %>
+</div>
+<% end %>
