@@ -54,5 +54,46 @@ RSpec.describe ProductsController, type: :controller do
       expect(subject).to render_template :show
     end
   end
+
+  describe "PATCH 'update'" do
+    let(:product) do
+      Product.create(name: "necklace", price: 10, user_id: 2, stock: 3)
+    end
+
+    let(:good_product) do
+      {
+        id: product.id,
+        product: {
+          name: "necklace",
+          price: 10,
+          user_id: 2,
+          stock: 3,
+        }
+      }
+    end
+
+    let(:bad_product) do
+    {
+      id: product.id,
+      product: {
+        name: "",
+        price: 10,
+        user_id: 2,
+        stock: 3,
+      }
+    }
+    end
+
+    it "redirects to product show page" do
+      patch :update, good_product
+      expect(subject).to redirect_to product_path(product.id)
+    end
+
+    it "renders edit view" do
+      patch :update, bad_product
+      expect(subject).to render_template :edit
+    end
+  end
+
   it_behaves_like "a quartzy controller"
 end
