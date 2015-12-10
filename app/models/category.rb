@@ -6,4 +6,10 @@ class Category < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: true
 
+  def top_four
+    self.products.each do |product|
+      
+    end
+  end
+
 end
