@@ -8,11 +8,11 @@ RSpec.describe Category, type: :model do
     end
 
     it "must have a unique name" do
-      @category = Category.new(name: "Birthstone")
-      @category.save
-      expect(@category).to be_valid
+      @test_category = Category.new(name: "Birthstone")
+      @test_category.save
+      expect(@test_category).to be_valid
       expect(Category.new(name: "Birthstone")).to_not be_valid
+      @test_category.destroy
     end
   end
-
 end
