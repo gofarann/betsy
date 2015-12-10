@@ -11,7 +11,6 @@
         </h2>
         <% cat.top_four.each do |p| %>
             <%= image_tag "#{p.photo_url}", class: "img-responsive, product-page-img" %>
-            <h4>
               <%= link_to "#{p.name}", product_path(p) %>
             </h4>
         <% end %>
