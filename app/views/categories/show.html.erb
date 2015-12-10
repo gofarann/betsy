@@ -4,12 +4,4 @@
   <h1><%= "#{@category.name}" %></h1>
 </div>
 
-<% @category.products.to_ary.in_groups_of(3, false) do |group| %>
-  <div class="row">
-    <% group.each do |product| %>
-      <div class="col-sm-4">
-        <%= link_to "#{product.name}", product_path(product) %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
+<%= render partial: 'product_view', locals: {collection: @category} %>
