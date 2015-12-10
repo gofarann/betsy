@@ -15,6 +15,7 @@ class Product < ActiveRecord::Base
 
   validates_numericality_of :stock, :greater_than => 0
 
+  
   def avg_rating
     total = 0
     self.reviews.each do |r|

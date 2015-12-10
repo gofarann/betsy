@@ -7,9 +7,8 @@ class Category < ActiveRecord::Base
   validates :name, uniqueness: true
 
   def top_four
-    self.products.each do |product|
-      
-    end
+    products = self.products.sort_by{|pro| pro.avg_rating}
+    return products[0..3]
   end
 
 end
