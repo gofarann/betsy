@@ -43,5 +43,16 @@ RSpec.describe ProductsController, type: :controller do
       expect(subject).to render_template :new
     end
   end
+
+  describe "GET 'show'" do
+    let(:show_product) do
+      Product.create(name: "necklace", price: 10, user_id: 2, stock: 3)
+    end
+
+    it "renders the show view" do
+      get :show, id: show_product.id
+      expect(subject).to render_template :show
+    end
+  end
   it_behaves_like "a quartzy controller"
 end
