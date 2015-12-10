@@ -1,12 +1,7 @@
 require 'rails_helper'
+require 'support/app_controller'
 
 RSpec.describe WelcomeController, type: :controller do
-  
-  describe 'GET index' do
-    it 'is successful' do
-      get :index
-      expect(subject.response.status).to eq(200)
-    end
-  end
+  it_behaves_like "a quartzy controller"
 
 end
