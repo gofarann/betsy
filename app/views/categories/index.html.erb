@@ -6,10 +6,14 @@
     <div class="row">
       <% group.each do |cat| %>
         <div class="col-sm-4">
-        <%= link_to "#{cat.name}", category_path(cat), class: 'category-box' %>
+        <h2>
+          <%= link_to "#{cat.name}", category_path(cat), class: 'category-box' %>
+        </h2>
         <% cat.top_four.each do |p| %>
-            <%= image_tag "#{p.photo_url}" %>
-            <%= link_to "#{p.name}", product_path(p) %>
+            <%= image_tag "#{p.photo_url}", class: "img-responsive, product-page-img" %>
+            <h4>
+              <%= link_to "#{p.name}", product_path(p) %>
+            </h4>
         <% end %>
         </div>
       <% end %>

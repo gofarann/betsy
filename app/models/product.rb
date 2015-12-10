@@ -22,8 +22,8 @@ class Product < ActiveRecord::Base
       total += r.rating
     end
     if self.reviews.length > 0
-      avg = total / self.reviews.length 
-    else
+      avg = total / self.reviews.length
+    else 
       avg = 0
     end
     return avg

@@ -1,8 +1,11 @@
 <% collection.products.to_ary.in_groups_of(3, false) do |group| %>
   <div class="row">
-    <% group.each do |product| %>
+    <% group.each do |p| %>
       <div class="col-sm-4">
-        <%= link_to "#{product.name}", product_path(product) %>
+        <%= image_tag "#{p.photo_url}", class: "img-responsive, product-page-img" %>
+        <h3>
+          <%= link_to "#{p.name}", product_path(p) %>
+        </h3>
       </div>
     <% end %>
   </div>
