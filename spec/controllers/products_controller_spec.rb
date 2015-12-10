@@ -8,4 +8,38 @@ RSpec.describe ProductsController, type: :controller do
     end
   end
 
+  describe "POST 'create'" do
+    let(:good_params) do
+    {
+      product: {
+        name: "necklace",
+        price: 10,
+        user_id: 2,
+        stock: 3,
+      }
+    }
+    end
+
+    let (:bad_params) do
+      {
+        product: {
+          name: "",
+          price: 10,
+          user_id: 2,
+          stock: 3,
+        }
+      }
+    end
+
+    it "redirects to products#show page" do
+      post :create, good_params
+      expect(subject).to redirect_to product_path(Product.all.last)
+    end
+
+    it "renders new template on error" do
+      post :create, bad_params
+      expect(subject).to render_template :new
+    end
+  end
+
 end
