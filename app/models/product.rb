@@ -10,7 +10,7 @@ class Product < ActiveRecord::Base
   validates :price, presence: true
   validates_numericality_of :price, :greater_than => 0
 
-  validates :user_id, presence: true
+  # validates :user_id, presence: true
 
   validates_numericality_of :stock, :greater_than => 0
 end

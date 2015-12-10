@@ -527,7 +527,7 @@ category_products = [
 ]
 
 products.each do |p|
-  Product.create(p)
+  Product.create!(p)
 end
 
 categories.each do |c|
