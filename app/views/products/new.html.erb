@@ -36,7 +36,7 @@
     <div class="form-group">
       <%= f.fields_for :categories do |category| %>
       <%= category.label :id, "Category" %>
-      <%= category.collection_select(:id, Category.all, :id, :name, { prompt: "Select a Category:" }, { class: "form-control" }) %>
+      <%= category.collection_select(:id, Category.all, :id, :name, { prompt: "Select Categories" }, { multiple: true, class: "form-control" }) %>
       <% end %>
     </div>
 
