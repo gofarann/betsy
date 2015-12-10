@@ -3,5 +3,5 @@ class Order < ActiveRecord::Base
   has_many :orderitems
   has_many :products
 
-  validates_numericality_of :orderitems, :greater_than_or_equal_to => 1
+  # validates_numericality_of :orderitems, :greater_than_or_equal_to => 1
 end
