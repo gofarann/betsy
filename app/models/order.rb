@@ -15,6 +15,16 @@ class Order < ActiveRecord::Base
   # validates :zip, presence: true
   # validates :cc_exp, presence: true
   # validates :cc_cvv, presence: true
+
+  def pending_order
+    p = # find product ID somehow, find with product
+    Order.transaction do
+      order = Order.new(status: 'pending')
+      order.products << p
+      order.save!
+    end
+  end
+
   private
 
   def has_orderitem
