@@ -6,9 +6,9 @@ class Category < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: true
 
-  def top_four
+  def top(x)
     products = self.products.sort_by{|pro| pro.avg_rating}
-    return products[0..3]
+    return products[0..x]
   end
 
 end

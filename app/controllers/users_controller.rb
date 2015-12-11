@@ -12,7 +12,8 @@ before_action :navbar_categories, only: [:index]
   def create
     @user = User.new(strong_params)
     if @user.save
-      redirect_to new_session_path
+      session[:user_id] = @user.id
+      redirect_to root_path
     else
       render :new
     end
