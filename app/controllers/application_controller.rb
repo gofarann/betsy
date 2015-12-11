@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
       redirect_to new_session_path
     end
   end
+
+  def navbar_categories
+    @navbar_cat =  Category.where(user_id: nil)
+  end
 end

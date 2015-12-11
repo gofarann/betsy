@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+before_action :navbar_categories, only: [:index]
 
   def index
     @users = User.all

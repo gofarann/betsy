@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
 before_action :require_login, only: [:new, :create, :edit, :update]
+before_action :navbar_categories, only: [:index, :show]
 
   def index
     @cat = Category.all
