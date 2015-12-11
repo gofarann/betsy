@@ -9,8 +9,11 @@ class Order < ActiveRecord::Base
   validate :has_orderitem, on: :create
   validates :status, presence: true
 
+  # To create an order: 
+  # foo = Order.create!({orderitems_attributes: [{ product_id: 3}] })
+
   # All of the following validations don't need to be true until the status is marked paid. Do we need them as validations, or can we just have the form have required field? (And if we want them as validations, maybe we should have them set as a custom validation that only runs if the status is marked as paid.)
-  
+
   # validates :cc_name, presence: true
   # validates :email_address, presence: true
   # validates :mailing_address, presence: true
