@@ -39,6 +39,11 @@ class ProductsController < ApplicationController
     end
   end
 
+  def destroy
+    @product = Product.destroy(params[:id])
+    redirect_to products_path
+  end
+
   private
 
   def product_params
