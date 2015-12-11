@@ -95,5 +95,10 @@ RSpec.describe ProductsController, type: :controller do
     end
   end
 
+  def destroy
+    Product.destroy(params[:id])
+    redirect_to products_path
+  end
+
   it_behaves_like "a quartzy controller"
 end
