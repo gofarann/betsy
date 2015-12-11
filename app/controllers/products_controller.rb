@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :navbar_categories, only: [:index]
   def index
     @products = Product.all
   end

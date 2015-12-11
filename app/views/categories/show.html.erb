@@ -4,4 +4,4 @@
   <h1><%= "#{@category.name}" %></h1>
 </div>
 
-<%= render partial: 'product_view', locals: {collection: @category} %>
+<%= render partial: 'product_view', locals: {collection: @category.products} %>
