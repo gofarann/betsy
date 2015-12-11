@@ -160,4 +160,10 @@ RSpec.describe Order, type: :model do
     #     @test_order_item = Orderitem.create(product_id: 1, order_id: @)
     # end
   end
+
+  # describe "pending_order" do
+    
+  #   it ""
+  # end
+
 end

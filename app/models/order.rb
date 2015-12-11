@@ -19,9 +19,9 @@ class Order < ActiveRecord::Base
   # validates :cc_cvv, presence: true
   def self.pending_order(product)
     Order.transaction do
-    ord = Order.new(status: 'pending')
-    ord.products << product
-    ord.save!
+    order = Order.new(status: 'pending')
+    order.products << product
+    order.save!
     end
   end
 
