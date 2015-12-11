@@ -1,163 +1,147 @@
 require 'rails_helper'
 
-
-#
-#   create_table "products", force: :cascade do |t|
-#     t.string   "name"
-#     t.integer  "price"
-#     t.integer  "user_id"
-#     t.integer  "stock"
-#     t.string   "photo_url"
-#     t.string   "description"
-#     t.datetime "created_at",                  null: false
-#     t.datetime "updated_at",                  null: false
-#     t.boolean  "retired",     default: false
-#   end
-
 RSpec.describe Product, type: :model do
   describe ".validates" do
     let(:good_hash) do
-    {
-      status: "pending",
-      cc_name: "John Carlisle",
-      email_address: "jcarl@gmail.com",
-      mailing_address: "653 Gorge Way",
-      cc_number: 5110538084994719,
-      cc_exp: "06/18",
-      cc_cvv: "674",
-      zip: 19583
-    }
-    end
-
-    let (:no_status_hash) do
-      {
-        status: nil,
-        cc_name: "John Carlisle",
-        email_address: "jcarl@gmail.com",
-        mailing_address: "653 Gorge Way",
-        cc_number: 5110538084994719,
-        cc_exp: "06/18",
-        cc_cvv: "674",
-        zip: 19583
-      }
+      {name: "Geometry Like Woah",
+       price: 5645245,
+       user_id: "2",
+       stock: "1",
+       photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
+       description: "I drew this just for you.",
+       retired: false
+     }
     end
 
     let (:no_name_hash) do
-      {
-        status: "pending",
-        cc_name: nil,
-        email_address: "jcarl@gmail.com",
-        mailing_address: "653 Gorge Way",
-        cc_number: 5110538084994719,
-        cc_exp: "06/18",
-        cc_cvv: "674",
-        zip: 19583
+      {name: nil,
+       price: 5645245,
+       user_id: "2",
+       stock: "1",
+       photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
+       description: "I drew this just for you."
       }
     end
 
-    let (:no_email_hash) do
+    let (:no_price_hash) do
       {
-        status: "pending",
-        cc_name: "John",
-        email_address: nil,
-        mailing_address: "653 Gorge Way",
-        cc_number: 5110538084994719,
-        cc_exp: "06/18",
-        cc_cvv: "674",
-        zip: 19583
+       name: "Harry",
+       price: nil,
+       user_id: "2",
+       stock: "1",
+       photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
+       description: "I drew this just for you."
       }
     end
 
-    let (:no_mailing_hash) do
+    let (:price_of_zero) do
       {
-        status: "pending",
-        cc_name: "John",
-        email_address: "jcarl@gmail.com",
-        mailing_address: nil,
-        cc_number: 5110538084994719,
-        cc_exp: "06/18",
-        cc_cvv: "674",
-        zip: 19583
+        name: "Harry",
+        price: 0,
+        user_id: "2",
+        stock: "1",
+        photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
+        description: "I drew this just for you."
       }
     end
 
-    let (:no_cc_num_hash) do
+    let (:price_not_a_number) do
       {
-        status: "pending",
-        cc_name: "John",
-        email_address: "jcarl@gmail.com",
-        mailing_address: "123 Fake Street",
-        cc_number: nil,
-        cc_exp: "06/18",
-        cc_cvv: "674",
-        zip: 19583
+        name: "Harry",
+        price: "two dollars",
+        user_id: "2",
+        stock: "1",
+        photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
+        description: "I drew this just for you."
       }
     end
 
-    let (:no_cc_exp_hash) do
+    let (:no_user_id_hash) do
       {
-        status: "pending",
-        cc_name: "John",
-        email_address: "jcarl@gmail.com",
-        mailing_address: "123 Fake Street",
-        cc_number: 5110538084994719,
-        cc_exp: nil,
-        cc_cvv: "674",
-        zip: 19583
+        name: "Harry",
+        price: 435345,
+        user_id: nil,
+        stock: "1",
+        photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
+        description: "I drew this just for you."
       }
     end
 
-    let (:no_cc_cvv_hash) do
+    let (:stock_of_zero) do
       {
-        status: "pending",
-        cc_name: "John",
-        email_address: "jcarl@gmail.com",
-        mailing_address: "123 Fake Street",
-        cc_number: 5110538084994719,
-        cc_exp: "06/18",
-        cc_cvv: nil,
-        zip: 19583
+        name: "Harry",
+        price: 435345,
+        user_id: "2",
+        stock: 0,
+        photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
+        description: "I drew this just for you."
       }
     end
 
-    let (:no_zip_hash) do
+    let (:retired) do
       {
-        status: "pending",
-        cc_name: "John",
-        email_address: "jcarl@gmail.com",
-        mailing_address: "123 Fake Street",
-        cc_number: 5110538084994719,
-        cc_exp: "06/18",
-        cc_cvv: "123",
-        zip: nil
+        name: "Harry",
+        price: 435345,
+        user_id: "2",
+        stock: 0,
+        photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
+        description: "I drew this just for you.",
+        retired: true
+      }
+    end
+
+    let (:not_retired) do
+      {
+        name: "Harry",
+        price: 435345,
+        user_id: "2",
+        stock: 0,
+        photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
+        description: "I drew this just for you.",
+        retired: false
       }
     end
 
     it "must have a name" do
-      expect(Category.new(name: nil)).to_not be_valid
+      expect(Product.new(good_hash)).to be_valid
+      expect(Product.new(no_name_hash)).to_not be_valid
     end
 #
     it "must have a unique name" do
-      @test_category = Category.new(name: "Birthstone")
-      @test_category.save
-      expect(@test_category).to be_valid
-      expect(Category.new(name: "Birthstone")).to_not be_valid
-      @test_category.destroy
+      @test_product = Product.new(good_hash)
+      @test_product.save
+      expect(@test_product).to be_valid
+      expect(Product.new(good_hash)).to_not be_valid
+      @test_product.destroy
     end
 
     it "must have a price" do
-
+      expect(Product.new(no_price_hash)).to_not be_valid
     end
 
     it "must have a price that is a number" do
-
+      expect(Product.new(price_not_a_number)).to_not be_valid
     end
 
     it "must have a price greater than zero" do
+      expect(Product.new(price_of_zero)).to_not be_valid
+    end
 
+    it "has a stock greater than zero on create" do
+      expect(Product.new(stock_of_zero)).to_not be_valid
     end
 
     it "must belong to a User" do
+      expect(Product.new(no_user_id_hash)).to_not be_valid
     end
+
+    it "upon creation is not retired" do
+      expect(Product.new(retired)).to_not be_valid
+      expect(Product.new(not_retired)).to be_valid
+    end
+
+    it "is retired with (insert method here to test?)" do
+    end
+
   end
 end
