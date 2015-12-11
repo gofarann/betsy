@@ -20,7 +20,7 @@
   <div class="col-sm-6">
     <% @top_categories.each do |category| %>
       <h2>
-        <%= link_to "#{category.name}", categories_path(category) %> 
+        <%= link_to "#{category.name}", category_path(category) %> 
       </h2>
       <% category.top(2).each do |product| %>
         <h4>
