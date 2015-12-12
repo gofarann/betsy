@@ -143,5 +143,7 @@ RSpec.describe Product, type: :model do
     it "is retired with (insert method here to test?)" do
     end
 
+    #test that destroying a product destroys its reviews
+
   end
 end

@@ -1,5 +1,12 @@
 class ProductsController < ApplicationController
   before_action :navbar_categories, only: [:index]
+
+  def buy
+    if session[:order_id] = nil
+    else
+    end
+  end
+
   def index
     @products = Product.all
   end

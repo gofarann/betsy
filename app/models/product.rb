@@ -1,9 +1,9 @@
 class Product < ActiveRecord::Base
   belongs_to :user
-  has_many :reviews
+  has_many :reviews, :dependent => :destroy
   has_many :orderitems
   has_many :orders, through: :orderitems
-  has_many :categories_products
+  has_many :categories_products, :dependent => :destroy
   has_many :categories, through: :categories_products
 
   validates :name, presence: true

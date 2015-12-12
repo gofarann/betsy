@@ -1,27 +1,33 @@
 class Order < ActiveRecord::Base
   belongs_to :user
-  has_many :orderitems
+  has_many :orderitems, :dependent => :destroy
   has_many :products, through: :orderitems
 
-#want to keep these but am not finished working on them
-  # validate :has_orderitem, on: :create 
+  validate :has_orderitem, on: :create
   validates :status, presence: true
+  validates :status, inclusion: { in: %w(pending) }, on: :create
+  validates :status, inclusion: { in: %w(paid) }, on: :pay
+  validates :status, inclusion: { in: %w(complete) }, on: :ship
+  validates :status, inclusion: { in: %w(cancelled) }, on: :cancel
+  validates :cc_name, presence: true, on: :pay
+  validates :email_address, presence: true, on: :pay
+  validates :mailing_address, presence: true, on: :pay
+  validates :cc_number, presence: true, on: :pay
+  validates :zip, presence: true, on: :pay
+  validates :cc_exp, presence: true, on: :pay
+  validates :cc_cvv, presence: true, on: :pay
 
-  # All of the following validations don't need to be true until the status is marked paid. Do we need them as validations, or can we just have the form have required field? (And if we want them as validations, maybe we should have them set as a custom validation that only runs if the status is marked as paid.)
+  def session_over
+    if self.status = "pending"
+      self.destroy
+    end
+  end
 
-
-  # validates :cc_name, presence: true
-  # validates :email_address, presence: true
-  # validates :mailing_address, presence: true
-  # validates :cc_number, presence: true
-  # validates :zip, presence: true
-  # validates :cc_exp, presence: true
-  # validates :cc_cvv, presence: true
-  def self.pending_order(product)
+  def self.pending(product)
     Order.transaction do
-    order = Order.new(status: 'pending')
-    order.products << product
-    order.save!
+      order = Order.new(status: 'pending')
+      order.products << product
+      order.save!
     end
   end
 

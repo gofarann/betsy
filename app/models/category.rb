@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  has_many :categories_products
+  has_many :categories_products, :dependent => :destroy
   has_many :products, through: :categories_products
   belongs_to :user
 

@@ -124,31 +124,31 @@ RSpec.describe Order, type: :model do
       expect(Order.new(good_hash)).to be_valid
     end
     #
-    # it "must have a credit card name" do
+    # it "must have a credit card name on pay" do
     #   expect(Order.new(no_name_hash)).to_not be_valid
     # end
 
-    # it "must have an email address" do
+    # it "must have an email address on pay" do
     #   expect(Order.new(no_email_hash)).to_not be_valid
     # end
     #
-    # it "must have a mailing address" do
+    # it "must have a mailing address on pay" do
     #   expect(Order.new(no_mailing_hash)).to_not be_valid
     # end
     #
-    # it "must have a credit card num" do
+    # it "must have a credit card num on pay" do
     #   expect(Order.new(no_cc_num_hash)).to_not be_valid
     # end
 
-    # it "must have a credit card expiration date" do
+    # it "must have a credit card expiration date on pay" do
     #   expect(Order.new(no_cc_exp_hash)).to_not be_valid
     # end
     #
-    # it "must have a credit card cvv" do
+    # it "must have a credit card cvv on pay" do
     #   expect(Order.new(no_cc_cvv_hash)).to_not be_valid
     # end
     #
-    # it "must have a zip code" do
+    # it "must have a zip code on pay" do
     #   expect(Order.new(no_zip_hash)).to_not be_valid
     # end
 
@@ -162,8 +162,14 @@ RSpec.describe Order, type: :model do
   end
 
   # describe "pending_order" do
-    
+
   #   it ""
   # end
+
+  #describe "session_over" do
+  #it ""
+  #end
+
+  #test that destroying an order destroys its order items
 
 end

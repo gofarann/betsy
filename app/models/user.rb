@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :orders
-  has_many :products
+  has_many :orders, :dependent => :destroy
+  has_many :products, :dependent => :destroy
   has_many :categories
 
   validates :username, presence: true
@@ -16,5 +16,5 @@ class User < ActiveRecord::Base
     products = self.products.sort_by{|pro| pro.avg_rating}
     return products[0..x]
   end
-  
+
 end
