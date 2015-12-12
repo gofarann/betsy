@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
   #before you pay, clearing cart destroys order and orderitems.
   #after you've paid, you instead cancel the order, and the order sticks around in the database
   def clear_cart
-    @order = Order.find(session[:order_id])
+    Order.destroy(session[:order_id])
   end
 
   def checkout
@@ -35,23 +35,29 @@ class OrdersController < ApplicationController
 
   def cancel
     #for now, this is for guests.
-    #happens on the
     #Could do some logic and make it so users can cancel people's orders for them as a customer service thing.
-    #an update.
-
-    #change status to cancelled- that's it.
-    #a user can cancel an order but so can a guest
-    #doing so makes it so that
-    #remove from person's cart and redirect them to home.
+    @order = Order.find(session[:order_id])
+    @order.update_attribute(:status, "cancelled")
+    redirect_to root_path
   end
 
   def ship
     @order = Order.find(params[:id])
+    @order.update_attribute(:status, "complete")
+    redirect_to root_path
   end
+
 
   def pay
     @order = Order.find(session[:order_id])
-    @order.update_attribute(:status, "paid")
+    @order = Order.update(cc_name: order_params[:order][:cc_name],
+                        email_address: order_params[:order][:email_address],
+                        mailing_address: order_params[:order][:mailing_address],
+                        cc_number: order_params[:order][:cc_number],
+                        cc_exp: order_params[:order][:cc_exp],
+                        cc_cvv: order_params[:order][:cc_cvv],
+                        zip: order_params[:order][:zip],
+                        status: "paid")
   end
 
   #edit and update... are for the guest to do on the cart page?
@@ -76,7 +82,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:status, :cc_name, :email_address, :mailing_address, :cc_number, :cc_exp, :cc_ccv, :zip, :placed_at)
+    params.permit(order:[:status, :cc_name, :email_address, :mailing_address, :cc_number, :cc_exp, :cc_ccv, :zip, :placed_at])
   end
 
 end
