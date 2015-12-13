@@ -4,16 +4,21 @@ class OrdersController < ApplicationController
   #this is to help make it so only the person who started an order can do stuff to it.
   before_action :guest_authorize, :only =>[:clear_cart, :cancel_as_guest, :pay]
 
-  def index
-    @orders = Order.all
-  end
 
+  #I don't think this needs to exist.
+  # def index
+  #   @orders = Order.all
+  # end
+
+  #the order from the perspective of the merchant
   def show
     @order = Order.find(params[:id])
   end
 
+  #the order from the perspective of the guest
+  #stuff needed to view the cart page
   def cart
-    #stuff needed to view the cart page
+    @order = Order.find(session[:order_id])
   end
 
   #before you pay, clearing cart destroys order and orderitems.
@@ -21,6 +26,7 @@ class OrdersController < ApplicationController
   def clear_cart
     @order = Order.find(session[:order_id])
     @order.destroy
+    redirect_to root_path
   end
 
   def checkout
@@ -60,6 +66,7 @@ class OrdersController < ApplicationController
                         cc_cvv: order_params[:order][:cc_cvv],
                         zip: order_params[:order][:zip],
                         status: "paid")
+    redirect_to root_path
   end
 
 
@@ -90,7 +97,7 @@ class OrdersController < ApplicationController
     params.permit(order:[:status, :cc_name, :email_address, :mailing_address, :cc_number, :cc_exp, :cc_ccv, :zip, :placed_at])
   end
 
-  #views will need to make sure they send in an id to use here 
+  #views will need to make sure they send in an id to use here
   def guest_authorize
     unless session[:order_id] && session[:order_id].include?(params[:id].to_i)
     redirect_to root_path
