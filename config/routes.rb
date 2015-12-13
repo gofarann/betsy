@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   get 'users/:id/order_dash' => 'users#order_dash', as: :user_order_dash
 
-  get '/users/:id/products' => 'products#by_user', as: :user_products_dash
+  get '/users/:id/products' => 'users#product_dash', as: :user_products_dash
 
   resources :sessions, :only => [:new, :create]
   resources :users

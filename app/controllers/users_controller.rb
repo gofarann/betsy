@@ -21,10 +21,17 @@ before_action :find_user, only: [:show, :dash]
   end
 
   def show
+
   end
 
-  def dash 
+  def dash
   end
+
+  def product_dash
+    id = params[:id]
+    @user = User.find(id)
+  end
+
 
   private
 
