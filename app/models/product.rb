@@ -32,8 +32,4 @@ class Product < ActiveRecord::Base
     return avg
   end
 
-  def top_selling
-    
-  end
-
 end
