@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   def buy
     #a.k.a add to cart
     #in views, have to make it so clicking "buy" button to buy enters a product_id into params
-    id = params[:product_id]
+    id = params[:id]
     @product = Product.find(id)
     #if there is not yet an order_id in session, make it now
     #this is totally independent of being logged in.
@@ -14,9 +14,8 @@ class ProductsController < ApplicationController
       if session[:order_id] == []
         @order = Order.pending(@product)
         session[:order_id] << @order.id
-
       else
-        @order = Order.find(session[:order_id])
+        @order = Order.find(session[:order_id][0])
         @order.products << @product
       end
       #in either case, want to stay on same page after clicking button

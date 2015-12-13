@@ -18,14 +18,19 @@ class OrdersController < ApplicationController
   #the order from the perspective of the guest
   #stuff needed to view the cart page
   def cart
-    @order = Order.find(session[:order_id])
+    if !session[:order_id]
+      @cart_status = "empty"
+    else
+    @order = Order.find(session[:order_id][0])
+    end
   end
 
   #before you pay, clearing cart destroys order and orderitems.
   #after you've paid, you instead cancel the order, and the order sticks around in the database
   def clear_cart
-    @order = Order.find(session[:order_id])
+    @order = Order.find(session[:order_id][0])
     @order.destroy
+    session[:order_id] = nil
     redirect_to root_path
   end
 
@@ -44,7 +49,7 @@ class OrdersController < ApplicationController
   end
 
   def cancel_as_guest
-    @order = Order.find(session[:order_id])
+    @order = Order.find(session[:order_id][0])
     @order.update_attribute(:status, "cancelled")
     redirect_to root_path
   end
@@ -57,7 +62,7 @@ class OrdersController < ApplicationController
 
 
   def pay
-    @order = Order.find(session[:order_id])
+    @order = Order.find(session[:order_id][0])
     @order = Order.update(cc_name: order_params[:order][:cc_name],
                         email_address: order_params[:order][:email_address],
                         mailing_address: order_params[:order][:mailing_address],
@@ -99,7 +104,7 @@ class OrdersController < ApplicationController
 
   #views will need to make sure they send in an id to use here
   def guest_authorize
-    unless session[:order_id] && session[:order_id].include?(params[:id].to_i)
+    unless session[:order_id]
     redirect_to root_path
     end
   end

@@ -8,9 +8,13 @@ Rails.application.routes.draw do
 
   get '/cart' => 'orders#cart', as: :cart
 
+  delete 'cart/clear_cart' => 'orders#clear_cart', as: :clear_cart
+
   get '/checkout'  => 'orders#checkout', as: :checkout
 
   get '/orders/confirm' => 'orders#confirm', as: :confirm
+
+  post '/products/:id/buy' => 'products#buy', as: :buy
 
   get '/users/:id/dash' => 'users#dash', as: :user_dash
 
