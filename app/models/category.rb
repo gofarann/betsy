@@ -7,7 +7,7 @@ class Category < ActiveRecord::Base
   validates :name, uniqueness: true
 
   def top(x)
-    products = self.products.sort_by{|pro| pro.avg_rating}
+    products = self.products.where(retired: false).sort_by{|pro| pro.avg_rating}
     return products[0..x]
   end
 

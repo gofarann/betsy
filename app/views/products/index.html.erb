@@ -2,4 +2,4 @@
 
 <h1>all products</h1>
 
-<%= render partial: 'product_view', locals: {collection: @products} %>
+<%= render partial: 'product_view', locals: {collection: @products.where(retired: false)} %>
