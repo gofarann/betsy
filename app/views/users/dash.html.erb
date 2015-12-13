@@ -3,11 +3,14 @@
 <div class="row">
   <div class="col-sm-6">
     <h2>
-      <%= link_to 'Top Products' %>
+      <%= link_to 'Top Selling Products' %>
     </h2>
     <ul>
-      <%  %>
-      <%  %>
+      <% @user.top_selling(@user.products, 3).each do |product| %>
+        <li>
+          <%= product %>
+        </li>
+      <% end %>
     </ul>
   </div>
   <div class="col-sm-6">
@@ -15,7 +18,7 @@
       <%= link_to 'Recent Orders' %>
     </h2>
     <ul>
-      <% @user.orders.sort_by{|order| order.created_at}.first(4).each do |order|  %>
+      <% @user.orders.sort_by{|order| order.created_at}.first(3).each do |order|  %>
         <li>
           <%= link_to "Order #{order.id}", order_path(order.id) %> 
         </li>

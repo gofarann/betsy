@@ -27,4 +27,16 @@ class User < ActiveRecord::Base
     return orders
   end
 
+  # Takes an array of products and returns the x number of products in order of which sold the most often
+  def top_selling(product_array, x)
+    sales_hash = {}
+    product_array.each do |product|
+      revenue = product.orderitems.length * product.price
+      sales_hash[product] = revenue
+    end
+    top = sales_hash.sort_by{|k, v| v}
+    top_array = top[0..x-1].flatten.reject!{|item| item.class == Fixnum}
+    return top_array
+  end
+
 end
