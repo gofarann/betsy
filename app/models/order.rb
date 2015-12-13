@@ -23,10 +23,10 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def self.pending(product)
+  def self.pending(first_product)
     Order.transaction do
       order = Order.new(status: 'pending')
-      order.products << product
+      order.products << first_product
       order.save!
     end
   end

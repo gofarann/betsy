@@ -2,9 +2,25 @@ class ProductsController < ApplicationController
   before_action :navbar_categories, only: [:index]
 
   def buy
-    if session[:order_id] = nil
-    else
-    end
+    #a.k.a add to cart
+    #in views, have to make it so clicking "buy" button to buy enters a product_id into params
+    id = params[:product_id]
+    @product = Product.find(id)
+    #if there is not yet an order_id in session, make it now
+    #this is totally independent of being logged in.
+    session[:order_id] ||= []
+    #then if the id is nil, make an order and put it's id in the session hash
+    #if there already is an order in the session, add the product to it.
+      if session[:order_id] == []
+        @order = Order.pending(@product)
+        session[:order_id] << @order.id
+
+      else
+        @order = Order.find(session[:order_id])
+        @order.products << @product
+      end
+      #in either case, want to stay on same page after clicking button
+      redirect_to request.referrer
   end
 
   def index
