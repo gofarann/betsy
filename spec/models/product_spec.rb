@@ -1,17 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
+  let(:good_hash) do
+    {name: "Geometry Like Woah",
+     price: 5645245,
+     user_id: "2",
+     stock: "1",
+     photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
+     description: "I drew this just for you.",
+     retired: false
+   }
+  end
+
   describe ".validates" do
-    let(:good_hash) do
-      {name: "Geometry Like Woah",
-       price: 5645245,
-       user_id: "2",
-       stock: "1",
-       photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
-       description: "I drew this just for you.",
-       retired: false
-     }
-    end
 
     let (:no_name_hash) do
       {name: nil,
@@ -154,9 +155,26 @@ RSpec.describe Product, type: :model do
   end
 
   describe "avg_rating" do
-    it "" do
-      
+    let (:product) do
+      product = Product.create(good_hash)
+      r1 = Review.create(rating: 1, product_id: product.id)
+      r2 = Review.create(rating: 5, product_id: product.id)
+      product.reviews << [r1, r2]
+      return product
     end
+
+    it "returns an integer" do
+      expect(product.avg_rating).to be_a(Integer)
+    end
+
+    it "returns average of all ratings of product reviews" do
+      expect(product.avg_rating).to eq(3)
+    end
+
+    it "returns zero if product has no reviews" do
+      expect(Product.create(good_hash).avg_rating).to eq(0)
+    end
+
   end
 
 end
