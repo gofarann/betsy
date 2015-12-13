@@ -1,0 +1,23 @@
+<h1>Hello, <%= @user.username %></h1>
+
+<div class="row">
+  <div class="col-sm-6">
+    <h2>
+      <%= link_to 'Top Products' %>
+    </h2>
+    <ul>
+      <%  %>
+      <%  %>
+    </ul>
+  </div>
+  <div class="col-sm-6">
+    <h2>
+      <%= link_to 'Recent Orders' %>
+    </h2>
+    <ul>
+      <% @user.orders.sort_by(:created_at).limit(4).each do |order|  %>
+        <%= link_to "#{order.name}", order_path(order.id) %> / 
+      <% end %>
+    </ul>
+  </div>
+</div>
