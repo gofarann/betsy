@@ -16,9 +16,17 @@ class ProductsController < ApplicationController
         session[:order_id] << @order.id
       else
         @order = Order.find(session[:order_id][0])
-        @order.products << @product
+        #logic for whether or not one is in cart already
+        if @order.orderitems.where(product_id: @product.id) != []
+          #product is already in order
+          @orderitem = @order.orderitems.where(product_id: @product.id).first
+          @orderitem.update_attribute(:quantity, @orderitem.quantity + 1 )
+        else
+          #product is not already in order
+          @orderitem = Orderitem.create(quantity: 1, order_id: @order.id, product_id: @product.id)
+        end
       end
-      #in either case, want to stay on same page after clicking button
+      #in any case, want to stay on same page after clicking button
       redirect_to request.referrer
   end
 
