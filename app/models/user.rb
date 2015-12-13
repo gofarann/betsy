@@ -17,4 +17,14 @@ class User < ActiveRecord::Base
     return products[0..x-1]
   end
 
+  def orders
+    orders = []
+    self.products.each do |product|
+      product.orders.each do |order|
+        orders.push(order)
+      end
+    end
+    return orders
+  end
+
 end

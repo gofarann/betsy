@@ -31,6 +31,14 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def total(user_id)
+    sales = []
+    self.products.each do |product|
+      sales.push(product.price) if product.user_id == user_id
+    end
+    return sales.inject(0) {|r, e| r + e }
+  end
+
 
   private
 
