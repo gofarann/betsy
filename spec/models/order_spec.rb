@@ -1,20 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-  describe ".validates" do
-    let(:good_hash) do
-    {
-      status: "pending",
-      cc_name: "John Carlisle",
-      email_address: "jcarl@gmail.com",
-      mailing_address: "653 Gorge Way",
-      cc_number: 5110538084994719,
-      cc_exp: "06/18",
-      cc_cvv: "674",
-      zip: 19583
-    }
-    end
+  let(:good_hash) do
+  {
+    status: "pending",
+    cc_name: "John Carlisle",
+    email_address: "jcarl@gmail.com",
+    mailing_address: "653 Gorge Way",
+    cc_number: 5110538084994719,
+    cc_exp: "06/18",
+    cc_cvv: "674",
+    zip: 19583
+  }
+  end
 
+  describe ".validates" do
     let (:no_status_hash) do
       {
         status: nil,
@@ -161,16 +161,47 @@ RSpec.describe Order, type: :model do
     # end
   end
 
-  # describe "pending_order" do
-
-  #   it ""
-  # end
-
-  describe "total" do
+  describe "self.pending" do
     it "" do
       
     end
   end
+
+  describe "total" do
+    let(:product_hash) do
+       {name: "Geometry Like Woahhh",
+        price: 5645,
+        stock: "1",
+        photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
+        description: "I drew this just for you.",
+        user_id: 2,
+        retired: false
+      }
+    end
+    let(:second_product) do
+       {name: "Another Product Thing",
+        price: 5645245,
+        stock: "2",
+        photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
+        description: "I drew this just for you.",
+        user_id: 1,
+        retired: false
+      }
+    end
+    let (:order) do
+      order = Order.create(good_hash)
+      p = Product.create!(product_hash)
+      p2 = Product.create!(second_product)
+      order.products << [p, p2]
+    end
+  #   it "returns an integer" do
+  #     expect(order.total(1)).to be_a(Integer)
+  #   end
+  #   it "returns the total sales for a given user" do
+  #     expect(order.total(2)).to eq(5645245)
+  #     expect(order.total(1)).to eq(5645)
+  #   end
+  # end
 
   #describe "session_over" do
   #it ""
