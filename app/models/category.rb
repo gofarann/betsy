@@ -8,7 +8,7 @@ class Category < ActiveRecord::Base
 
   def top(x)
     products = self.products.where(retired: false).sort_by{|pro| pro.avg_rating}
-    return products[0..x]
+    return products[0..x-1]
   end
 
 end

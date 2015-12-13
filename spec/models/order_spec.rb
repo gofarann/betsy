@@ -193,15 +193,16 @@ RSpec.describe Order, type: :model do
       p = Product.create!(product_hash)
       p2 = Product.create!(second_product)
       order.products << [p, p2]
+      return order
     end
-  #   it "returns an integer" do
-  #     expect(order.total(1)).to be_a(Integer)
-  #   end
-  #   it "returns the total sales for a given user" do
-  #     expect(order.total(2)).to eq(5645245)
-  #     expect(order.total(1)).to eq(5645)
-  #   end
-  # end
+    it "returns an integer" do
+      expect(order.total(1)).to be_a(Integer)
+    end
+    it "returns the total sales for a given user" do
+      expect(order.total(2)).to eq(5645)
+      expect(order.total(1)).to eq(5645245)
+    end
+  end
 
   #describe "session_over" do
   #it ""
