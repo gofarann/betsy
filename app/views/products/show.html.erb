@@ -59,6 +59,30 @@
       <%= @product.avg_rating %>
     </td>
   </tr>
+  <tr>
+    <td class="table-headers">
+      Reviews
+    </td>
+    <td>
+      <% @product.reviews.each do |rev| %>
+      Rating:
+      <% if rev.rating == 5 %>
+        <% rev.rating.times do %>
+          <%= "⭐️" %> 
+        <% end %>
+      <% else %>
+        <% rev.rating.times do %>
+          <%= "⭐️" %>
+        <% (5 - rev.rating).times do %>
+            <%= "☆" %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <p class="rating"><%= rev.body %></p>
+
+      <% end %>
+    </td>
+  </tr>
 </table>
 </div>
 
