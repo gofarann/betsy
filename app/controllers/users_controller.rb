@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 before_action :navbar_categories, only: [:index]
 before_action :find_user, only: [:show, :dash]
+before_action :only_current_user, only: [:dash, :order_dash]
 
   def index
     @users = User.all
@@ -32,6 +33,11 @@ before_action :find_user, only: [:show, :dash]
     @user = User.find(id)
   end
 
+<<<<<<< HEAD
+=======
+  def order_dash
+  end
+>>>>>>> testing
 
   private
 
