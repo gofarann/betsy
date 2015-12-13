@@ -56,7 +56,18 @@
       Average Rating
     </td>
     <td>
-      <%= @product.avg_rating %>
+    <% if @stars == 5 %>
+      <% 5.times do %>
+        <%= "⭐️" %> 
+      <% end %>
+    <% else %>
+      <% @stars.times do %>
+        <%= "⭐️" %>
+      <% end %>
+      <% (5 - @stars).times do %>
+          <%= "☆" %>
+      <% end %>
+    <% end %>
     </td>
   </tr>
   <tr>
@@ -65,7 +76,7 @@
     </td>
     <td>
       <% @product.reviews.each do |rev| %>
-      Rating: <%= rev.rating %>
+      Rating:
       <% if rev.rating == 5 %>
         <% rev.rating.times do %>
           <%= "⭐️" %> 

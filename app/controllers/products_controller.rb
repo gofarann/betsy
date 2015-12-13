@@ -44,6 +44,7 @@ class ProductsController < ApplicationController
     id = params[:id]
     @product = Product.find(id)
     @title = "#{@product.name} Info"
+    @stars = @product.avg_rating
   end
 
   def edit
