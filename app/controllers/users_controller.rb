@@ -23,6 +23,10 @@ before_action :navbar_categories, only: [:index]
     find_user
   end
 
+  def dash
+    
+  end
+
   private
 
   def strong_params
