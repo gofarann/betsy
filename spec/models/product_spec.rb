@@ -146,4 +146,17 @@ RSpec.describe Product, type: :model do
     #test that destroying a product destroys its reviews
 
   end
+
+  describe "belongs_to_user?" do
+    it "" do
+      
+    end
+  end
+
+  describe "avg_rating" do
+    it "" do
+      
+    end
+  end
+
 end
