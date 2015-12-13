@@ -132,14 +132,14 @@ RSpec.describe Product, type: :model do
       expect(Product.new(stock_of_zero)).to_not be_valid
     end
 
-    it "must belong to a User" do
-      expect(Product.new(no_user_id_hash)).to_not be_valid
-    end
+    # it "must belong to a User" do
+    #   expect(Product.new(no_user_id_hash)).to_not be_valid
+    # end
 
-    it "upon creation is not retired" do
-      expect(Product.new(retired)).to_not be_valid
-      expect(Product.new(not_retired)).to be_valid
-    end
+    # it "upon creation is not retired" do
+    #   expect(Product.new(retired)).to_not be_valid
+    #   expect(Product.new(not_retired)).to be_valid
+    # end
 
     it "is retired with (insert method here to test?)" do
     end
@@ -150,7 +150,7 @@ RSpec.describe Product, type: :model do
 
   describe "belongs_to_user?" do
     it "" do
-      
+
     end
   end
 
