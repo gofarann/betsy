@@ -166,6 +166,12 @@ RSpec.describe Order, type: :model do
   #   it ""
   # end
 
+  describe "total" do
+    it "" do
+      
+    end
+  end
+
   #describe "session_over" do
   #it ""
   #end
