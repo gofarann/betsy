@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
   #look up callbacks
-  #BEWARE of trying to dry out with before actions- read carefully- @order is sometimes found by session, sometimes by params
+  #also, in order to make filter work, buttons to do stuff to orders need to send an id into params. (see guest_authorize method, which uses id)
+  #this is to help make it so only the person who started an order can do stuff to it.
+  before_action :guest_authorize, :only =>[:clear_cart, :cancel_as_guest, :pay]
 
   def index
     @orders = Order.all
@@ -17,7 +19,8 @@ class OrdersController < ApplicationController
   #before you pay, clearing cart destroys order and orderitems.
   #after you've paid, you instead cancel the order, and the order sticks around in the database
   def clear_cart
-    Order.destroy(session[:order_id])
+    @order = Order.find(session[:order_id])
+    @order.destroy
   end
 
   def checkout
@@ -28,14 +31,13 @@ class OrdersController < ApplicationController
     #stuff needed on the confirmation page
   end
 
-  def create
-    #clicking on "buy" on a product for the first time in a session does this
-
+  def cancel_as_user
+      @order = Order.find(params[:id])
+      @order.update_attribute(:status, "cancelled")
+      redirect_to order_sum_path(session[:user_id])
   end
 
-  def cancel
-    #for now, this is for guests.
-    #Could do some logic and make it so users can cancel people's orders for them as a customer service thing.
+  def cancel_as_guest
     @order = Order.find(session[:order_id])
     @order.update_attribute(:status, "cancelled")
     redirect_to root_path
@@ -60,8 +62,10 @@ class OrdersController < ApplicationController
                         status: "paid")
   end
 
+
   #edit and update... are for the guest to do on the cart page?
   #needs more thought
+  #we have lots of specific ways we are updating, as it stands right now
   def edit
     @order = Order.find(params[:id])
   end
@@ -73,7 +77,8 @@ class OrdersController < ApplicationController
     redirect_to order_path(params[:id])
   end
 
-  #Not really used. Maybe we could have merchant be able to delete cancelled orders if they want to.
+  #Maybe we could have merchant be able to delete cancelled orders if they want to.
+  #not sure about how we are using this one yet
   def destroy
     Order.destroy(params[:id])
     redirect_to orders_path
@@ -83,6 +88,13 @@ class OrdersController < ApplicationController
 
   def order_params
     params.permit(order:[:status, :cc_name, :email_address, :mailing_address, :cc_number, :cc_exp, :cc_ccv, :zip, :placed_at])
+  end
+
+  #views will need to make sure they send in an id to use here 
+  def guest_authorize
+    unless session[:order_id] && session[:order_id].include?(params[:id].to_i)
+    redirect_to root_path
+    end
   end
 
 end
