@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 before_action :navbar_categories, only: [:index]
+before_action :find_user, only: [:show, :dash]
 
   def index
     @users = User.all
@@ -20,11 +21,9 @@ before_action :navbar_categories, only: [:index]
   end
 
   def show
-    find_user
   end
 
-  def dash
-    
+  def dash 
   end
 
   private
