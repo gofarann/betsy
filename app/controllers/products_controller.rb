@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
     #if there already is an order in the session, add the product to it.
       if session[:order_id] == []
         @order = Order.pending(@product)
-        session[:order_id] << @order.id
+        session[:order_id] = @order.id
       else
         @order = Order.find(session[:order_id][0])
         #logic for whether or not one is in cart already
