@@ -19,7 +19,7 @@ class Order < ActiveRecord::Base
 
   def session_over
     if self.status = "pending"
-      self.destroy
+      self.destroy!
     end
   end
 

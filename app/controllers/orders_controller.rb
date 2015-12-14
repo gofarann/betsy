@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
   #after you've paid, you instead cancel the order, and the order sticks around in the database
   def clear_cart
     @order = Order.find(session[:order_id])
-    @order.destroy
+    @order.destroy!
     session[:order_id] = nil
     redirect_to root_path
   end
