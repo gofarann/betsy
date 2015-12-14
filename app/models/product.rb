@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
   has_many :reviews, :dependent => :destroy
   has_many :orderitems
   has_many :orders, through: :orderitems
-  has_many :categories_products, :dependent => :destroy
+  has_many :categories_products
   has_many :categories, through: :categories_products
 
   validates :name, presence: true
@@ -13,11 +13,6 @@ class Product < ActiveRecord::Base
   validates_numericality_of :stock, :greater_than => 0, on: :create
   # validates :retired, inclusion: { in: %w(false) }, on: :create
   validate :belongs_to_user?
-
-
-  def belongs_to_user?
-    !!self.user
-  end
 
   def avg_rating
     total = 0
@@ -32,4 +27,8 @@ class Product < ActiveRecord::Base
     return avg
   end
 
+  def belongs_to_user?
+    !!self.user
+  end
+  
 end
