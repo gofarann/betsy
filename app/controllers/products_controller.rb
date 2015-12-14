@@ -79,6 +79,18 @@ class ProductsController < ApplicationController
     end
   end
 
+  def retire
+    id = params[:id]
+    @product = Product.find(id)
+    if @product.retired
+       @product.retired = false
+     elsif !@product.retired
+       @product.retired = true
+    end
+    @product.save
+    redirect_to request.referrer
+  end
+
   def destroy
     @product = Product.destroy(params[:id])
     redirect_to request.referrer
