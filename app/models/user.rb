@@ -12,11 +12,13 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, :message => "Passwords should match"
   has_secure_password
 
+  # returns the top x number of products the user sells based on their average rating
   def top(x)
     products = self.products.where(retired: false).sort_by{|pro| pro.avg_rating}
     return products[0..x-1]
   end
 
+  # returns all the orders that have any products in them belonging to the user
   def orders
     orders = []
     self.products.each do |product|
@@ -37,6 +39,23 @@ class User < ActiveRecord::Base
     top = sales_hash.sort_by{|k, v| v}
     top_array = top[0..x-1].flatten.reject!{|item| item.class == Fixnum}
     return top_array
+  end
+
+  # returns total revenue for a user
+  def revenue
+    rev = []
+    self.products.each do |product|
+      product.orderitems.each do |orderitem|
+        rev.push(orderitem.product.price)
+      end
+    end
+    total = rev.inject{|r, e| r + e}
+    return total
+  end
+
+  # returns revenue for user by order status
+  def revenue_by_status(status)
+    
   end
 
 end
