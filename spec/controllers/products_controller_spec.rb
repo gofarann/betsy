@@ -44,6 +44,17 @@ RSpec.describe ProductsController, type: :controller do
     end
   end
 
+  describe "GET 'edit'" do
+    let(:product) do
+      Product.create(name: "necklace", price: 10, user_id: 2, stock: 3)
+    end
+
+    it "renders edit view" do
+      get :edit, id: product.id
+      expect(subject).to render_template :edit
+    end
+  end
+
   describe "GET 'show'" do
     let(:show_product) do
       Product.create(name: "necklace", price: 10, user_id: 2, stock: 3)
@@ -95,9 +106,15 @@ RSpec.describe ProductsController, type: :controller do
     end
   end
 
-  def destroy
-    Product.destroy(params[:id])
-    redirect_to products_path
+  describe "DELETE 'destroy'" do
+    let(:product) do
+      Product.create(name: "necklace", price: 10, user_id: 2, stock: 3)
+    end
+
+    it "redirects to products index page" do
+      delete :destroy, id: product.id
+      expect(subject).to redirect_to products_path
+    end
   end
 
   it_behaves_like "a quartzy controller"
