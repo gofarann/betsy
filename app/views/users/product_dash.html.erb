@@ -1,95 +1,11 @@
-<h1><%= @user.cc_name %>'s Products</h1>
+<h1><%= @user.username %><br></h1>
 <h2> Active Products </h2>
 <table class='table'>
-  <tr>
-    <td class="table_head">
-      Product
-    </td>
-    <td>
-      <%= @product.name %>
-    </td>
-  </tr>
-  <tr>
-    <td class="table-headers">
-      Description
-    </td>
-    <td>
-      <%= @product.description%>
-    </td>
-  </tr>
-  <tr>
-    <td class="table-headers">
-      Price
-    </td>
-    <td>
-      <%= @product.price %>
-    </td>
-  </tr>
-  <tr>
-    <td class="table-headers">
-      Photo
-    </td>
-    <td>
-      <%= image_tag @product.photo_url %>
-    </td>
-  </tr>
-  <tr>
-    <td class="table-headers">
-      Stock
-    </td>
-    <td>
-      <%= @product.stock%>
-    </td>
-  </tr>
-  <tr>
-    <td class="table-headers">
-      Category
-    </td>
-    <td>
-      <% @product.categories.each do |category| %>
-      <%= category.name %>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <td class="table-headers">
-      Average Rating
-    </td>
-    <td>
-      <%= @product.avg_rating %>
-    </td>
-  </tr>
-  <tr>
-    <td class="table-headers">
-      Reviews
-    </td>
-    <td>
-      <% @product.reviews.each do |rev| %>
-      Rating: <%= rev.rating %>
-      <% if rev.rating == 5 %>
-        <% rev.rating.times do %>
-          <%= "⭐️" %> 
-        <% end %>
-      <% else %>
-        <% rev.rating.times do %>
-          <%= "⭐️" %>
-        <% end %>
-        <% (5 - rev.rating).times do %>
-            <%= "☆" %>
-        <% end %>
-      <% end %>
-      <p class="rating"><%= rev.body %></p>
-      <% end %>
-    </td>
-  </tr>
+   <td class="table_head"> Products </td>
+    <% @user.products.each  do |product| %>
+      <td> <%= link_to "#{product.name}", product_path(product) %> </td>
+      <td><%= link_to "Delete", user_product_path(@user,product), method: :delete, class: "btn btn-default" %></td>
+    <% end %>
 </table>
-</div>
 
-
-<%= button_to "Edit", edit_product_path(@product), method: :get, class: "btn btn-default" %>Edit button needs to filter for logged in only
-<%= button_to "Delete", product_path(@product.id), method: :delete, class: "btn btn-default" %>
-<%= button_to "All Products", products_path, method: :get, class: "btn btn-default" %>
-
-Need add review button to go to review form and filter so owner of product cannot see
-Need buy button to go to that filters so owner of product cannot see
-Need add category button
+<h2> Inactive Products </h2>

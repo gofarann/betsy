@@ -43,5 +43,4 @@ RSpec.describe User, type: :model do
       expect(user.top(2).length).to eq(2)
     end
   end
-
 end
