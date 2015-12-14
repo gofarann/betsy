@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
   has_many :reviews, :dependent => :destroy
   has_many :orderitems
   has_many :orders, through: :orderitems
-  has_many :categories_products
+  has_many :categories_products #, :dependent => :destroy
   has_many :categories, through: :categories_products
 
   validates :name, presence: true
@@ -30,5 +30,5 @@ class Product < ActiveRecord::Base
   def belongs_to_user?
     !!self.user
   end
-  
+
 end

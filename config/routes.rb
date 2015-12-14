@@ -23,9 +23,7 @@ Rails.application.routes.draw do
   get '/users/:id/products' => 'users#product_dash', as: :user_products_dash
 
   resources :sessions, :only => [:new, :create]
-  resources :users do
-    resources :products, :only => [:destroy], :controller => "users/products"
-  end
+  resources :users 
   resources :products do
     post "/review", to: "products#review"
   end
