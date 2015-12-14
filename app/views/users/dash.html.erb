@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-sm-6">
     <h2>
-      <%= link_to 'Top Selling Products' %>
+      <%= link_to 'Top Selling Products', user_products_dash_path(@user) %>
     </h2>
     <ul>
       <% Product.top_selling(@user.products, 3).each do |product| %>
@@ -15,7 +15,7 @@
   </div>
   <div class="col-sm-6">
     <h2>
-      <%= link_to 'Recent Orders' %>
+      <%= link_to 'Recent Orders', user_order_dash_path(@user) %>
     </h2>
     <ul>
       <% @user.orders.sort_by{|order| order.created_at}.first(3).each do |order|  %>
