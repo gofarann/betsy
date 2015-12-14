@@ -18,4 +18,11 @@ class ApplicationController < ActionController::Base
   def navbar_categories
     @navbar_cat =  Category.where(user_id: nil)
   end
+
+  def only_current_user
+    if current_user.id != params[:id].to_i
+      flash[:error] = "You are not authorized to view this section"
+      redirect_to :back
+    end
+  end
 end

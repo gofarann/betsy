@@ -12,11 +12,11 @@ RSpec.describe UsersController, type: :controller do
 
   let(:user) {User.create(good_hash)}
 
-  describe 'GET dash' do
-    it "shows the user dash page" do
-      get :dash, id: user.id
-      expect(subject).to render_template :dash
-    end
-  end
+  # describe 'GET dash' do
+  #   it "shows the user dash page" do
+  #     get :dash, id: user.id
+  #     expect(subject).to render_template :dash
+  #   end
+  # end
 
 end
