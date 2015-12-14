@@ -14,6 +14,19 @@ class Product < ActiveRecord::Base
   # validates :retired, inclusion: { in: %w(false) }, on: :create
   validate :belongs_to_user?
 
+  # Takes an array of products and returns the x number of products in order of which sold the most often
+  def self.top_selling(product_array, x)
+    sales_hash = {}
+    product_array.each do |product|
+      revenue = product.orderitems.length * product.price
+      sales_hash[product] = revenue
+    end
+    top = sales_hash.sort_by{|k, v| v}
+    top_array = top[0..x-1].flatten.reject!{|item| item.class == Fixnum}
+    return top_array
+  end
+
+  # returns the average rating for all ratings for a given product
   def avg_rating
     total = 0
     self.reviews.each do |r|
