@@ -22,9 +22,11 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    @current_order = Order.find(session[:order_id])
-    @current_order.session_over  #destroys whatever order is in the session so long as it was only pending
-    session[:order_id] = nil #not sure if this is needed.
+    if !!session[:order_id]
+      @current_order = Order.find(session[:order_id])
+      @current_order.destroy!  #destroys whatever order is in the session so long as it was only pending, which is done in an order validation
+      session[:order_id] = nil
+    end
     redirect_to root_path
   end
 end
