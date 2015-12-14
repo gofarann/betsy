@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
   before_action :navbar_categories, only: [:index]
-  before_action :current_user
 
   def buy
     #a.k.a add to cart
@@ -37,19 +36,17 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    @categories = @product.categories
+    # @categories = @product.categories
     @action = "create"
     @all_categories = Category.all
   end
 
   def create
-    @user_id = session[:user_id]
     @product = Product.new(product_params)
-    params[:categories].each do |cat|
-      @product.categories << Category.where(id: cat)
-    end
+    @product.user_id = session[:user_id]
+    @product.category_ids = params[:product][:category_ids]
     if @product.save
-      redirect_to user_path(@user_id)
+      redirect_to user_path(@product.user_id)
     else
       render :edit
     end
@@ -81,8 +78,8 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @user_id = session[:user_id]
     @product = Product.update(params[:id], product_params)
+    @product.category_ids = params[:product][:category_ids]
     if @product.save
       redirect_to product_path(@product)
     else
@@ -110,7 +107,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :photo_url, :stock, :category)
+    params.require(:product).permit(:category_ids, :name, :description, :price, :photo_url, :stock, :category)
   end
 
   def review_params
