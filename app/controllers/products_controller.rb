@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
         @order = Order.pending(@product)
         session[:order_id] = @order.id
       else
-        @order = Order.find(session[:order_id][0])
+        @order = Order.find(session[:order_id])
         #logic for whether or not one is in cart already
         if @order.orderitems.where(product_id: @product.id) != []
           #product is already in order
