@@ -27,6 +27,23 @@ RSpec.describe User, type: :model do
     }
   end
   # create a let for some some orders
+  describe "orders" do
+    let(:user) do
+      user = User.create(good_hash)
+      p = Product.create!(product_hash)
+      p2 = Product.create!(second_product)
+      user.products << [p, p2]
+      order = Order.pending(p)
+      order2 = Order.pending(p2)
+      return user
+    end
+    it "returns an array of order instances" do
+      
+    end
+    it "only returns orders a user has orderitems in" do
+      
+    end
+  end
 
   describe "top(x)" do
     let(:user) do
@@ -97,5 +114,5 @@ RSpec.describe User, type: :model do
       expect(user.rev_by_status('paid')).to eq(25)
     end
   end
-  
+
 end
