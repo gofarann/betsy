@@ -4,6 +4,7 @@ class Order < ActiveRecord::Base
   has_many :products, through: :orderitems
 
   validate :has_orderitem, on: :create
+  validate :customer_destroys_only_pending, on: :destroy
   validates :status, presence: true
   validates :status, inclusion: { in: %w(pending) }, on: :create
   validates :status, inclusion: { in: %w(paid) }, on: :pay
@@ -40,8 +41,13 @@ class Order < ActiveRecord::Base
     return sales.inject(0) {|r, e| r + e }
   end
 
-
-  private
+  #possibly want merchants to be able to destroy orders of different statuses,
+  #but if you are a customer you can only clear cart before you have paid.
+  def customer_destroys_only_pending
+    if !session[:user_id]
+      self.status = "pending"
+    end
+  end
 
   def has_orderitem
     !!self.orderitems
