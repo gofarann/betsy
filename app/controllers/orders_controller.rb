@@ -21,14 +21,14 @@ class OrdersController < ApplicationController
     if !session[:order_id]
       @cart_status = "empty"
     else
-    @order = Order.find(session[:order_id][0])
+    @order = Order.find(session[:order_id])
     end
   end
 
   #before you pay, clearing cart destroys order and orderitems.
   #after you've paid, you instead cancel the order, and the order sticks around in the database
   def clear_cart
-    @order = Order.find(session[:order_id][0])
+    @order = Order.find(session[:order_id])
     @order.destroy
     session[:order_id] = nil
     redirect_to root_path
