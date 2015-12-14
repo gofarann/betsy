@@ -25,4 +25,11 @@ class ApplicationController < ActionController::Base
       redirect_to :back
     end
   end
+
+  def current_user_owns_product
+    if current_user.id != Product.find(params[:id]).user_id
+      flash[:error] = "You are not authorized to view this section"
+      redirect_to :back
+    end
+  end
 end
