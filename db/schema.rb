@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(version: 20151210044905) do
     t.integer "product_id",  null: false
   end
 
+  create_table "category_products", force: :cascade do |t|
+    t.integer  "category_id"
+    t.integer  "product_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "orderitems", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "order_id"

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 before_action :navbar_categories, only: [:index]
-before_action :find_user, only: [:show, :dash, :order_dash]
+before_action :find_user, only: [:show, :dash, :product_dash, :order_dash]
 before_action :only_current_user, only: [:dash, :order_dash]
 
   def index

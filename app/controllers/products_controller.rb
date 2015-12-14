@@ -52,6 +52,15 @@ class ProductsController < ApplicationController
     @product = Product.find(id)
     @title = "#{@product.name} Info"
     @stars = @product.avg_rating
+    @reviews = @product.reviews
+    @review = Review.new
+  end
+
+  def review
+    id = params[:product_id]
+    @product = Product.find(id)
+    @review = Review.create(review_params)
+    redirect_to product_path(@product)
   end
 
   def edit
@@ -79,5 +88,9 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :description, :price, :photo_url, :stock, :category)
+  end
+
+  def review_params
+    params.require(:review).permit(:rating, :body).merge(product_id: params[:product_id])
   end
 end
