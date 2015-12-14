@@ -81,7 +81,7 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.destroy(params[:id])
-    redirect_to products_path
+    redirect_to request.referrer
   end
 
   private

@@ -19,16 +19,15 @@ class Order < ActiveRecord::Base
 
   def session_over
     if self.status = "pending"
-      self.destroy
+      self.destroy!
     end
   end
 
   def self.pending(first_product)
     Order.transaction do
       order = Order.new(status: 'pending')
-      orderitem = Orderitem.new(quantity: 1, order_id: order.id, product_id: first_product.id)
+      order.orderitems << Orderitem.create!(quantity: 1, order_id: order.id, product_id: first_product.id)
       order.save!
-      orderitem.save!
       return order
     end
   end
