@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
   end
   let(:product_hash) do
      {name: "Geometry Like Woah",
-      price: 5645245,
+      price: 20,
       stock: "1",
       photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
       description: "I drew this just for you.",
@@ -19,7 +19,7 @@ RSpec.describe User, type: :model do
   end
   let(:second_product) do
      {name: "Another Product",
-      price: 5645245,
+      price: 25,
       stock: "2",
       photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
       description: "I drew this just for you.",
@@ -46,12 +46,21 @@ RSpec.describe User, type: :model do
   end
 
   describe "revenue" do
+    let(:user) do
+      user = User.create(good_hash)
+      p = Product.create!(product_hash)
+      p2 = Product.create!(second_product)
+      user.products << [p, p2]
+      order = Order.pending(p)
+      order2 = Order.pending(p2)
+      return user
+    end
     # create an order
     it "returns an integer" do
-      
+      expect(user.revenue).to be_a(Integer)
     end
     it "returns total of all products that have been orderitems" do
-      
+      expect(user.revenue).to eq(45)
     end
   end
 
