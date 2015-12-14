@@ -45,22 +45,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "self.top_selling(product_array, x)" do
-    before :each  do
-      p = []
-      p << Product.create(second_product)
-      p << Product.create(product_hash)
-    end
-      
-    end
-    it  "returns Product instances" do
-      
-    end
-    it "returns x number of instances"  do
-      
-    end
-  end
-
   describe "revenue" do
     # create an order
     it "returns an integer" do
