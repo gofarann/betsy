@@ -44,4 +44,12 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "top_selling(product_array, x)" do
+    
+  end
+
+  describe "revenue" do
+    
+  end
+
 end
