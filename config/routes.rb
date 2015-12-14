@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   delete 'cart/clear_cart' => 'orders#clear_cart', as: :clear_cart
 
-  delete '/cart/orderitems/:id' => 'orderitems#destroy', as: :orderitems_delete
+  post '/cart/orderitems/:id' => 'orderitems#destroy', as: :orderitems_delete
 
   get '/checkout'  => 'orders#checkout', as: :checkout
 

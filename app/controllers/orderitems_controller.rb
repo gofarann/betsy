@@ -7,7 +7,10 @@ class OrderitemsController < ApplicationController
     @order = @orderitem.order
     total_items = @order.orderitems
     if total_items.count == 1
-      redirect_to :controller => :orders, :action => :clear_cart
+      @order = Order.find(session[:order_id])
+      @order.destroy!
+      session[:order_id] = nil
+      redirect_to root_path
     else
       @orderitem.destroy
       redirect_to cart_path

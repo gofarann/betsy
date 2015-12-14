@@ -59,12 +59,13 @@
     </tr>
     <tr>
       <td class="table-headers">
-        <%= button_to "Remove from Cart", orderitems_delete_path(orderitem.id), method: :delete %>
+        <%= button_to "Remove from Cart", orderitems_delete_path(orderitem.id) %>
       </td>
     </tr>
     <% end %>
     </table>
   </div>
+  <%= button_to "Checkout", clear_cart_path, method: :delete %>
     <%= button_to "Empty Cart", clear_cart_path, method: :delete %>
     <br>
     <br>
