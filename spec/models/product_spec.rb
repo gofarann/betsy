@@ -1,10 +1,31 @@
 require 'rails_helper'
+require 'pry'
 
 RSpec.describe Product, type: :model do
   let(:good_hash) do
     {name: "Geometry Like Woah",
      price: 5645245,
      user_id: "2",
+     stock: "1",
+     photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
+     description: "I drew this just for you.",
+     retired: false
+   }
+  end
+  let(:second_hash) do
+    {name: "Geometry 4",
+     price: 5645245,
+     user_id: "4",
+     stock: "1",
+     photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
+     description: "I drew this just for you.",
+     retired: false
+   }
+  end
+  let(:third_hash) do
+    {name: "Geometry 3",
+     price: 5645245,
+     user_id: "3",
      stock: "1",
      photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
      description: "I drew this just for you.",
@@ -175,6 +196,23 @@ RSpec.describe Product, type: :model do
       expect(Product.create(good_hash).avg_rating).to eq(0)
     end
 
+  end
+
+  describe "self.top_selling(product_array, x)" do
+    let(:p)  do
+      p = []
+      p << Product.create(good_hash)
+      p << Product.create(second_hash)
+      p << Product.create(third_hash)
+      return p
+    end
+    it  "returns Product instances" do
+      expect(Product.top_selling(p, 2)[0]).to be_a(Product)
+    end
+    it "returns x number of instances"  do
+      expect(Product.top_selling(p, 2).length).to eq(2)
+      expect(Product.top_selling(p, 1).length).to eq(1)
+    end
   end
 
 end

@@ -142,13 +142,16 @@ RSpec.describe ProductsController, type: :controller do
 
 
   describe "DELETE 'destroy'" do
+    before :each do
+        request.env["HTTP_REFERER"] = "back"
+    end
     let(:product) do
       Product.create(name: "necklace", price: 10, user_id: 2, stock: 3)
     end
 
     it "redirects to products index page" do
       delete :destroy, id: product.id
-      expect(subject).to redirect_to products_path
+      expect(subject).to redirect_to "back"
     end
   end
 
