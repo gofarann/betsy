@@ -6,7 +6,7 @@
       <%= link_to 'Top Selling Products' %>
     </h2>
     <ul>
-      <% @user.top_selling(@user.products, 3).each do |product| %>
+      <% Product.top_selling(@user.products, 3).each do |product| %>
         <li>
           <%= product %>
         </li>
