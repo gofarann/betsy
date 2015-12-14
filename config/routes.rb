@@ -22,9 +22,10 @@ Rails.application.routes.draw do
 
   get '/users/:id/products' => 'users#product_dash', as: :user_products_dash
 
+  patch '/products/:id/retire' => 'products#retire', as: :retire
 
   resources :sessions, :only => [:new, :create]
-  resources :users 
+  resources :users
   resources :products do
     post "/review", to: "products#review"
   end
