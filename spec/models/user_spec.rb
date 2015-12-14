@@ -46,6 +46,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "top_selling(product_array, x)" do
+    
     it  "returns Product instances" do
       
     end
@@ -65,6 +66,10 @@ RSpec.describe User, type: :model do
   end
 
   describe "rev_by_status" do
-    
+    #create orders of various statuses
+    it "returns an integer" do
+      
+    end
+    it "returns total sales of products from orders with given status"
   end
 end
