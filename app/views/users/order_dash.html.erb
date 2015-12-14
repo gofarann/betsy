@@ -5,4 +5,16 @@
 </div>
 <div class="row">
   <h2>Total Revenue: <%= @user.revenue %></h2>
+  <h4>
+    order revenue by: 
+    <%= link_to "pending", user_order_dash_path(@user, status: "pending") %> / 
+    <%= link_to "paid", user_order_dash_path(@user, status: "paid" %> / 
+    <%= link_to "completed", user_order_dash_path(@user, status: "completed" %> / 
+    <%= link_to "canceled", user_order_dash_path(@user, status: "canceled" %> / 
+  </h4>
+  <% if !session[:rev_status].nil? %>
+    
+  <% elsif session[:rev_status].nil? %>
+
+  <% end %>
 </div>
