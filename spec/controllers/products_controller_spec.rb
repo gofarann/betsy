@@ -11,36 +11,49 @@ RSpec.describe ProductsController, type: :controller do
   end
 
   describe "POST 'create'" do
-    let(:good_params) do
-    {
-      product: {
-        name: "necklace",
-        price: 10,
-        user_id: 2,
-        stock: 3,
-      }
-    }
+    let(:user) do
+      User.create(username: "Mister",
+                  email_address: "stud@manly.com",
+                  password: "pw",
+                  password_confirmation: "pw")
     end
 
-    let (:bad_params) do
+    let(:good_params) do
       {
-        product: {
-          name: "",
+        product:{
+          name: "necklace",
           price: 10,
           user_id: 2,
-          stock: 3,
-        }
+          stock: 3
+        },
+        categories: []
       }
     end
 
-    it "redirects to products#show page" do
-      post :create, good_params
-      expect(subject).to redirect_to product_path(Product.all.last)
+    let(:bad_params) do
+      {
+        product:{
+          name: nil,
+          price: nil
+        },
+        categories: []
+      }
     end
 
-    it "renders new template on error" do
+    before :each do
+      session[:user_id] = user.id
+    end
+
+    it "redirects to products index page when good params are passed" do
+      post :create, good_params.merge(id: 1)
+      # Success case to index page
+      expect(subject).to redirect_to user_path(user.id)
+      # Error case to
+    end
+
+    it "renders the edit template when bad params are passed" do
       post :create, bad_params
-      expect(subject).to render_template :new
+      expect(subject).to render_template :edit
     end
   end
 
