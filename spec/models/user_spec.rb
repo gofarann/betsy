@@ -44,7 +44,6 @@ RSpec.describe User, type: :model do
       expect(user.top(2).length).to eq(2)
     end
   end
-<<<<<<< HEAD
 
   describe "top_selling(product_array, x)" do
     it  "returns Product instances" do
@@ -64,7 +63,4 @@ RSpec.describe User, type: :model do
       
     end
   end
-
-=======
->>>>>>> 5059edc830bd7513afec263a9712d4e5dc185373
 end
