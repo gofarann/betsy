@@ -33,11 +33,9 @@ before_action :only_current_user, only: [:dash, :order_dash]
     @user = User.find(id)
   end
 
-<<<<<<< HEAD
-=======
+
   def order_dash
   end
->>>>>>> testing
 
   private
 
