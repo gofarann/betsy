@@ -25,7 +25,6 @@ class OrdersController < ApplicationController
     else
     @order = Order.find(session[:order_id])
     end
-    error
   end
 
   #before you pay, clearing cart destroys order and orderitems.
