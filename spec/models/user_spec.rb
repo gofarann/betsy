@@ -63,4 +63,8 @@ RSpec.describe User, type: :model do
       
     end
   end
+
+  describe "rev_by_status" do
+    
+  end
 end
