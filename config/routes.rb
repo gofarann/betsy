@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   delete '/cart/orderitems/:id' => 'orderitems#destroy', as: :orderitems_delete
 
+
   get '/checkout'  => 'orders#checkout', as: :checkout
 
   get '/orders/confirm' => 'orders#confirm', as: :confirm
