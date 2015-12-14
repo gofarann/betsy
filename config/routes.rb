@@ -24,7 +24,9 @@ Rails.application.routes.draw do
 
   resources :sessions, :only => [:new, :create]
   resources :users
-  resources :products
+  resources :products do
+    post "/review", to: "products#review"
+  end
   resources :orders
   resources :categories
 
