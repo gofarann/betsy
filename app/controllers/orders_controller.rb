@@ -3,7 +3,8 @@ class OrdersController < ApplicationController
   #also, in order to make filter work, buttons to do stuff to orders need to send an id into params. (see guest_authorize method, which uses id)
   #this is to help make it so only the person who started an order can do stuff to it.
   before_action :guest_authorize, :only =>[:clear_cart, :cancel_as_guest, :pay]
-  before_action :navbar_categories, only: [:cart] 
+  before_action :navbar_categories, only: [:cart]
+
 
 
   #I don't think this needs to exist.
