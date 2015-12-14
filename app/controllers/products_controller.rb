@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :navbar_categories, only: [:index]
+  before_action :current_user_owns_product, only: [:update, :delete]
 
   def buy
     #a.k.a add to cart
