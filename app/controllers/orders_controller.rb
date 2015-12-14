@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-    #stuff needed to view the checkout page
+    @order = Order.find(session[:order_id])
   end
 
   def confirm
