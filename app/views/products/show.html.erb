@@ -3,7 +3,7 @@
 <table class='table table-hover'>
   <tr>
     <td class="table-headers">
-      Product 
+      Product
     </td>
     <td>
       <%= @product.name %>
@@ -100,7 +100,7 @@
 <fieldset>
   <div class="sub-form-group">
     <%= f.label :rating, "Rate It:" %>
-    <%= f.number_field :rating, step: 0.25, class: "sub-form-control" %>
+    <%= f.select :rating, [1, 2, 3, 4, 5], class: "sub-form-control" %>
     <%= f.label :body, "Tell us why" %>
     <%= f.text_area :body, class: "sub-form-control" %>
     <%= f.submit class: "btn btn-default" %>
