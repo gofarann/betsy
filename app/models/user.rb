@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  has_many :orders, :dependent => :destroy
   has_many :products, :dependent => :destroy
   has_many :categories
 
