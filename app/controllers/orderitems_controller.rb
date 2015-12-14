@@ -7,7 +7,7 @@ class OrderitemsController < ApplicationController
     @order = @orderitem.order
     total_items = @order.orderitems
     if total_items.count == 1
-      redirect_to url_for(:controller => :orders, :action => :clear_cart)
+      redirect_to :controller => :orders, :action => :clear_cart
     else
       @orderitem.destroy
       redirect_to cart_path
