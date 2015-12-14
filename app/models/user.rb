@@ -53,8 +53,22 @@ class User < ActiveRecord::Base
   end
 
   # returns revenue for user by order status
-  def revenue_by_status(status)
-    
+  def rev_by_status(status)
+    rev = []
+    orders = []
+    self.products.each do |product|
+      product.orders.each do |order|
+        orders.push(order) if order.status == "#{status}"
+      end
+    end
+    orders.each do |order|
+      order.orderitems.each do |orderitem|
+        rev.push(orderitem.product.price)
+      end
+    end
+
+    total = rev.inject{|r, e| r + e}
+    return total
   end
 
 end
