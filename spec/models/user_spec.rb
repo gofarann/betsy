@@ -65,10 +65,37 @@ RSpec.describe User, type: :model do
   end
 
   describe "rev_by_status" do
+  let(:paid_order) do  { 
+        status: "paid",
+        cc_name: "Kelly Phelly",
+        email_address: "kelly@kellkell.com",
+        mailing_address: "848 Magpie Lane",
+        cc_number: 340727812705850,
+        cc_exp: "03/11",
+        cc_cvv: "454",
+        zip: 94983,
+        placed_at: rand(1.year.ago..Time.now)
+      }
+    end
+    let(:user) do
+      user = User.create(good_hash)
+      p = Product.create!(product_hash)
+      p2 = Product.create!(second_product)
+      user.products << [p, p2]
+      order = Order.pending(p)
+      order2 = Order.pending(p2)
+      order2.update(paid_order)
+      order2.save
+      return user
+    end
     #create orders of various statuses
     it "returns an integer" do
-      
+      expect(user.rev_by_status('pending')).to be_a(Integer)
     end
-    it "returns total sales of products from orders with given status"
+    it "returns total sales of products from orders with given status"  do
+      expect(user.rev_by_status('pending')).to eq(20)
+      expect(user.rev_by_status('paid')).to eq(25)
+    end
   end
+  
 end
