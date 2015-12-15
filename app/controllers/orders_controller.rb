@@ -7,11 +7,6 @@ class OrdersController < ApplicationController
 
 
 
-  #I don't think this needs to exist.
-  # def index
-  #   @orders = Order.all
-  # end
-
   #the order from the perspective of the merchant
   def show
     @order = Order.find(params[:id])
@@ -41,7 +36,7 @@ class OrdersController < ApplicationController
   end
 
   def confirm
-    #stuff needed on the confirmation page
+    @order = Order.find(session[:order_id])
   end
 
   def cancel_as_user
@@ -64,16 +59,12 @@ class OrdersController < ApplicationController
 
 
   def pay
-    @order = Order.find(session[:order_id][0])
-    @order = Order.update(cc_name: order_params[:order][:cc_name],
-                        email_address: order_params[:order][:email_address],
-                        mailing_address: order_params[:order][:mailing_address],
-                        cc_number: order_params[:order][:cc_number],
-                        cc_exp: order_params[:order][:cc_exp],
-                        cc_cvv: order_params[:order][:cc_cvv],
-                        zip: order_params[:order][:zip],
-                        status: "paid")
-    redirect_to root_path
+    @order = Order.find(session[:order_id])
+    @order.update(order_params[:order])
+    @order.placed_at = Time.now
+    @order.status =  "paid"
+    @order.save!
+    redirect_to order_confirm_path
   end
 
 
@@ -87,7 +78,7 @@ class OrdersController < ApplicationController
   def update
     id = params[:id]
     order = Order.find(id)
-    order.update_attributes(order_params)
+    order.update_attributes(order_params[:order])
     redirect_to order_path(params[:id])
   end
 
@@ -101,7 +92,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.permit(order:[:status, :cc_name, :email_address, :mailing_address, :cc_number, :cc_exp, :cc_ccv, :zip, :placed_at])
+    params.permit(order:[:status, :cc_name, :email_address, :mailing_address, :cc_number, :cc_exp, :cc_cvv, :zip, :placed_at])
   end
 
   #views will need to make sure they send in an id to use here
