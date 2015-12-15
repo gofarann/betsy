@@ -13,6 +13,7 @@ class Product < ActiveRecord::Base
   validates_numericality_of :stock, :greater_than => 0, on: :create
   # validates :retired, inclusion: { in: %w(false) }, on: :create
   validate :belongs_to_user?
+  validate :nice_price, on: :create
 
   # Takes an array of products and returns the x number of products in order of which sold the most often
   def self.top_selling(product_array, x)
