@@ -110,7 +110,8 @@
   <% end %>
 <% end %>
 
-<% if @current_user == nil %>
+
+<% unless @product.user_id == @current_user.id %>
   <%= button_to "Add to Cart", buy_path(@product.id), class: "btn btn-default" %>
 <% end %>
 <% if @current_user != nil %>
