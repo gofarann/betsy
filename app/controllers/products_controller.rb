@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
             @orderitem = Orderitem.create(quantity: 1, order_id: @order.id, product_id: @product.id)
           end
         end
-      end
+    end
       #in any case, want to stay on same page after clicking button
       redirect_to request.referrer
   end
