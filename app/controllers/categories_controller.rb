@@ -18,7 +18,7 @@ before_action :navbar_categories, only: [:index, :show]
     if @category.save
       redirect_to user_products_dash_path(@category.user_id)
     else
-      render :edit
+      render :new
     end
   end
   def edit
