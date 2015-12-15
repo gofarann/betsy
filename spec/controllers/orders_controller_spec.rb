@@ -26,8 +26,13 @@ RSpec.describe OrdersController, type: :controller do
   end
 
   describe "GET 'cart'" do
-
+    it "sets cart status to empty if there is no order_id in session" do
+      get :cart, {}, {:user_id => nil}
+      expect(@cart_status).to eq(nil)
+    end
+    it ""
   end
+
 
   # clear_cart
   # checkout
