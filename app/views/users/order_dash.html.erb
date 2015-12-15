@@ -7,17 +7,17 @@
   <h2>Total Revenue: <%= @user.revenue %></h2>
   <h4>
     order revenue by: 
-    <%= link_to "pending", user_order_dash_path(@user, status: "pending") %> / 
-    <%= link_to "paid", user_order_dash_path(@user, status: "paid") %> / 
-    <%= link_to "completed", user_order_dash_path(@user, status: "completed") %> / 
-    <%= link_to "canceled", user_order_dash_path(@user, status: "canceled") %> / 
+    <%= link_to "pending", user_order_dash_path(@user, rev_status: "pending") %> / 
+    <%= link_to "paid", user_order_dash_path(@user, rev_status: "paid") %> / 
+    <%= link_to "completed", user_order_dash_path(@user, rev_status: "completed") %> / 
+    <%= link_to "canceled", user_order_dash_path(@user, rev_status: "canceled") %> 
   </h4>
   <% if !session[:rev_status].nil? %>
      <h3>
       <% if @user.rev_by_status(session[:rev_status]).nil? %> 
           you don't have any <%= session[:rev_status]%> orders
        <% else %>
-         revenue for <%= session[:rev_status]%> orders is <%= @user.rev_by_status(session[:rev_status]) %>
+         revenue for <%= session[:rev_status]%> orders is: <%= @user.rev_by_status(session[:rev_status]) %>
        <% end %>
      </h3>
   <% elsif session[:rev_status].nil? %>
@@ -25,4 +25,21 @@
       select a status for which you want to see total revenue
     </h3>
   <% end %>
+</div>
+<div class="row">
+  <h2>
+    Total Orders: <%= @user.orders.length %>
+  </h2>
+  <h3>
+    orders by status: <br>
+  </h3>
+  <h4>
+    <%= link_to "pending", user_order_dash_path(@user, order_status: "pending") %> / 
+    <%= link_to "paid", user_order_dash_path(@user, order_status: "paid") %> / 
+    <%= link_to "completed", user_order_dash_path(@user, order_status: "completed") %> / 
+    <%= link_to "canceled", user_order_dash_path(@user, order_status: "canceled") %> 
+  </h4>
+</div>
+<div class="row">
+  
 </div>
