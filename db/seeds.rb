@@ -464,7 +464,6 @@ categories = [
   {name: "Tourmaline"},
   {name: "Jasper"},
   {name: "Turquoise"},
-  {name: "Fire Opal"},
   {name: "Azurite"},
 ]
 
