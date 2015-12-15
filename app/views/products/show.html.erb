@@ -14,7 +14,7 @@
       Sold By:
     </td>
     <td>
-      <%= @product.user.username%>
+      <%= link_to @product.user.username, user_path(@product.user_id)%>
     </td>
   </tr>
   <tr>
