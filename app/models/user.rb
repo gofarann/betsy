@@ -28,6 +28,16 @@ class User < ActiveRecord::Base
     return orders
   end
 
+  def orderitems
+    orderitems = []
+    self.products.each do |product|
+      product.orderitems.each do |oi|
+        orderitems.push(oi)
+      end
+    end
+    return orderitems
+  end
+
   # returns all the orders a user is associated with, based on the order status
   def orders_by_status(status)
     orders = []
