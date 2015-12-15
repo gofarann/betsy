@@ -41,6 +41,16 @@ class Order < ActiveRecord::Base
     return sales.inject(0) {|r, e| r + e }
   end
 
+  def mark_shipped
+    c = 0
+    self.orderitems.each do |orderitem|
+      c += 1 if orderitem.status == 'shipped'
+    end
+    self.status = 'shipped' if c == self.orderitems.length
+    self.save
+    return self
+  end
+
   #possibly want merchants to be able to destroy orders of different statuses,
   #but if you are a customer you can only clear cart before you have paid.
   #of course you might be signed in AND acting as a customer. Worry about this later if ever.

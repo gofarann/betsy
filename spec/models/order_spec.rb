@@ -13,6 +13,26 @@ RSpec.describe Order, type: :model do
     zip: 19583
   }
   end
+  let(:product_hash) do
+     {name: "Geometry Like Woahhh",
+      price: 5645,
+      stock: "1",
+      photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
+      description: "I drew this just for you.",
+      user_id: 2,
+      retired: false
+    }
+  end
+  let(:second_product) do
+     {name: "Another Product Thing",
+      price: 5645245,
+      stock: "2",
+      photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
+      description: "I drew this just for you.",
+      user_id: 1,
+      retired: false
+    }
+  end
 
   describe ".validates" do
     let (:no_status_hash) do
@@ -27,7 +47,6 @@ RSpec.describe Order, type: :model do
         zip: 19583
       }
     end
-
   #   let (:no_name_hash) do
   #     {
   #       status: "pending",
@@ -168,26 +187,6 @@ RSpec.describe Order, type: :model do
   end
 
   describe "total" do
-    let(:product_hash) do
-       {name: "Geometry Like Woahhh",
-        price: 5645,
-        stock: "1",
-        photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
-        description: "I drew this just for you.",
-        user_id: 2,
-        retired: false
-      }
-    end
-    let(:second_product) do
-       {name: "Another Product Thing",
-        price: 5645245,
-        stock: "2",
-        photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
-        description: "I drew this just for you.",
-        user_id: 1,
-        retired: false
-      }
-    end
     let (:order) do
       order = Order.create(good_hash)
       p = Product.create!(product_hash)
@@ -201,6 +200,27 @@ RSpec.describe Order, type: :model do
     it "returns the total sales for a given user" do
       expect(order.total(2)).to eq(5645)
       expect(order.total(1)).to eq(5645245)
+    end
+  end
+
+  describe "mark_shipped?" do
+    before :each do
+      p = Product.create!(product_hash)
+      p2 = Product.create!(second_product)
+      @order = Order.pending(p)
+      @order.products << p2
+      @order.orderitems[0].item_shipped
+      @order.mark_shipped
+
+      @order2 = Order.create(good_hash)
+      @order2.products << [p, p2]
+      @order2.orderitems[0].item_shipped
+      @order2.orderitems[1].item_shipped
+      @order2.mark_shipped
+    end
+    it "marks an order as shipped only if all orderitems are shipped" do
+      expect(@order.status).to eq("pending")
+      expect(@order2.status).to eq("shipped")
     end
   end
 

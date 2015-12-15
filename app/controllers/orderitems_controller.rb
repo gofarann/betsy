@@ -34,8 +34,6 @@ class OrderitemsController < ApplicationController
 
   def ship
     @orderitem = Orderitem.find(params[:id])
-    @orderitem.status = 'shipped'
-    @orderitem.save
     @orderitem.item_shipped
     redirect_to :back
   end

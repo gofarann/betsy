@@ -4,6 +4,7 @@ class Orderitem < ActiveRecord::Base
 
   # decerements inventory of product
   def item_shipped
+    self.status = 'shipped'
     self.product.stock -= 1
     self.product.save
   end
