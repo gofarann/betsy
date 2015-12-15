@@ -11,6 +11,15 @@
   </tr>
   <tr>
     <td class="table-headers">
+      Sold By:
+    </td>
+    <td>
+      <%= @product.user.username%>
+    </td>
+  </tr>
+  <tr>
+  <tr>
+    <td class="table-headers">
       Description
     </td>
     <td>
@@ -58,14 +67,14 @@
     <td>
     <% if @stars == 5 %>
       <% 5.times do %>
-        <%= "⭐️" %> 
+        <i class="fa fa-star"></i>
       <% end %>
     <% else %>
       <% @stars.times do %>
-        <%= "⭐️" %>
+        <i class="fa fa-star"></i>
       <% end %>
       <% (5 - @stars).times do %>
-          <%= "☆" %>
+        <i class="fa fa-star-o"></i>
       <% end %>
     <% end %>
     </td>
@@ -79,14 +88,14 @@
       Rating:
       <% if rev.rating == 5 %>
         <% rev.rating.times do %>
-          <%= "⭐️" %> 
+          <i class="fa fa-star"></i>
         <% end %>
       <% else %>
         <% rev.rating.times do %>
-          <%= "⭐️" %>
+          <i class="fa fa-star"></i>
         <% end %>
         <% (5 - rev.rating).times do %>
-            <%= "☆" %>
+            <i class="fa fa-star-o"></i>
         <% end %>
       <% end %>
       <p class="rating"><%= rev.body %></p>
