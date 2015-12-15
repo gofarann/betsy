@@ -15,8 +15,8 @@ class SessionsController < ApplicationController
         render :new
       end
     else
-      flash[:error] = "Create a new user"
-      redirect_to new_user_path
+      flash.now[:error] = "Your email was not found or password did not match. Please try again."
+      render :new
     end
   end
 
