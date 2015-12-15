@@ -50,6 +50,10 @@ class Order < ActiveRecord::Base
     self.save
     return self
   end
+  #returns the last four numbers of the cc
+  def last_four
+    return self.cc_number[-4..-1]
+  end
 
   #possibly want merchants to be able to destroy orders of different statuses,
   #but if you are a customer you can only clear cart before you have paid.

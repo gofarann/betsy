@@ -1,12 +1,16 @@
-
-<h1> This is for a merchant to look at </h1>
-<h1> Order Confirmation for <%= @order.cc_name %></h1>
-
-
-  <medium> Email: <%= @order.email_address %> </medium>
-  <medium> Mailing Address: <%= @order.mailing_address %> </medium>
-  <medium> Zip: @order.zip <%= @order.status %> </medium>
-
-
-  <medium> Orders: <%= @order.products %> </medium>
-  <medium> Placed at: <%= @order.placed_at %> </medium>
+<div class="row">
+  <h1> Order <%= @order.id %></h1>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <strong>Email:</strong> <%= @order.email_address %><br>
+    <strong>Mailing Address: </strong><%= @order.mailing_address %><br>
+    <strong>Zip: </strong><%= @order.zip %><br>
+    <strong>Last Four Digits of CC:</strong><%= @order.last_four %><br>
+    <strong>Status: </strong> <%= @order.status %><br>
+    <strong> Placed at:</strong> <%= @order.placed_at.strftime("%B %d, %Y") %><br>
+  </div>
+  <div class="col-xs-12">
+    
+  </div>
+</div>

@@ -53,9 +53,9 @@
     </tr>
   <% @user.orderitems.each do |orderitem| %>
     <tr>
-      <td><%= orderitem.order.id %></td>
+      <td><%= link_to "#{orderitem.order.id}", order_path(orderitem.order) %></td>
       <td><%= link_to "#{orderitem.product.name}", product_path(orderitem.product) %></td>
-      <td><%= orderitem.order.placed_at.to_date %></td>
+      <td><%= orderitem.order.placed_at.strftime("%B %d, %Y") %></td>
       <td><%= orderitem.order.status.capitalize %></td>
       <td><%= orderitem.quantity %></td>
       <td><%= nice_price(orderitem.product.price * orderitem.quantity) %></td>
