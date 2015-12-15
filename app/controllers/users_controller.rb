@@ -32,6 +32,7 @@ before_action :only_current_user, only: [:dash, :order_dash]
   end
 
   def order_dash
+    session[:rev_status] = params[:status] if !params[:status].nil?
   end
 
   private
