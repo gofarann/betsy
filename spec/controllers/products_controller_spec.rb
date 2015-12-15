@@ -46,9 +46,7 @@ RSpec.describe ProductsController, type: :controller do
 
     it "redirects to products index page when good params are passed" do
       post :create, good_params.merge(id: 1)
-      # Success case to index page
       expect(subject).to redirect_to user_path(user.id)
-      # Error case to
     end
 
     it "renders the edit template when bad params are passed" do
