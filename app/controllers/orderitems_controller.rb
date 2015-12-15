@@ -32,10 +32,17 @@ class OrderitemsController < ApplicationController
     end
   end
 
+  def ship
+    @orderitem = Orderitem.find(params[:id])
+    @orderitem.status = 'shipped'
+    @orderitem.save
+    redirect_to :back
+  end
+
   private
 
   def orderitem_params
-    params.permit(orderitem:[:quantity])
+    params.permit(orderitem:[:quantity, :status])
   end
 
 end

@@ -46,7 +46,7 @@
       <th>#</th>
       <th>Product</th>
       <th>Order Placed</th>
-      <th>Current Status</th>
+      <th>Order Status</th>
       <th>Quantity</th>
       <th>Total</th>
       <th>Mark Shipped</th>
@@ -59,7 +59,11 @@
       <td><%= orderitem.order.status.capitalize %></td>
       <td><%= orderitem.quantity %></td>
       <td><%= orderitem.product.price * orderitem.quantity %></td>
-      <td><%= link_to "Mark Shipped",  %></td>
+      <% if orderitem.status != 'shipped' %>
+        <td><%= link_to "Mark Shipped", ship_path(orderitem) %></td>
+      <% else %>
+        <td><%= orderitem.status.capitalize %></td>
+      <% end %>
     </tr>
   <% end %>
   </table>
