@@ -111,8 +111,9 @@
 
 
 
-
-<%= button_to "Add to Cart", buy_path(@product.id), class: "btn btn-default" %>
+<% if @current_user == nil %>
+  <%= button_to "Add to Cart", buy_path(@product.id), class: "btn btn-default" %>
+<% end %>
 <% if @current_user != nil %>
   <%= button_to "Edit", edit_product_path(@product), method: :get, class: "btn btn-default" %>
 <% end %>
