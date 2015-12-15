@@ -11,11 +11,11 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id
         redirect_to root_path
       else
-        flash.now[:error] = "Try Again"
+        flash.now[:error] = "Your email was not found or password did not match. Please try again."
         render :new
       end
     else
-      flash.now[:error] = "Your email was not found or password did not match. Please try again."
+      flash.now[:error] = "Your email was not found or password did not match. Please try again or sign up to create a new user."
       render :new
     end
   end
@@ -27,6 +27,7 @@ class SessionsController < ApplicationController
       @current_order.destroy!  #destroys whatever order is in the session so long as it was only pending, which is done in an order validation
       session[:order_id] = nil
     end
+    flash[:notice] = "You have been logged out."
     redirect_to root_path
   end
 
