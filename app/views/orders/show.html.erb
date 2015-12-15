@@ -1,16 +1,35 @@
 <div class="row">
   <h1> Order <%= @order.id %></h1>
+  <h5><%= @order.status.capitalize %></h5>
 </div>
 <div class="row">
   <div class="col-xs-12">
+    <h2>
+      Customer Information
+    </h2>
     <strong>Email:</strong> <%= @order.email_address %><br>
     <strong>Mailing Address: </strong><%= @order.mailing_address %><br>
     <strong>Zip: </strong><%= @order.zip %><br>
     <strong>Last Four Digits of CC:</strong><%= @order.last_four %><br>
-    <strong>Status: </strong> <%= @order.status %><br>
+    <strong>Status: </strong> <%= @order.status.capitalize %><br>
     <strong> Placed at:</strong> <%= @order.placed_at.strftime("%B %d, %Y") %><br>
   </div>
+  <br><br>
   <div class="col-xs-12">
-    
+    <h2>
+      My Products in Order
+    </h2>
+    <table>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Product Status</th>
+        <
+      </tr>
+    </table>
+    <% @current_user.orderitems_by_order(@order).each do |orderitem| %>
+      <%= link_to "#{orderitem.product.name}", product_path(orderitem.product) %>
+      <%= orderitem.quantity %>
+    <% end %>
   </div>
 </div>
