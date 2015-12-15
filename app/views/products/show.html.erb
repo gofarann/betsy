@@ -102,6 +102,18 @@
       <% end %>
     </td>
   </tr>
+  <% if @current_user != nil %>
+    <% if @product.user_id == @current_user.id %>
+    <tr>
+      <td class="table-headers">
+        Retired?
+      </td>
+      <td>
+        <%= @product.retired%>
+      <% end %>
+      </td>
+    </tr>
+  <% end %>
 </table>
 </div>
 
