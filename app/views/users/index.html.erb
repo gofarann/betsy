@@ -1,7 +1,19 @@
 <%= render 'cat_navbar' %>
-<div class="row">
-  <h1>Merchants</h1>
-  <% @users.each do |user| %> <br>
-      <%= link_to "#{user.username}", user_path(user) %>
+
+<% @users.to_ary.in_groups_of(3, false) do |group| %>
+  <div class="row">
+    <% group.each do |user| %>
+      <div class="col-sm-4">
+      <h2>
+        <%= link_to "#{user.username}", user_path(user), class: 'category-box' %>
+      </h2>
+      <% user.top(2).each do |p| %>
+          <%= image_tag "#{p.photo_url}", class: "img-responsive, product-page-img" %>
+          <h4>
+            <%= link_to "#{p.name}", product_path(p) %>
+          </h4>
       <% end %>
-</div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

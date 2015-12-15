@@ -5,6 +5,7 @@ before_action :only_current_user, only: [:dash, :order_dash]
 
   def index
     @users = User.all
+    @cat = Category.all
   end
 
   def new
