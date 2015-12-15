@@ -51,16 +51,16 @@
       <th>Total</th>
       <th>Mark Shipped</th>
     </tr>
-# iterate through something
+  <% @user.orderitems.each do |orderitem| %>
     <tr>
-      <td><%=  %></td>
-      <td><%= %></td>
-      <td><%=  %></td>
-      <td><%=  %></td>
-      <td><%=  %></td>
-      <td><%=  %></td>
-      <td><%=  %></td>
+      <td><%= orderitem.order.id %></td>
+      <td><%= link_to "#{orderitem.product.name}", product_path(orderitem.product) %></td>
+      <td><%= orderitem.order.placed_at.to_date %></td>
+      <td><%= orderitem.order.status.capitalize %></td>
+      <td><%= orderitem.quantity %></td>
+      <td><%= orderitem.product.price * orderitem.quantity %></td>
+      <td><%= link_to "Mark Shipped",  %></td>
     </tr>
-
+  <% end %>
   </table>
 </div>

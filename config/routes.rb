@@ -16,7 +16,9 @@ Rails.application.routes.draw do
 
   get '/cart/checkout'  => 'orders#checkout', as: :checkout
 
-  get '/orders/confirm' => 'orders#confirm', as: :order_confirm
+  get '/orders//:id/confirm' => 'orders#confirm', as: :order_confirm
+
+  get '/orders/:id/ship' => 'orders#ship'
 
   post '/products/:id/buy' => 'products#buy', as: :buy
 
