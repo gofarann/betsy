@@ -34,7 +34,7 @@
       <%= f.number_field :stock, class: "form-control" %>
     </div>
 
-    <div class="sub-form-group">
+    <div class="form-group">
     <%= f.label :category, "Categories" %><br>
     <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
       <%= b.check_box %>
@@ -43,7 +43,10 @@
     </div>
 
     <div class="form-group">
-      <% if @current_user != nil %>
+      <% if @product.user_id == @current_user.id %>
+        <%= f.check_box :retired, class: "form-control" %>
+        <%= f.label :retired, "Retire?" %>
+      <% else %>
         <%= f.hidden_field :retired, class: "form-control" %>
       <% end %>
       <%= f.hidden_field :user_id, :value => session[:user_id] %>
