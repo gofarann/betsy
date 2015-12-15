@@ -4,6 +4,7 @@
 
 $teal: #47AAB3;
 $purple-blue: #888DC4;
+$light-grey: #c2d6d6;
 
 $highlight: $teal;
 
@@ -21,6 +22,15 @@ $highlight: $teal;
   text-align: center;
   font-family: 'IM Fell DW Pica', serif;
   font-size: 64px;
+}
+
+.front-pg-link {
+  font-size: 24px;
+}
+
+.front-pg-box {
+  padding: 25px;
+  background-color: $light-grey;
 }
 
 .col-xs-12 {
@@ -102,9 +112,13 @@ h5 {
   height: 200px;
 }
 
-.a {
-
+a {
+  color: $highlight;
+  text-decoration: none;
 }
+
+a:hover {color: $purple-blue}
+
 
 .table-master {
 
