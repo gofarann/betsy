@@ -1,6 +1,6 @@
 <div class="row">
   <h1> Order <%= @order.id %></h1>
-  <h5 class="cntr-header"><%= @order.status.capitalize %></h5>
+  <h5 class="cntr-header">Order status: <%= @order.status.capitalize %></h5>
 </div>
 <div class="row">
   <div class="col-xs-12">
@@ -19,17 +19,25 @@
     <h2>
       My Products in Order
     </h2>
-    <table>
+    <table class="table">
       <tr>
         <th>Product</th>
         <th>Quantity</th>
-        <th>Product Status</th>
-        <
+        <th>Total</th>
+        <th>Shipped?</th>
       </tr>
+      <% @current_user.orderitems_by_order(@order).each do |orderitem| %>
+      <tr>
+        <td><%= link_to "#{orderitem.product.name}", product_path(orderitem.product) %></td>
+        <td><%= orderitem.quantity %></td>
+        <td><%= nice_price(orderitem.product.price * orderitem.quantity) %></td>
+        <% if orderitem.status != 'shipped' %>
+          <td><%= link_to "Mark Shipped", ship_path(orderitem) %></td>
+        <% else %>
+          <td><%= orderitem.status.capitalize %></td>
+        <% end %>
+      </tr>
+      <% end %>
     </table>
-    <% @current_user.orderitems_by_order(@order).each do |orderitem| %>
-      <%= link_to "#{orderitem.product.name}", product_path(orderitem.product) %>
-      <%= orderitem.quantity %>
-    <% end %>
   </div>
 </div>
