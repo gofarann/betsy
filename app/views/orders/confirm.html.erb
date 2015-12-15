@@ -1,17 +1,77 @@
-<h1> Confirm your Order to Finalize Sale </h1>
+<h1> Confirm Order </h1>
 
 <p>Name: <%= @order.cc_name %></p>
 <p><medium> Placed at: <%= @order.placed_at %> </medium></p>
 <p><medium> Email: <%= @order.email_address %> </medium></p>
 <p><medium> Mailing Address: <%= @order.mailing_address %> </medium></p>
 <p><medium> Zip: <%= @order.zip %> </medium></p>
+
 <p>Use a partial here or whatever is relevant to show all the orderitems </p>
+
+<div class="table-master">
+<table class='table table-hover'>
+  <% @order.orderitems.each do |orderitem| %>
+  <tr>
+    <td class="table-headers">
+      Product
+    </td>
+    <td>
+      <%= orderitem.product.name %>
+    </td>
+  </tr>
+  <tr>
+    <td class="table-headers">
+      Description
+    </td>
+    <td>
+      <%= orderitem.product.description%>
+    </td>
+  </tr>
+  <tr>
+    <td class="table-headers">
+      Price
+    </td>
+    <td>
+      <%= orderitem.product.price %>
+    </td>
+  </tr>
+  <tr>
+    <td class="table-headers">
+      Photo
+    </td>
+    <td>
+      <%= image_tag orderitem.product.photo_url %>
+    </td>
+  </tr>
+  <tr>
+    <td class="table-headers">
+      Category
+    </td>
+    <td>
+      <% orderitem.product.categories.each do |category| %>
+      <%= category.name %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td class="table-headers">
+      Quantity
+    </td>
+    <td>
+      <%= form_for orderitem, url: orderitems_update_path(orderitem.id), method: :patch do |f| %>
+        <%= f.number_field :quantity %>
+        <%= f.submit "Change" %>
+        <% end %>
+    </td>
+
+
 <p> This might be different from usual, because orderitems might not be a normal array, so don't be surprised if it doesn't immediately work </p>
 
-<p><medium>:<%= @order.orderitems do |orderitems|  %> </medium></p>
-<p><orderitem.product_id.name></p>
+<p><medium>:<% @order.orderitems do |orderitems|  %> </medium></p>
+<p><%= orderitems.product_id.name %></p>
   <% end %>
 
 <%= button_to "Finalize Order", {action: :finalize, controller: :orders}, method: :patch  %>
 
 <%= button_to "Cancel Order", {action: :cancel_as_guest, controller: :orders}, method: :patch %>
+<% end %>
