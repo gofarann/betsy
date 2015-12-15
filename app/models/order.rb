@@ -41,6 +41,10 @@ class Order < ActiveRecord::Base
     return sales.inject(0) {|r, e| r + e }
   end
 
+  # def orderitems_by_user(user_id)
+  #   self.
+  # end
+
   #possibly want merchants to be able to destroy orders of different statuses,
   #but if you are a customer you can only clear cart before you have paid.
   #of course you might be signed in AND acting as a customer. Worry about this later if ever.
