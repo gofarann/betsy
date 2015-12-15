@@ -54,7 +54,10 @@
         Quantity
       </td>
       <td>
-        <%= orderitem.quantity %>
+        <%= form_for orderitem, url: orderitems_update_path(orderitem.id), method: :patch do |f| %>
+          <%= f.number_field :quantity %>
+          <%= f.submit "Change" %>
+          <% end %>
       </td>
     </tr>
     <tr>
