@@ -29,8 +29,6 @@ before_action :only_current_user, only: [:dash, :order_dash]
   end
 
   def product_dash
-    id = params[:id]
-    @user = User.find(id)
   end
 
   def order_dash
