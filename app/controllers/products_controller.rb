@@ -52,8 +52,9 @@ class ProductsController < ApplicationController
     @product.category_ids = params[:product][:category_ids]
     @product.price = (params[:product][:price].to_f * 100).to_i
     if @product.save
-      redirect_to user_path(@product.user_id)
+      redirect_to product_path(@product)
     else
+      flash[:error] = "Why don't you double check those product specs, eh?"
       render :new
     end
   end
