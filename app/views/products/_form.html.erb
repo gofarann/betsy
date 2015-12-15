@@ -43,11 +43,12 @@
     </div>
 
     <div class="form-group">
-      <%= f.check_box :retired, class: "form-control" %>
-      <%= f.label :retire, "Retire?" %>
-      <%= f.hidden_field :user_id, :value => session[:user_id] %>
+      <%= f.label :retired, "Check to retire this product" %><br>
+      <%= f.check_box :retired %>
+      <%= f.label :retired, "Retired" %>
     </div>
 
+    <%= f.hidden_field :user_id, :value => session[:user_id] %>
   </fieldset>
   <%= f.submit class: "btn btn-info" %>
 <% end %>
