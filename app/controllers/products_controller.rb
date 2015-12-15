@@ -51,6 +51,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.user_id = session[:user_id]
     @product.category_ids = params[:product][:category_ids]
+    @product.price = (params[:product][:price].to_f * 100).to_i
     if @product.save
       redirect_to user_path(@product.user_id)
     else
@@ -113,7 +114,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:category_ids, :name, :description, :price, :photo_url, :stock, :category)
+    params.require(:product).permit(:category_ids, :name, :description, :photo_url, :stock, :category)
   end
 
   def review_params
