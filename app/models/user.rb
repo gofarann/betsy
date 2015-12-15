@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
 
   def orderitems
     orderitems = []
-    user.products.each do |product|
+    self.products.each do |product|
       product.orderitems.each do |oi|
         orderitems.push(oi)
       end
