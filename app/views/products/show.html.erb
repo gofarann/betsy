@@ -109,7 +109,11 @@
         Retired?
       </td>
       <td>
-        <%= @product.retired%>
+        <% if @product.retired == false %>
+          No
+        <% else %>
+          Yes
+        <% end %>
       <% end %>
       </td>
     </tr>
