@@ -2,13 +2,13 @@
 
 <div class="row">
   <h1 class='front-pg'>welcome to quartzy</h1>
-  <h2 class='front-pg'>gems on gems on gems</h2>
+  <h2 class='front-pg2'>gems on gems on gems</h2>
 </div>
 <div class="row">
   <div class="col-sm-6">
     <% @top_users.each do |user| %>
       <h2>
-        <%= link_to "#{user.username}", user_path(user) %> 
+        <%= link_to "#{user.username}", user_path(user) %>
       </h2>
       <% user.top(2).each do |product| %>
         <h4>
@@ -20,7 +20,7 @@
   <div class="col-sm-6">
     <% @top_categories.each do |category| %>
       <h2>
-        <%= link_to "#{category.name}", category_path(category) %> 
+        <%= link_to "#{category.name}", category_path(category) %>
       </h2>
       <% category.top(2).each do |product| %>
         <h4>
