@@ -2,14 +2,8 @@
 @import "bootstrap";
 @import "font-awesome";
 
-background {
-  color: F5F5F5;
-}
 
 
-body {
-  background: F5F5F5 !important;
-}
 
 .front-pg {
   text-align: center;
@@ -21,6 +15,12 @@ body {
   font-family: 'Tinos', serif;
   text-align: center;
   font-size: 20px;
+}
+
+.jumbotron {
+  background: url("quartzbg.png");
+  background-size: cover;
+
 }
 
 .home_img {
@@ -78,11 +78,16 @@ h1 {
 
 }
 
-.table-master{
+.table-master {
 
 }
 
-.col-sm-4{
+.form-control {
+  width: 50%;
+
+}
+
+.col-sm-4 {
   margin: auto;
 
 }
