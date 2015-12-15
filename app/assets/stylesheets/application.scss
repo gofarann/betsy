@@ -25,7 +25,13 @@
 
 .navbar {
   font-family: Cinzel;
-
+  border:1px solid #ccc;
+  border-width:1px 0;
+  list-style:none;
+  margin:0;
+  padding:15px;
+  text-align:center;
+  word-spacing: 10px;
 }
 
 .cat-navbar {
