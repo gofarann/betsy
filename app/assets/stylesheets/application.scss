@@ -4,8 +4,9 @@
 
 $teal: #47AAB3;
 $purple-blue: #888DC4;
-$light-grey: #c2d6d6;
+$teal-grey: #c2d6d6;
 
+$light-contrast: $teal-grey;
 $highlight: $teal;
 
 
@@ -28,9 +29,9 @@ $highlight: $teal;
   font-size: 24px;
 }
 
-.front-pg-box {
+.header-box {
   padding: 25px;
-  background-color: $light-grey;
+  background-color: $light-contrast;
 }
 
 .col-xs-12 {
