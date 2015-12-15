@@ -35,10 +35,10 @@
     </div>
 
     <div class="sub-form-group">
-    <%= f.label :category, "Categories" %>
+    <%= f.label :category, "Categories" %><br>
     <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
       <%= b.check_box %>
-      <%= b.label %>
+      <%= b.label %><br>
     <% end %>
     </div>
 
