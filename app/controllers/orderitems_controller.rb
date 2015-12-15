@@ -35,7 +35,7 @@ class OrderitemsController < ApplicationController
   def ship
     @orderitem = Orderitem.find(params[:id])
     @orderitem.item_shipped
-    self.order.marked_shipped
+    @orderitem.order.mark_shipped
     redirect_to :back
   end
 
