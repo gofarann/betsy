@@ -1,10 +1,17 @@
-<h1> Order Confirmation for <%= @order.cc_name %></h1>
+<h1> Confirm your Order to Finalize Sale </h1>
 
+<p>Name: <%= @order.cc_name %></p>
+<p><medium> Placed at: <%= @order.placed_at %> </medium></p>
+<p><medium> Email: <%= @order.email_address %> </medium></p>
+<p><medium> Mailing Address: <%= @order.mailing_address %> </medium></p>
+<p><medium> Zip: <%= @order.zip %> </medium></p>
+<p>Use a partial here or whatever is relevant to show all the orderitems </p>
+<p> This might be different from usual, because orderitems might not be a normal array, so don't be surprised if it doesn't immediately work </p>
 
-  <medium> Email: <%= @order.email_address %> </medium>
-  <medium> Mailing Address: <%= @order.mailing_address %> </medium>
-  <medium> Zip: @order.zip <%= @order.status %> </medium>
+<p><medium>:<%= @order.orderitems do |orderitems|  %> </medium></p>
+<p><orderitem.product_id.name></p>
+  <% end %>
 
+<%= button_to "Finalize Order", {action: :finalize, controller: :orders}, method: :patch  %>
 
-  <medium> Orders: <%= @order.products %> </medium>
-  <medium> Placed at: <%= @order.placed_at %> </medium>
+<%= button_to "Cancel Order", {action: :cancel_as_guest, controller: :orders}, method: :patch %>

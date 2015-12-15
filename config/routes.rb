@@ -20,6 +20,10 @@ Rails.application.routes.draw do
 
   get '/orderitems/:id/ship' => 'orderitems#ship', as: :ship
 
+  patch 'orders/:id/finalize' => 'orders#finalize', as: :order_finalize
+
+  patch 'orders/:id/cancel_as_guest' => 'orders#cancel_as_guest', as: :order_cancel_as_guest
+
   post '/products/:id/buy' => 'products#buy', as: :buy
 
   get '/users/:id/dash' => 'users#dash', as: :user_dash

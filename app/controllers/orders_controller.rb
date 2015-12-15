@@ -46,15 +46,24 @@ class OrdersController < ApplicationController
   end
 
   def cancel_as_guest
-    @order = Order.find(session[:order_id][0])
+    @order = Order.find(session[:order_id])
     @order.update_attribute(:status, "cancelled")
+    session[:order_id] = nil
+    @cart_status = "empty"
     redirect_to root_path
   end
+
+  def finalize
+    session[:order_id] = nil
+    @cart_status = "empty"
+    redirect_to root_path
+  end
+
 
   def ship
     @order = Order.find(params[:id])
     @order.update_attribute(:status, "complete")
-    redirect_to root_path
+    redirect_to request.referrer
   end
 
 
@@ -64,7 +73,7 @@ class OrdersController < ApplicationController
     @order.placed_at = Time.now
     @order.status =  "paid"
     @order.save!
-    redirect_to order_confirm_path
+    redirect_to order_confirm_path(@order.id)
   end
 
 
