@@ -33,5 +33,4 @@ before_action :navbar_categories, only: [:index, :show]
   def category_params
     params.require(:category).permit(:name, :description)
   end
-
 end
