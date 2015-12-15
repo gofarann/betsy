@@ -1,12 +1,11 @@
 class ProductsController < ApplicationController
   before_action :navbar_categories, only: [:index]
   before_action :current_user_owns_product, only: [:update, :delete]
+  before_action :find_product, only: [:retire, :buy, :show, :review, :destroy]
 
   def buy
     #a.k.a add to cart
     #in views, have to make it so clicking "buy" button to buy enters a product_id into params
-    id = params[:id]
-    @product = Product.find(id)
     #if product is out of stock you can't buy it
     if @product.stock == 0
       flash[:error] = "Try again"
@@ -60,8 +59,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    id = params[:id]
-    @product = Product.find(id)
     @title = "#{@product.name} Info"
     @stars = @product.avg_rating
     @reviews = @product.reviews
@@ -69,8 +66,6 @@ class ProductsController < ApplicationController
   end
 
   def review
-    id = params[:product_id]
-    @product = Product.find(id)
     @review = Review.create(review_params)
     redirect_to product_path(@product)
   end
@@ -107,11 +102,16 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.destroy(params[:id])
+    @product.destroy
+    flash[:notice] = "You've deleted #{@product.name}"
     redirect_to request.referrer
   end
 
   private
+
+  def find_product
+    @product = Product.find(params[:id])
+  end
 
   def product_params
     params.require(:product).permit(:category_ids, :name, :description, :photo_url, :stock, :category)
