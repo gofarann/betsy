@@ -2,9 +2,19 @@
 @import "bootstrap";
 @import "font-awesome";
 
+$teal: #47AAB3;
+$purple-blue: #888DC4;
+
+$highlight: $teal;
+
+
 
 .flash {
-  
+  background-color: $highlight;
+  text-align: center;
+  font-size: 16px;
+  padding: 5px;
+  margin: 5px;
 }
 
 .front-pg {
@@ -18,7 +28,7 @@
 }
 
 body {
-  font-family: 'Tinos', serif;
+  font-family: 'IM Fell DW Pica', serif;
 }
 
 .front-pg2 {
@@ -88,12 +98,11 @@ h5 {
 }
 
 .product-page-img {
-  width: 200px;
-  height: auto;
+  width: auto;
+  height: 200px;
 }
 
 .a {
-
 
 }
 
