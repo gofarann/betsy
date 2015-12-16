@@ -46,7 +46,7 @@ class Order < ActiveRecord::Base
     self.orderitems.each do |orderitem|
       c += 1 if orderitem.status == 'shipped'
     end
-    self.status = 'complete' if c == self.orderitems.length
+    self.status = 'completed' if c == self.orderitems.length
     self.save
     return self
   end
