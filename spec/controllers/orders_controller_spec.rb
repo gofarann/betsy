@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'support/app_controller'
 
 RSpec.describe OrdersController, type: :controller do
   let(:order_hash) do
@@ -67,8 +68,15 @@ RSpec.describe OrdersController, type: :controller do
     end
   end
 
-  # describe "GET 'cancel_as_user'" do
-  #   it"
+  # describe "PATCH 'cancel_as_user'" do
+  #   it "updates the order's status to cancelled" do
+  #     expect(order.status).to eq("pending")
+  #     patch :cancel_as_user, {:id => order.id}, {:user_id => 1}
+  #     order.reload
+  #     expect(order.status).to eq("cancelled")
+  #   end
+  #   it "redirects to order_sum_path (a merchant's order summaries)" do
+  #   end
   # end
 
   describe "PATCH 'cancel_as_guest'" do
@@ -78,11 +86,6 @@ RSpec.describe OrdersController, type: :controller do
       order.reload
       expect(order.status).to eq("cancelled")
     end
-    # it "sets the cart status to empty" do
-    #   @cart_status = "full"
-    #   patch :cancel_as_guest, {:id => order.id}, {:order_id => order.id }
-    #   expect(@cart_status).to eq("empty")
-    # end
     it "sets order_id in session info to nil" do
       delete :cancel_as_guest, {:id => order.id}, {:order_id => order.id }
       expect(session[:order_id]).to be_nil

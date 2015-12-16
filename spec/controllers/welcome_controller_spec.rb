@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe WelcomeController, type: :controller do
-  
+
   describe 'GET index' do
     let(:user_hash) do {
       username: "Burp",
@@ -68,5 +68,4 @@ RSpec.describe WelcomeController, type: :controller do
       expect(subject).to render_template :index
     end
   end
-
 end
