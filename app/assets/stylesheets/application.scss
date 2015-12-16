@@ -2,9 +2,9 @@
 @import "bootstrap";
 @import "font-awesome";
 
-$teal: #47AAB3;
+$teal: #27847A;
 $purple-blue: #888DC4;
-$teal-grey: #c2d6d6;
+$teal-grey: #CEF5E0;
 
 $light-contrast: $teal-grey;
 $highlight: $teal;
@@ -30,6 +30,7 @@ $header-font: 'Tinos';
 
 .front-pg-link {
   font-size: 24px;
+  font-family: $header-font, serif;
 }
 
 .header-box {
@@ -52,7 +53,7 @@ body {
 }
 
 .jumbotron {
-  background: url("crystal.ong.png");
+  background: url("quartzy.png");
   background-size: cover;
 
 }
@@ -101,7 +102,7 @@ h5 {
 }
 
 .mark_shipped {
-  
+
 }
 
 .cat-navbar {
@@ -128,11 +129,16 @@ a:hover {color: $purple-blue}
 
 
 .table-master {
+  font-family: Tinos, serif;
+  font-size: 17px;
 
 }
 
 .form-control {
   width: 50%;
+  font-family: Tinos, serif;
+  font-size: 17px;
+
 }
 
 .col-sm-4 {
