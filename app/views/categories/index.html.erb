@@ -12,11 +12,18 @@
         <h2>
           <%= link_to "#{cat.name}", category_path(cat), class: 'category-box' %>
         </h2>
-        <% cat.top(4).each do |p| %>
+        <% cat.top(3).each do |p| %>
             <%= image_tag "#{p.photo_url}", class: "img-responsive, product-page-img" %>
             <h4>
               <%= link_to "#{p.name}", product_path(p) %>
             </h4>
+            <div>
+              <% if @current_user != nil %>
+                <% if p.user_id != @current_user.id %>
+                  <%= button_to "Add to Cart", buy_path(p.id), class: "btn btn-success" %>
+                <% end %>
+              <% end %>
+            </div>
         <% end %>
         </div>
       <% end %>
