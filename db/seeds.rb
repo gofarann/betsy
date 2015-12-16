@@ -74,7 +74,7 @@ users = [
     password: "123",
     password_confirmation: "123"
   },
-  { username: "GemsonGemsonGems",
+  { username: "Gems on Gems on Gems",
     email_address: "gems@gems.com",
     password: "123",
     password_confirmation: "123"

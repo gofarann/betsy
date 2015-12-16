@@ -117,12 +117,11 @@ h5 {
 
 .cat-navbar {
 
-
-
 }
 
-.category-box {
-
+.category-box{
+  margin: auto;
+  border-bottom: 3px solid $rust;
 }
 
 .product-page-img {
@@ -159,7 +158,7 @@ a:hover {
 
 .col-sm-4 {
   margin: auto;
-
+  margin-bottom: 10px;
 }
 
 .col-sm-6 {
@@ -167,6 +166,10 @@ a:hover {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+}
+
+.spacer {
+  margin: 10px;
 }
 
 .rating {
