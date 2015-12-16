@@ -2,9 +2,9 @@
 @import "bootstrap";
 @import "font-awesome";
 
-$teal: #27847A;
+$teal: #159E98;
 $purple-blue: #888DC4;
-$teal-grey: #80B59B;
+$teal-grey: #11BAB7;
 $dark-teal: #238479;
 $rust: #C18763;
 $yellow: #D6D8A6;
@@ -34,13 +34,16 @@ $header: 'Tinos';
 }
 
 .front-pg-link {
-  font-size: 24px;
-  font-family: $header, serif;
+  color: black;
 }
 
 .header-box {
-  padding: 25px;
+  padding: 20px;
   background-color: $light-contrast;
+}
+
+.button-box {
+  padding-bottom: 35px;
 }
 
 .col-xs-12 {
@@ -130,7 +133,10 @@ a {
   text-decoration: none;
 }
 
-a:hover {color: $purple-blue}
+a:hover {
+  color: $purple-blue;
+  text-decoration: none;
+}
 
 
 .table-master {
@@ -172,6 +178,11 @@ a:hover {color: $purple-blue}
 .btn {
   font-size: 14px;
   font-family: $header;
+}
+
+.center {
+  margin: auto;
+  display: block;
 }
 
 .btn-success {
