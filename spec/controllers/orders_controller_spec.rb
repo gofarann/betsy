@@ -49,6 +49,13 @@ RSpec.describe OrdersController, type: :controller do
     end
   end
 
+  describe "GET 'checkout'" do
+    it "renders the checkout view" do
+      get :checkout, {}, {:order_id => order.id }
+      expect(subject).to render_template :checkout
+    end
+  end
+
   # checkout
   # confirm
   # cancel_as_user
