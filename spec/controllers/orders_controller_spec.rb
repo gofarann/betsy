@@ -68,17 +68,6 @@ RSpec.describe OrdersController, type: :controller do
     end
   end
 
-  # describe "PATCH 'cancel_as_user'" do
-  #   it "updates the order's status to cancelled" do
-  #     expect(order.status).to eq("pending")
-  #     patch :cancel_as_user, {:id => order.id}, {:user_id => 1}
-  #     order.reload
-  #     expect(order.status).to eq("cancelled")
-  #   end
-  #   it "redirects to order_sum_path (a merchant's order summaries)" do
-  #   end
-  # end
-
   describe "PATCH 'cancel_as_guest'" do
     it "updates the order's status to cancelled" do
       expect(order.status).to eq("pending")
