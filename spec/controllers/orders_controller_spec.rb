@@ -38,8 +38,17 @@ RSpec.describe OrdersController, type: :controller do
 
   end
 
+  describe "DELETE 'clear_cart'" do
+    it "sets the session order_id to nil" do
+      delete :clear_cart, {}, {:order_id => order.id }
+      expect(session[:order_id]).to be_nil
+    end
+    it "redirects to the root path" do
+      delete :clear_cart, {}, {:order_id => order.id }
+      expect(subject).to redirect_to(root_path)
+    end
+  end
 
-  # clear_cart
   # checkout
   # confirm
   # cancel_as_user
