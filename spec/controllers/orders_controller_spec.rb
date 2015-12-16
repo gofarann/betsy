@@ -27,10 +27,15 @@ RSpec.describe OrdersController, type: :controller do
 
   describe "GET 'cart'" do
     it "sets cart status to empty if there is no order_id in session" do
-      get :cart, {}, {:user_id => nil}
+      get :cart, {}, {:order_id => nil}
       expect(@cart_status).to eq(nil)
+      expect(@order).to eq(nil)
     end
-    it ""
+    it "finds the order if there is an order id" do
+      get :cart, {}, {:order_id => order.id}
+      expect(@order.id).to eq(order.id)
+    end
+
   end
 
 
