@@ -50,7 +50,7 @@
         <%= f.number_field :zip, class: "form-control" %>
       </div>
 
-      <%= f.submit "Purchase", :class => 'btn btn-info' %>
+      <%= f.submit "Purchase", :class => 'btn btn-success' %>
       <% end %>
     </fieldset>
 </div>
@@ -116,7 +116,7 @@
   </tr>
   <tr>
     <td class="table-headers">
-      <%= button_to "Remove from Cart", orderitems_delete_path(orderitem.id), method: :delete %>
+      <%= button_to "Remove from Cart", orderitems_delete_path(orderitem.id), method: :delete, class:'btn btn-danger' %>
     </td>
   </tr>
   <% end %>
@@ -124,7 +124,10 @@
 </div>
 <br>
 <br>
-
-  <%= button_to "Cancel Order", clear_cart_path, method: :delete %>
+<div class="row">
+  <h1 class="header-box">
+    <%= button_to "Cancel Order", clear_cart_path, method: :delete, class:'btn btn-danger cntr-header' %>
+  </h1>
+</div>
   <br>
   <br>
