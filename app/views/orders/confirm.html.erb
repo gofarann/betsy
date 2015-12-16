@@ -1,19 +1,68 @@
 <div class="row">
-  <h1> Order <%= @order.id %> Confirmation </h1>
+  <h1 class="header-box"> 
+    Order <%= @order.id %> Confirmation 
+  </h1>
 </div>
 <div class="row">
-  
+  <div class="col-sm-12">
+    <div class="table-master">
+      <table class="table table-hover">
+        <% @order.orderitems.each do |orderitem| %>
+        <tr>
+          <td class="table-headers">
+            Product
+          </td>
+          <td>
+            <%= orderitem.product.name %>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-headers">
+            Description
+          </td>
+          <td>
+            <%= orderitem.product.description%>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-headers">
+            Price
+          </td>
+          <td>
+            <%= orderitem.product.price %>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-headers">
+            Photo
+          </td>
+          <td>
+            <%= image_tag orderitem.product.photo_url %>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-headers">
+            Category
+          </td>
+          <td>
+            <% orderitem.product.categories.each do |category| %>
+            <%= category.name %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-headers">
+            Quantity
+          </td>
+          <td>
+            <%= orderitem.quantity %>
+          </td>
+        </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-
-
-<p>Name: <%= @order.cc_name %></p>
-<p><medium> Placed at: <%= @order.placed_at %> </medium></p>
-<p><medium> Email: <%= @order.email_address %> </medium></p>
-<p><medium> Mailing Address: <%= @order.mailing_address %> </medium></p>
-<p><medium> Zip: <%= @order.zip %> </medium></p>
-
-<p>Use a partial here or whatever is relevant to show all the orderitems </p>
 
 <div class="table-master">
 <table class='table table-hover'>
