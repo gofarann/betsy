@@ -37,11 +37,14 @@
         </td>
       </tr>
       <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td><strong>Total: <%= nice_price(@order.total) %></strong></td>
+      </tr>
     </table>
   </div>
-  <h5>
-    Total: <%= @order.total %>
-  </h5>
+
 </div>
 
 <div class="row header-box">
