@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :navbar_categories, only: [:index]
   before_action :current_user_owns_product, only: [:update, :delete]
-  before_action :find_product, only: [:retire, :buy, :show, :review, :destroy]
+  before_action :find_product, only: [:retire, :buy, :show, :destroy]
 
   def buy
     #a.k.a add to cart
@@ -67,6 +67,7 @@ class ProductsController < ApplicationController
   end
 
   def review
+    @product = Product.find(params[:product_id])
     @review = Review.create(review_params)
     redirect_to product_path(@product)
   end

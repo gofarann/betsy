@@ -3,7 +3,7 @@
 @import "font-awesome";
 
 $teal: #159E98;
-$purple-blue: #888DC4;
+$purple-blue: #52A97F;
 $teal-grey: #11BAB7;
 $dark-teal: #238479;
 $rust: #C18763;
@@ -193,8 +193,14 @@ a:hover {
 
 .btn-danger {
  background-color: $rust;
+ border: none;
 }
 
 .btn-default {
-  background-color: $rust;
+  background-color: $purple-blue;
+  border: none;
+}
+
+.btn-info {
+  background-color: $teal;
 }
