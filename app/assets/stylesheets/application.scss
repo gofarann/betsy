@@ -3,7 +3,7 @@
 @import "font-awesome";
 
 $teal: #159E98;
-$purple-blue: #52A97F;
+$other-highlight: #33A69A;
 $teal-grey: #11BAB7;
 $dark-teal: #238479;
 $rust: #C18763;
@@ -45,7 +45,7 @@ $header: 'Tinos';
 }
 
 .button-box {
-  padding-bottom: 35px;
+  padding-bottom: 25px;
 }
 
 .col-xs-12 {
@@ -136,7 +136,7 @@ a {
 }
 
 a:hover {
-  color: $purple-blue;
+  color: $other-highlight;
   text-decoration: none;
 }
 
@@ -197,7 +197,7 @@ a:hover {
 }
 
 .btn-default {
-  background-color: $purple-blue;
+  background-color: $other-highlight;
   border: none;
 }
 
