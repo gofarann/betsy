@@ -6,7 +6,6 @@ class OrdersController < ApplicationController
   before_action :navbar_categories, only: [:cart]
 
 
-
   #the order from the perspective of the merchant
   def show
     @order = Order.find(params[:id])
@@ -83,13 +82,6 @@ class OrdersController < ApplicationController
     order = Order.find(id)
     order.update_attributes(order_params[:order])
     redirect_to order_path(params[:id])
-  end
-
-  #Maybe we could have merchant be able to delete cancelled orders if they want to.
-  #not sure about how we are using this one yet
-  def destroy
-    Order.destroy(params[:id])
-    redirect_to orders_path
   end
 
   private

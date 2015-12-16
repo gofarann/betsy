@@ -85,6 +85,12 @@ RSpec.describe OrdersController, type: :controller do
     end
   end
 
+  describe "GET 'confirm'" do
+    it "renders the confirm view" do
+      get :confirm, {:id => order.id}, {:order_id => order.id }
+      expect(subject).to render_template :confirm
+    end
+  end
 
   # finalize
   # ship
