@@ -60,12 +60,16 @@
       <td><%= orderitem.order.status.capitalize %></td>
       <td><%= orderitem.quantity %></td>
       <td><%= nice_price(orderitem.product.price * orderitem.quantity) %></td>
-      <% if orderitem.status != 'shipped' %>
+      <% if orderitem.status != 'shipped' || 'canceled' %>
         <td><%= link_to "Mark Shipped", ship_path(orderitem), class: "mark_shipped" %></td>
-      <% else %>
+      <% elsif orderitem.status == 'shipped' %>
+        <td>Shipped</td>
+      <% end %>
+      <% if orderitem.status != 'canceled' %>
+        <td><%= link_to "Cancel" %></td>
+      <% elsif orderitem.status == 'canceled' %>
         <td><%= orderitem.status.capitalize %></td>
       <% end %>
-      <td><%= link_to "Cancel" %></td>
     </tr>
   <% end %>
   </table>
