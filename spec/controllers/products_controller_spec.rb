@@ -78,44 +78,72 @@ RSpec.describe ProductsController, type: :controller do
   end
 
   describe "PATCH 'update'" do
-    let(:product) do
-      Product.create(name: "necklace", price: 10, user_id: 2, stock: 3)
+    before :each do
+        request.env["HTTP_REFERER"] = "back"
     end
 
-    let(:good_product) do
+    let(:current_user) do
+      User.create(username: "FancyPants",
+                  email_address: "fancypants@fancypants.com",
+                  password: "123",
+                  password_confirmation: "123")
+      end
+
+    before :each do
+      session[:user_id] = current_user.id
+    end
+
+    let(:product) do
+      Product.create(name: "necklace",
+                      price: 10,
+                      user_id: current_user.id,
+                      stock: 3)
+    end
+
+    let(:update_product) do
       {
-        id: product.id,
         product: {
           name: "necklace",
-          price: 10,
-          user_id: 2,
+          price: 25,
+          user_id: current_user.id,
           stock: 3,
-        }
+        },
+        id: product.id
       }
     end
 
-    let(:bad_product) do
-    {
-      id: product.id,
-      product: {
-        name: "",
-        price: 10,
-        user_id: 2,
-        stock: 3,
-      }
-    }
+    it "updates a good product" do
+      before_update = product.attributes
+      params = update_product
+      patch :update, params
+      product.reload
+      expect(product.attributes).to_not eq before_update
     end
 
-    it "redirects to product show page" do
-      patch :update, good_product
+    it "redirects to product#show page" do
+      patch :update, update_product
       expect(subject).to redirect_to product_path(product.id)
     end
-
-    it "renders edit view" do
-      patch :update, bad_product
-      expect(subject).to render_template :edit
-    end
   end
+
+  #   it "renders edit view" do
+  #     patch :update, bad_product
+  #     expect(subject).to render_template :edit
+  #   end
+  #
+  #   let(:bad_product) do
+  #   {
+  #     id: product.id,
+  #     product: {
+  #       name: "",
+  #       price: 10,
+  #       user_id: 2,
+  #       stock: 3,
+  #     }
+  #   }
+  #   end
+  #
+  # end
 
   describe "POST 'review'" do
     let(:product) do
