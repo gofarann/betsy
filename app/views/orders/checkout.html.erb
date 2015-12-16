@@ -3,57 +3,63 @@
     Enter Payment Info 
   </h1>
 </div>
-
-<ul>
-  <% @order.errors.each do |column, message| %>
-    <li>
-      <strong><%= column.capitalize %></strong> <%= message %>
-    </li>
-  <% end %>
-</ul>
-
-<%= form_for @order, url: {controller: "orders", action: "pay" }, :html => { :class => "form" } do |f| %>
-  <fieldset>
-    <div class="form-group">
-      <%= f.label :cc_name, "Name on Card" %>
-      <%= f.text_field :cc_name, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :email_address, "Email" %>
-      <%= f.email_field :email_address, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :mailing_address, "Mailing address" %>
-      <%= f.text_field :mailing_address, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :cc_number, "Credit Card Number" %>
-      <%= f.text_field :cc_cvv, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :cc_exp, "Credit Card Expiration" %>
-      <%= f.text_field :cc_exp, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :cc_cvv, "Credit Card CVV" %>
-      <%= f.number_field :cc_cvv, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :zip, "Zip Code" %>
-      <%= f.number_field :zip, class: "form-control" %>
-    </div>
-
-    <%= f.submit "Purchase", :class => 'btn btn-info' %>
+<div class="row">
+  <ul>
+    <% @order.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
     <% end %>
-  </fieldset>
+  </ul>
+</div>
+<div class="row">
+  <%= form_for @order, url: {controller: "orders", action: "pay" }, :html => { :class => "form" } do |f| %>
+    <fieldset>
+      <div class="form-group">
+        <%= f.label :cc_name, "Name on Card" %>
+        <%= f.text_field :cc_name, class: "form-control" %>
+      </div>
 
-<h2> Review Your Order </h2>
+      <div class="form-group">
+        <%= f.label :email_address, "Email" %>
+        <%= f.email_field :email_address, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :mailing_address, "Mailing address" %>
+        <%= f.text_field :mailing_address, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :cc_number, "Credit Card Number" %>
+        <%= f.text_field :cc_cvv, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :cc_exp, "Credit Card Expiration" %>
+        <%= f.text_field :cc_exp, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :cc_cvv, "Credit Card CVV" %>
+        <%= f.number_field :cc_cvv, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :zip, "Zip Code" %>
+        <%= f.number_field :zip, class: "form-control" %>
+      </div>
+
+      <%= f.submit "Purchase", :class => 'btn btn-info' %>
+      <% end %>
+    </fieldset>
+</div>
+
+<div class="row">
+  <h1 class="header-box">
+     Review Your Order
+  </h1>
+</div>
 
 <div class="table-master">
 <table class='table table-hover'>
