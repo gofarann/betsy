@@ -1,4 +1,9 @@
 <%= render 'cat_navbar' %>
+<div class="row">
+  <h1 class="header-box">
+    Products by Merchant
+  </h1>
+</div>
 
 <% @users.to_ary.in_groups_of(3, false) do |group| %>
   <div class="row">

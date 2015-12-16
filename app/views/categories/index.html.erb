@@ -1,6 +1,8 @@
 <%= render 'cat_navbar' %>
 <div class="row">
-  <h1>All Categories</h1>
+  <h1 class="header-box">
+    Products by Category
+  </h1>
 </div>
 
   <% @cat.to_ary.in_groups_of(3, false) do |group| %>
