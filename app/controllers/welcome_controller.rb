@@ -11,7 +11,7 @@ class WelcomeController < ApplicationController
       y = rand(1..User.all.length)
     end
     @top_users = [User.find(x), User.find(y)]
-    m = rand(0..Category.all.length)
+    m = rand(1..Category.all.length)
     until Category.find(m).products.length >= 2
       m = rand(1..Category.all.length)
     end
