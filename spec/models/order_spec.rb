@@ -186,7 +186,7 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  describe "total" do
+  describe "total_by_user(user_id)" do
     let (:order) do
       order = Order.create(good_hash)
       p = Product.create!(product_hash)
@@ -195,11 +195,11 @@ RSpec.describe Order, type: :model do
       return order
     end
     it "returns an integer" do
-      expect(order.total(1)).to be_a(Integer)
+      expect(order.total_by_user(1)).to be_a(Integer)
     end
     it "returns the total sales for a given user" do
-      expect(order.total(2)).to eq(5645)
-      expect(order.total(1)).to eq(5645245)
+      expect(order.total_by_user(2)).to eq(5645)
+      expect(order.total_by_user(1)).to eq(5645245)
     end
   end
 
@@ -220,7 +220,7 @@ RSpec.describe Order, type: :model do
     end
     it "marks an order as shipped only if all orderitems are shipped" do
       expect(@order.status).to eq("pending")
-      expect(@order2.status).to eq("shipped")
+      expect(@order2.status).to eq("completed")
     end
   end
 
