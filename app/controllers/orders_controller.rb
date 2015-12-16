@@ -39,12 +39,6 @@ class OrdersController < ApplicationController
     @order = Order.find(session[:order_id])
   end
 
-  def cancel_as_user
-      @order = Order.find(params[:id])
-      @order.update_attribute(:status, "cancelled")
-      redirect_to order_sum_path(session[:user_id])
-  end
-
   def cancel_as_guest
     @order = Order.find(session[:order_id])
     @order.update_attribute(:status, "cancelled")

@@ -26,8 +26,6 @@ Rails.application.routes.draw do
 
   patch 'orders/:id/cancel_as_guest' => 'orders#cancel_as_guest', as: :order_cancel_as_guest
 
-  patch 'orders/:id/cancel_as_user' => 'orders#cancel_as_user', as: :order_cancel_as_user
-
   post '/products/:id/buy' => 'products#buy', as: :buy
 
   get '/users/:id/dash' => 'users#dash', as: :user_dash
