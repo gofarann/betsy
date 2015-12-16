@@ -18,6 +18,10 @@ RSpec.describe OrdersController, type: :controller do
     Order.create!(order_hash)
   end
 
+  let(:cart_status) do
+    @cart_status
+  end
+
   describe "GET 'show'" do
     it "renders the show view" do
       get :show, id: order.id
@@ -63,9 +67,33 @@ RSpec.describe OrdersController, type: :controller do
     end
   end
 
-  # confirm
-  # cancel_as_user
-  # cancel_as_guest
+  # describe "GET 'cancel_as_user'" do
+  #   it"
+  # end
+
+  describe "PATCH 'cancel_as_guest'" do
+    it "updates the order's status to cancelled" do
+      expect(order.status).to eq("pending")
+      patch :cancel_as_guest, {:id => order.id}, {:order_id => order.id }
+      order.reload
+      expect(order.status).to eq("cancelled")
+    end
+    # it "sets the cart status to empty" do
+    #   @cart_status = "full"
+    #   patch :cancel_as_guest, {:id => order.id}, {:order_id => order.id }
+    #   expect(@cart_status).to eq("empty")
+    # end
+    it "sets order_id in session info to nil" do
+      delete :cancel_as_guest, {:id => order.id}, {:order_id => order.id }
+      expect(session[:order_id]).to be_nil
+    end
+    it "redirects to root path" do
+      patch :cancel_as_guest, {:id => order.id}, {:order_id => order.id }
+      expect(subject).to redirect_to(root_path)
+    end
+  end
+
+
   # finalize
   # ship
   # pay
