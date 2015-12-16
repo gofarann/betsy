@@ -3,80 +3,95 @@
     Your Cart
   </h1>
 </div>
-
-
-
-<% if @cart_status == "empty" %>
-  <p> Your cart is empty <p>
-<% else %>
-
-  <div class="table-master">
-  <table class='table table-hover'>
-    <% @order.orderitems.each do |orderitem| %>
-    <tr>
-      <td class="table-headers">
-        Product
-      </td>
-      <td>
-        <%= orderitem.product.name %>
-      </td>
-    </tr>
-    <tr>
-      <td class="table-headers">
-        Description
-      </td>
-      <td>
-        <%= orderitem.product.description%>
-      </td>
-    </tr>
-    <tr>
-      <td class="table-headers">
-        Price
-      </td>
-      <td>
-        <%= orderitem.product.price %>
-      </td>
-    </tr>
-    <tr>
-      <td class="table-headers">
-        Photo
-      </td>
-      <td>
-        <%= image_tag orderitem.product.photo_url %>
-      </td>
-    </tr>
-    <tr>
-      <td class="table-headers">
-        Category
-      </td>
-      <td>
-        <% orderitem.product.categories.each do |category| %>
-        <%= category.name %>
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <td class="table-headers">
-        Quantity
-      </td>
-      <td>
-        <%= form_for orderitem, url: orderitems_update_path(orderitem.id), method: :patch do |f| %>
-          <%= f.number_field :quantity %>
-          <%= f.submit "Change" %>
-          <% end %>
-      </td>
-    </tr>
-    <tr>
-      <td class="table-headers">
-        <%= button_to "Remove from Cart", orderitems_delete_path(orderitem.id), method: :delete, class: "btn btn-danger" %>
-      </td>
-    </tr>
-    <% end %>
-    </table>
+<div class="row">
+  <div class="col-sm-12">
+    <% if @cart_status == "empty" %>
+      <p> Your cart is empty <p>
+    <% else %>
   </div>
-    <%= button_to "Checkout", checkout_path, method: :get %>
-    <%= button_to "Empty Cart", clear_cart_path, method: :delete %>
+</div>
+<div class="row">
+  <div class="col-12-sm">
+    <div class="table-master">
+    <table class='table table-hover'>
+      <% @order.orderitems.each do |orderitem| %>
+      <tr>
+        <td class="table-headers">
+          Product
+        </td>
+        <td>
+          <%= orderitem.product.name %>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-headers">
+          Description
+        </td>
+        <td>
+          <%= orderitem.product.description%>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-headers">
+          Price
+        </td>
+        <td>
+          <%= orderitem.product.price %>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-headers">
+          Photo
+        </td>
+        <td>
+          <%= image_tag orderitem.product.photo_url %>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-headers">
+          Category
+        </td>
+        <td>
+          <% orderitem.product.categories.each do |category| %>
+          <%= category.name %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-headers">
+          Quantity
+        </td>
+        <td>
+          <%= form_for orderitem, url: orderitems_update_path(orderitem.id), method: :patch do |f| %>
+            <%= f.number_field :quantity %>
+            <%= f.submit "Change", class: "btn btn-default" %>
+            <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-headers">
+          <%= button_to "Remove from Cart", orderitems_delete_path(orderitem.id), method: :delete, class: "btn btn-danger" %>
+        </td>
+      </tr>
+      <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="row header-box">
+  <div class="col-sm-3">
+  </div>
+  <div class="col-sm-3">
+    <%= button_to "Checkout", checkout_path, method: :get, class: "btn btn-success" %>
+  </div>
+  <div class="col-sm-3">
+    <%= button_to "Empty Cart", clear_cart_path, method: :delete, class: "btn btn-danger" %>
+  </div>
+  <div class="col-sm-3">
+  </div>
     <br>
-    <br>
+  </div>
+</div>
+
 
 <% end %>
