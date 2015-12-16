@@ -50,6 +50,7 @@
       <th>Quantity</th>
       <th>Total</th>
       <th>Mark Shipped</th>
+      <th>Cancel</th>
     </tr>
   <% @user.orderitems.each do |orderitem| %>
     <tr>
@@ -64,6 +65,7 @@
       <% else %>
         <td><%= orderitem.status.capitalize %></td>
       <% end %>
+      <td><%= link_to "Cancel" %></td>
     </tr>
   <% end %>
   </table>
