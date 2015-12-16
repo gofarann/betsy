@@ -31,9 +31,9 @@ RSpec.describe OrdersController, type: :controller do
       expect(@cart_status).to eq(nil)
       expect(@order).to eq(nil)
     end
-    it "finds the order if there is an order id" do
-      get :cart, {}, {:order_id => order.id}
-      expect(@order.id).to eq(order.id)
+    it "renders the cart view" do
+      get :cart, {}, {:order_id => order.id }
+      expect(subject).to render_template :cart
     end
 
   end
