@@ -1,133 +1,57 @@
 <div class="row">
   <h1 class="header-box"> 
-    Order <%= @order.id %> Confirmation 
+    Order #<%= @order.id %> Confirmation 
   </h1>
 </div>
+
+
 <div class="row">
   <div class="col-sm-12">
-    <div class="table-master">
-      <table class="table table-hover">
-        <% @order.orderitems.each do |orderitem| %>
-        <tr>
-          <td class="table-headers">
-            Product
-          </td>
-          <td>
-            <%= orderitem.product.name %>
-          </td>
-        </tr>
-        <tr>
-          <td class="table-headers">
-            Description
-          </td>
-          <td>
-            <%= orderitem.product.description%>
-          </td>
-        </tr>
-        <tr>
-          <td class="table-headers">
-            Price
-          </td>
-          <td>
-            <%= orderitem.product.price %>
-          </td>
-        </tr>
-        <tr>
-          <td class="table-headers">
-            Photo
-          </td>
-          <td>
-            <%= image_tag orderitem.product.photo_url %>
-          </td>
-        </tr>
-        <tr>
-          <td class="table-headers">
-            Category
-          </td>
-          <td>
-            <% orderitem.product.categories.each do |category| %>
-            <%= category.name %>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td class="table-headers">
-            Quantity
-          </td>
-          <td>
-            <%= orderitem.quantity %>
-          </td>
-        </tr>
-        </table>
-      <% end %>
-    </div>
+    <strong><%= @order.cc_name %></strong><br>
+    <%= @order.email_address %><br>
+    <%= @order.mailing_address %><br>
+    <%=  %><br>
+    <%=  %><br>
+    <%=  %><br>
   </div>
 </div>
 
-<div class="table-master">
-<table class='table table-hover'>
-  <% @order.orderitems.each do |orderitem| %>
-  <tr>
-    <td class="table-headers">
-      Product
-    </td>
-    <td>
-      <%= orderitem.product.name %>
-    </td>
-  </tr>
-  <tr>
-    <td class="table-headers">
-      Description
-    </td>
-    <td>
-      <%= orderitem.product.description%>
-    </td>
-  </tr>
-  <tr>
-    <td class="table-headers">
-      Price
-    </td>
-    <td>
-      <%= orderitem.product.price %>
-    </td>
-  </tr>
-  <tr>
-    <td class="table-headers">
-      Photo
-    </td>
-    <td>
-      <%= image_tag orderitem.product.photo_url %>
-    </td>
-  </tr>
-  <tr>
-    <td class="table-headers">
-      Category
-    </td>
-    <td>
-      <% orderitem.product.categories.each do |category| %>
-      <%= category.name %>
+<div class="row">
+  <div class="table-master">
+    <table class='table table-hover'>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+      <% @order.orderitems.each do |orderitem| %>
+      <tr>
+        <td>
+          <%= link_to "#{orderitem.product.name}", product_path(orderitem.product) %>
+        </td>
+        <td>
+          <%= orderitem.quantity %>
+        </td>
+        <td>
+          <%= nice_price(orderitem.product.price * orderitem.quantity) %>
+        </td>
+      </tr>
       <% end %>
-    </td>
-  </tr>
-  <tr>
-    <td class="table-headers">
-      Quantity
-    </td>
-    <td>
-      <%= form_for orderitem, url: orderitems_update_path(orderitem.id), method: :patch do |f| %>
-        <%= f.number_field :quantity %>
-        <%= f.submit "Change" %>
-        <% end %>
-    </td>
+    </table>
+  </div>
+  <h5>
+    Total: <%= @order.total %>
+  </h5>
+</div>
 
-
-<p> This might be different from usual, because orderitems might not be a normal array, so don't be surprised if it doesn't immediately work </p>
-
-<p><medium>:<% @order.orderitems do |orderitems|  %> </medium></p>
-<p><%= orderitems.product_id.name %></p>
-  <% end %>
-
-<%= button_to "Finalize Order", {action: :finalize, controller: :orders}, method: :patch  %>
-
-<%= button_to "Cancel Order", {action: :cancel_as_guest, controller: :orders}, method: :patch %>
-<% end %>
+<div class="row header-box">
+  <div class="col-sm-3">
+  </div>
+  <div class="col-sm-3">
+    <%= button_to "Finalize Order", {action: :finalize, controller: :orders}, method: :patch, class: "btn btn-success"  %>
+  </div>
+  <div class="col-sm-3">
+    <%= button_to "Cancel Order", {action: :cancel_as_guest, controller: :orders}, method: :patch, class: "btn btn-danger" %>
+  <div class="col-sm-3">
+  </div>
+</div>
