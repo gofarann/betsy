@@ -4,13 +4,18 @@
 
 $teal: #27847A;
 $purple-blue: #888DC4;
-$teal-grey: #CEF5E0;
+$teal-grey: #80B59B;
+$dark-teal: #238479;
+$rust: #C18763;
+$yellow: #D6D8A6;
 
 $light-contrast: $teal-grey;
 $highlight: $teal;
+$neutral: $yellow;
 
-$body-font: 'IM Fell DW Pica';
-$header-font: 'Tinos';
+/*$body: 'IM Fell DW Pica';*/
+$body: 'Tinos';
+$header: 'Tinos';
 
 
 
@@ -24,13 +29,13 @@ $header-font: 'Tinos';
 
 .front-pg {
   text-align: center;
-  font-family: $body-font, serif;
+  font-family: $body, serif;
   font-size: 64px;
 }
 
 .front-pg-link {
   font-size: 24px;
-  font-family: $header-font, serif;
+  font-family: $header, serif;
 }
 
 .header-box {
@@ -43,11 +48,11 @@ $header-font: 'Tinos';
 }
 
 body {
-  font-family: $body-font, serif;
+  font-family: $body, serif;
 }
 
 .front-pg2 {
-  font-family: $header-font, serif;
+  font-family: $header, serif;
   text-align: center;
   font-size: 20px;
 }
@@ -65,25 +70,25 @@ body {
 }
 
 h1 {
-    font-family: $header-font, serif;
+    font-family: $header, serif;
     text-align: center;
     margin-bottom: 20px;
 }
 
 h2 {
-    font-family: $header-font, serif;
+    font-family: $header, serif;
 }
 
 h3 {
-    font-family: $header-font, serif;
+    font-family: $header, serif;
 }
 
 h4 {
-    font-family: $header-font, serif;
+    font-family: $header, serif;
 }
 
 h5 {
-    font-family: $header-font, serif;
+    font-family: $header, serif;
 }
 
 .cntr-header {
@@ -91,7 +96,7 @@ h5 {
 }
 
 .navbar {
-  font-family: Tinos;
+  font-family: $header;
   border:1px solid #ccc;
   border-width:1px 0;
   margin:0;
@@ -129,14 +134,14 @@ a:hover {color: $purple-blue}
 
 
 .table-master {
-  font-family: $body-font;
+  font-family: $body;
   font-size: 17px;
 
 }
 
 .form-control {
   width: 50%;
-  font-family: $body-font;
+  font-family: $body;
   font-size: 17px;
 }
 
@@ -162,4 +167,21 @@ a:hover {color: $purple-blue}
 
 .fa {
   color: #FFD700;
+}
+
+.btn {
+  font-size: 14px;
+  font-family: $header;
+}
+
+.btn-success {
+  background-color: $dark-teal;
+}
+
+.btn-danger {
+ background-color: $rust;
+}
+
+.btn-default {
+  background-color: $rust;
 }
