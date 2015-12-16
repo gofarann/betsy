@@ -4,7 +4,7 @@
   </h1>
 </div>
 <div class="row">
-  <h2>Total Revenue: <%= @user.revenue %></h2>
+  <h2>Total Revenue: <%= nice_price(@user.revenue) %></h2>
   <h4>
     order revenue by: 
     <%= link_to "pending", user_order_dash_path(@user, rev_status: "pending") %> / 
