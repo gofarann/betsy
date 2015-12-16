@@ -15,9 +15,9 @@
   <% if !session[:rev_status].nil? %>
      <h3>
       <% if @user.rev_by_status(session[:rev_status]).nil? %> 
-          you don't have any <%= session[:rev_status]%> orders
+          You don't have any <%= session[:rev_status]%> orders.
        <% else %>
-         revenue for <%= session[:rev_status]%> orders is: <%= @user.rev_by_status(session[:rev_status]) %>
+         Revenue for <%= session[:rev_status]%> orders is: <%= nice_price(@user.rev_by_status(session[:rev_status])) %>
        <% end %>
      </h3>
   <% elsif session[:rev_status].nil? %>
