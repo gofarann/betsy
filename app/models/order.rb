@@ -31,6 +31,7 @@ class Order < ActiveRecord::Base
     Order.transaction do
       self.products.each do |product|
       product.stock -= 1
+      product.save!
       end
     end
   end
