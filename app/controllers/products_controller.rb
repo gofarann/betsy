@@ -2,26 +2,28 @@ class ProductsController < ApplicationController
   before_action :navbar_categories, only: [:index]
   before_action :current_user_owns_product, only: [:update, :delete]
   before_action :find_product, only: [:retire, :buy, :show, :destroy]
+  before_action :current_order
 
   def buy
     #if there is not yet an order_id in session, make it now
     #this is totally independent of being logged in.
-    session[:order_id] ||= []
     #then if the id is nil, make an order and put it's id in the session hash
     #if there already is an order in the session, add the product to it.
-      if session[:order_id] == []
-        @order = Order.pending(@product)
-        session[:order_id] = @order.id
+      if !@current_order
+        session[:order_id] ||= []
+        order = Order.pending(@product)
+        session[:order_id] = order.id
       else
-        @order = Order.find(session[:order_id])
         #logic for whether or not one is in cart already
-        if @order.orderitems.where(product_id: @product.id) != []
+        if @current_order.orderitems.where(product_id: @product.id) != []
           #product is already in order
-          @orderitem = @order.orderitems.where(product_id: @product.id).first
+          @orderitem = @current_order.orderitems.where(product_id: @product.id).first
           @orderitem.update_attribute(:quantity, @orderitem.quantity + 1 )
+          flash[:notice] = "Added another #{@orderitem.product.name} to cart."
         else
           #product is not already in order
-          @orderitem = Orderitem.create(quantity: 1, order_id: @order.id, product_id: @product.id)
+          @orderitem = Orderitem.create(quantity: 1, order_id: @current_order.id, product_id: @product.id)
+          flash[:notice] = "Added #{@orderitem.product.name} to cart."
         end
       end
       #in any case, want to stay on same page after clicking button
