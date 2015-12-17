@@ -21,7 +21,7 @@
 
     <div class="form-group">
       <%= f.label :price %>
-      <%= f.number_field :price, class: "form-control", :required => true %>
+      <%= f.text_field :price, value: nice_price(@product.price), class: "form-control", :required => true %>
     </div>
 
     <div class="form-group">

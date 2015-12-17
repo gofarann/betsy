@@ -1,7 +1,12 @@
+
+
 class ProductsController < ApplicationController
+  include ApplicationHelper
   before_action :navbar_categories, only: [:index]
   before_action :current_user_owns_product, only: [:update, :delete]
   before_action :find_product, only: [:retire, :buy, :show, :destroy]
+
+
 
   def buy
     #if there is not yet an order_id in session, make it now
@@ -80,8 +85,8 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.update(params[:id], product_params)
-    @product.category_ids = params[:product][:category_ids]
     @product.price = (params[:product][:price].to_f * 100).to_i
+    @product.category_ids = params[:product][:category_ids]
     if @product.save
       redirect_to product_path(@product)
     else
