@@ -129,48 +129,58 @@ RSpec.describe User, type: :model do
     end
   end
 
-
-    describe "orderitems" do
-      let(:user) do
-        user = User.create(good_hash)
-        p = Product.create!(product_hash)
-        p2 = Product.create!(second_product)
-        p3 = Product.create!(third_product)
-        user.products << [p, p2]
-        order = Order.pending(p)
-        order2 = Order.pending(p2)
-        order3 = Order.pending(p3)
-        return user
-      end
-
-      it "returns an array" do
-        expect(user.orderitems.class).to eq Array
-      end
-
-      it "contains Orderitems"  do
-        expect(user.orderitems[0]).to be_a Orderitem
-        expect(user.orderitems[1]).to be_a Orderitem
-      end
-
-      # it "returns orderitems associated with user"
-      #   expect(user.orderitems).to
-      #
-      # end
+  describe "orderitems" do
+    let(:user) do
+      user = User.create(good_hash)
+      p = Product.create!(product_hash)
+      p2 = Product.create!(second_product)
+      p3 = Product.create!(third_product)
+      user.products << [p, p2]
+      order = Order.pending(p)
+      order2 = Order.pending(p2)
+      order3 = Order.pending(p3)
+      return user
     end
 
-    # describe "orderitems_by_order" do
-    #
-    #     it "returns an array" do
-    #
-    #
-    #     end
-    #
-    #     it "contains Orderitems"  do
-    #
-    #     end
-    #
-    #     it "returns orderitems associated with user"
-    #
-    #     end
-    #   end
+    it "returns an array" do
+      expect(user.orderitems.class).to eq Array
+    end
+
+    it "contains Orderitems"  do
+      expect(user.orderitems[0]).to be_a Orderitem
+      expect(user.orderitems[1]).to be_a Orderitem
+    end
+
+    it "returns orderitems associated with user" do
+      expect(user.orderitems.length).to eq 2
+    end
   end
+
+  describe "orderitems_by_order" do
+    let(:user) do
+      user = User.create(good_hash)
+      p = Product.create!(product_hash)
+      p2 = Product.create!(second_product)
+      p3 = Product.create!(third_product)
+      user.products << [p, p2]
+      order = Order.pending(p)
+      order2 = Order.pending(p2)
+      order3 = Order.pending(p3)
+      return user
+    end
+
+    it "returns an array" do
+      expect(user.orderitems.class).to eq Array
+    end
+
+    it "contains Orderitems"  do
+      expect(user.orderitems[0]).to be_a Orderitem
+      expect(user.orderitems[1]).to be_a Orderitem
+
+    end
+
+    it "returns orderitems associated with an order" do
+      expect(user.orders.length).to eq 2
+    end
+  end
+end
