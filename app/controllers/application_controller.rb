@@ -11,7 +11,11 @@ class ApplicationController < ActionController::Base
 
   def items_in_cart
     if !session[:order_id].nil?
-      @cart_num = Order.find(session[:order_id]).orderitems.length
+      sum = []
+      Order.find(session[:order_id]).orderitems.each do |oi|
+        sum.push(oi.quantity)
+      end
+      @cart_num = sum.inject(0) {|r, e| r + e }
     else
       @cart_num = 0
     end
