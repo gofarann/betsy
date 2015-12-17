@@ -44,4 +44,8 @@ class Product < ActiveRecord::Base
     !!self.user
   end
 
+  def out_of_stock?
+    self.stock == 0
+  end
+
 end
