@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
     orders = []
     self.products.each do |product|
       product.orders.each do |order|
-        orders.push(order)
+        orders.push(order) if !orders.include?(order)
       end
     end
     return orders
