@@ -51,7 +51,7 @@
         </td>
         <td>
           <%= form_for orderitem, url: orderitems_update_path(orderitem.id), method: :patch do |f| %>
-            <%= f.number_field :quantity %>
+            <%= f.number_field :quantity, min: 1 %>
             <%= f.submit "Change", class: "btn btn-default" %>
             <% end %>
         </td>
