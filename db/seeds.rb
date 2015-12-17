@@ -410,7 +410,7 @@ products = [
 # Turquoise
   {name: "Turquoise Set", price: 342, user_id: "17", stock: "3", photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAT_lQaYED2EAswqwQ7LAfUrPTOcyvRathjpdNNoEv4VLfl6ty", description: "No need to mix and match."},
   {name: "Probably Fake Turquoise Rings", price: 544, user_id: "10", stock: "6765", photo_url: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQoGPq0oTIxG8tXbaUH9YNqfZQWjS4N9oqGVES-iGt7-UHphsiL", description: "But you look cool until your fingers are green."},
-  {name: "T-Chainz", price: 3255, user_id: "14", stock: "23", photo_url: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkICYb8_5_qmplGiiLckwKY48s2WLOPittQt3JFWLZuAH9N2A", description: "Cuter than handcuffs."},
+  {name: "T-Chainz", price: 3255, user_id: "14", stock: "23", photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLXniy8gk5MCCGIrDXINEaYRffW0UkVmN1-sOAUoCC1LYNghI5ug", description: "Cuter than handcuffs."},
   {name: "T-Earth", price: 4325, user_id: "15", stock: "2", photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlkA8Z3x1WgIFcMxPAYnPB0ViPmYIQPyDyFUAQYlT3vqvvp6ck9w", description: "I actually like this one."},
 ]
 
