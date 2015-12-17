@@ -125,12 +125,19 @@ h5 {
 
 .category-box{
   margin: auto;
-  border-bottom: 3px solid $rust;
+  padding: 7px;
+  border: 1px solid $highlight;
 }
 
 .product-page-img {
   width: auto;
   height: 200px;
+}
+
+.cart-img {
+  max-width: 150px;
+  height: auto;
+  max-height: 200px;
 }
 
 a {
@@ -217,8 +224,3 @@ a:hover {
   list-style-type: none;
 }
 
-.cart-img {
-  max-width: 150px;
-  height: auto;
-  max-height: 200px;
-}

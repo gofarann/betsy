@@ -44,7 +44,7 @@
           Photo
         </td>
         <td>
-          <%= image_tag @product.photo_url %>
+          <%= image_tag @product.photo_url, class: 'img-responsive product-page-img' %>
         </td>
       </tr>
       <tr>
@@ -148,7 +148,11 @@
   <% if @current_user != nil %>
     <% if @product.user_id != @current_user.id %>
     <div class="col-sm-6">
-      <%= button_to "Add to Cart", buy_path(@product.id), class: "btn btn-success" %>
+      <% if !@product.out_of_stock? %>
+        <%= button_to "Add to Cart", buy_path(@product.id), class: "btn btn-success" %>
+      <% else %>
+        OUT OF STOCK
+      <% end %>
     </div>
       <div class="col-sm-6">
         <%= button_to "All Products", products_path, method: :get, class: "btn btn-default" %>
@@ -165,9 +169,11 @@
     </div>
     <% end %>
   <% else %>
-  <div class="col-sm-6">
+  <% if !@product.out_of_stock? %>
     <%= button_to "Add to Cart", buy_path(@product.id), class: "btn btn-success" %>
-  </div>
+  <% else %>
+    OUT OF STOCK
+  <% end %>
   <div class="col-sm-6">
     <%= button_to "All Products", products_path, method: :get, class: "btn btn-default" %>
   </div>
