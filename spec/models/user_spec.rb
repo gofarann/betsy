@@ -144,17 +144,33 @@ RSpec.describe User, type: :model do
       end
 
       it "returns an array" do
-
-
+        expect(user.orderitems.class).to eq Array
       end
 
       it "contains Orderitems"  do
-
+        expect(user.orderitems[0]).to be_a Orderitem
+        expect(user.orderitems[1]).to be_a Orderitem
       end
 
-      it "returns orderitems associated with user"
+      # it "returns orderitems associated with user"
+      #   expect(user.orderitems).to
+      #
+      # end
+    end
 
-      end
-  
-
-end
+    # describe "orderitems_by_order" do
+    #
+    #     it "returns an array" do
+    #
+    #
+    #     end
+    #
+    #     it "contains Orderitems"  do
+    #
+    #     end
+    #
+    #     it "returns orderitems associated with user"
+    #
+    #     end
+    #   end
+  end
