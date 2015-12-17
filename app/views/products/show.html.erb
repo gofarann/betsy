@@ -61,7 +61,9 @@
         </td>
         <td>
           <% @product.categories.each do |category| %>
-          <%= category.name %>
+          <ul class="category_list">
+            <li><%= category.name %></li>
+          </ul>
           <% end %>
         </td>
       </tr>
