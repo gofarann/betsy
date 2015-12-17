@@ -66,9 +66,6 @@ class Order < ActiveRecord::Base
     return self.cc_number[-4..-1]
   end
 
-  #possibly want merchants to be able to destroy orders of different statuses,
-  #but if you are a customer you can only clear cart before you have paid.
-  #of course you might be signed in AND acting as a customer. Worry about this later if ever.
   def customer_destroys_only_pending
     !session[:user_id] && self.status = "pending"
   end
