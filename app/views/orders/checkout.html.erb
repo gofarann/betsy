@@ -18,37 +18,37 @@
         <fieldset>
           <div class="form-group">
             <%= f.label :cc_name, "Name on Card" %>
-            <%= f.text_field :cc_name, class: "form-control" %>
+            <%= f.text_field :cc_name, class: "form-control", :required => true %>
           </div>
 
           <div class="form-group">
             <%= f.label :email_address, "Email" %>
-            <%= f.email_field :email_address, class: "form-control" %>
+            <%= f.email_field :email_address, class: "form-control", :required => true %>
           </div>
 
           <div class="form-group">
             <%= f.label :mailing_address, "Mailing address" %>
-            <%= f.text_field :mailing_address, class: "form-control" %>
+            <%= f.text_field :mailing_address, class: "form-control", :required => true %>
           </div>
 
           <div class="form-group">
             <%= f.label :cc_number, "Credit Card Number" %>
-            <%= f.text_field :cc_cvv, class: "form-control" %>
+            <%= f.text_field :cc_cvv, class: "form-control", :required => true %>
           </div>
 
           <div class="form-group">
             <%= f.label :cc_exp, "Credit Card Expiration" %>
-            <%= f.text_field :cc_exp, class: "form-control" %>
+            <%= f.text_field :cc_exp, class: "form-control", :required => true %>
           </div>
 
           <div class="form-group">
             <%= f.label :cc_cvv, "Credit Card CVV" %>
-            <%= f.text_field :cc_cvv, class: "form-control" %>
+            <%= f.text_field :cc_cvv, class: "form-control", :required => true %>
           </div>
 
           <div class="form-group">
             <%= f.label :zip, "Zip Code" %>
-            <%= f.text_field :zip, class: "form-control" %>
+            <%= f.text_field :zip, class: "form-control", :required => true %>
           </div>
 
           <%= f.submit "Purchase", :class => 'btn btn-success' %>
