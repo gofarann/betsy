@@ -27,6 +27,15 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def decrement_products_stock
+    Order.transaction do
+      self.products.each do |product|
+      product.stock -= 1
+      product.save!
+      end
+    end
+  end
+
   def total
       sales = []
       self.products.each do |product|

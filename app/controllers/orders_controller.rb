@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
 
   def finalize
     @order = Order.find(session[:order_id])
-    
+    @order.decrement_products_stock
     session[:order_id] = nil
     @cart_status = "empty"
     redirect_to root_path
