@@ -129,7 +129,7 @@
 </div>
 
 
-<% if @current_user == nil %>
+<% if @current_user == nil || @product.user_id != @current_user.id %>
   <%= form_for @review, url: product_review_path(@product), :html => { :class => "sub-form" } do |f| %>
   <fieldset>
     <div class="sub-form-group">
