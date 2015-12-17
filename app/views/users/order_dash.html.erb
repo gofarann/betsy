@@ -34,6 +34,7 @@
     orders by status: <br>
   </h3>
   <h4>
+    <%= link_to "all", user_order_dash_path(@user, order_status: "all") %> / 
     <%= link_to "pending", user_order_dash_path(@user, order_status: "pending") %> / 
     <%= link_to "paid", user_order_dash_path(@user, order_status: "paid") %> / 
     <%= link_to "completed", user_order_dash_path(@user, order_status: "completed") %> / 
@@ -52,19 +53,21 @@
       <th>Mark Shipped</th>
     </tr>
   <% @user.orderitems.each do |orderitem| %>
-    <tr>
-      <td><%= link_to "#{orderitem.order.id}", order_path(orderitem.order) %></td>
-      <td><%= link_to "#{orderitem.product.name}", product_path(orderitem.product) %></td>
-      <td><%= orderitem.order.placed_at.strftime("%B %d, %Y") %></td>
-      <td><%= orderitem.order.status.capitalize %></td>
-      <td><%= orderitem.quantity %></td>
-      <td><%= nice_price(orderitem.product.price * orderitem.quantity) %></td>
-      <% if orderitem.status != 'shipped' %>
-        <td><%= link_to "Mark Shipped", ship_path(orderitem), class: "mark_shipped" %></td>
-      <% else %>
-        <td><%= orderitem.status.capitalize %></td>
-      <% end %>
-    </tr>
+    <% if orderitem.order.status == session[:order_status] || session[:order_status] == 'all' %>
+      <tr>
+        <td><%= link_to "#{orderitem.order.id}", order_path(orderitem.order) %></td>
+        <td><%= link_to "#{orderitem.product.name}", product_path(orderitem.product) %></td>
+        <td><%= orderitem.order.placed_at.strftime("%B %d, %Y") %></td>
+        <td><%= orderitem.order.status.capitalize %></td>
+        <td><%= orderitem.quantity %></td>
+        <td><%= nice_price(orderitem.product.price * orderitem.quantity) %></td>
+        <% if orderitem.status != 'shipped' %>
+          <td><%= link_to "Mark Shipped", ship_path(orderitem), class: "mark_shipped" %></td>
+        <% else %>
+          <td><%= orderitem.status.capitalize %></td>
+        <% end %>
+      </tr>
+    <% end %>
   <% end %>
   </table>
 </div>
