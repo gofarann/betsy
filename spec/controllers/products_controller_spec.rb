@@ -100,7 +100,7 @@ RSpec.describe ProductsController, type: :controller do
                       stock: 3)
     end
 
-    let(:update_product) do
+    let(:good_product_update) do
       {
         product: {
           name: "necklace",
@@ -114,36 +114,42 @@ RSpec.describe ProductsController, type: :controller do
 
     it "updates a good product" do
       before_update = product.attributes
-      params = update_product
+      params = good_product_update
       patch :update, params
       product.reload
       expect(product.attributes).to_not eq before_update
     end
 
     it "redirects to product#show page" do
-      patch :update, update_product
+      patch :update, good_product_update
       expect(subject).to redirect_to product_path(product.id)
     end
-  end
 
-  #   it "renders edit view" do
-  #     patch :update, bad_product
-  #     expect(subject).to render_template :edit
-  #   end
-  #
-  #   let(:bad_product) do
-  #   {
-  #     id: product.id,
-  #     product: {
-  #       name: "",
-  #       price: 10,
-  #       user_id: 2,
-  #       stock: 3,
-  #     }
-  #   }
-  #   end
-  #
-  # end
+    let(:bad_product_update) do
+      {
+        product: {
+          name: "",
+          price: 10,
+          user_id: current_user.id,
+          stock: 3,
+        },
+        id: product.id
+      }
+    end
+
+    it "doesn't update a product with bad params" do
+      before_update = product.attributes
+      params = bad_product_update
+      patch :update, params
+      product.reload
+      expect(product.attributes).to eq before_update
+    end
+
+    it "renders edit view" do
+      patch :update, bad_product_update
+      expect(subject).to render_template :edit
+    end
+  end
 
   describe "POST 'review'" do
     let(:product) do
