@@ -1,5 +1,5 @@
 <div class="row">
-  <h1> Order <%= @order.id %></h1>
+  <h1 class="header-box"> Order <%= @order.id %></h1>
   <h5 class="cntr-header">Order status: <%= @order.status.capitalize %></h5>
 </div>
 <div class="row">
@@ -7,10 +7,11 @@
     <h2>
       Customer Information
     </h2>
+    <strong>Name: <%= @order.cc_name %></strong><br>
     <strong>Email:</strong> <%= @order.email_address %><br>
     <strong>Mailing Address: </strong><%= @order.mailing_address %><br>
     <strong>Zip: </strong><%= @order.zip %><br>
-    <strong>Last Four Digits of CC:</strong><%= @order.last_four %><br>
+    <strong>Last Four Digits of CC:</strong> <%= @order.last_four %><br>
     <strong>Status: </strong> <%= @order.status.capitalize %><br>
     <strong> Placed at:</strong> <%= @order.placed_at.strftime("%B %d, %Y") %><br>
   </div>
