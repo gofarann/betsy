@@ -23,7 +23,6 @@ before_action :only_current_user, only: [:dash, :order_dash]
   end
 
   def show
-
   end
 
   def dash
