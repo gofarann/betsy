@@ -7,10 +7,10 @@
     <%= form_for(:session_data, url: sessions_path) do |f| %>
       <div class="form-group">
         <%= f.label :email_address %>:
-        <%= f.email_field :email_address, class: "form-control"%>
+        <%= f.email_field :email_address, class: "form-control", :required => true %>
 
         <%= f.label :password %>:
-        <%= f.password_field :password, class: "form-control" %><br>
+        <%= f.password_field :password, class: "form-control", :required => true %><br>
       
         <%= f.submit "Login", class: "btn btn-default" %>
       <% end %>
