@@ -90,7 +90,6 @@
         </td>
         <td>
           <% @product.reviews.each do |rev| %>
-          Rating:
           <% if rev.rating == 5 %>
             <% rev.rating.times do %>
               <i class="fa fa-star"></i>
