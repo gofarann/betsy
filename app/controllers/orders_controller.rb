@@ -16,8 +16,6 @@ class OrdersController < ApplicationController
   def cart
     if !session[:order_id]
       @cart_status = "empty"
-    else
-    @order = Order.find(session[:order_id])
     end
   end
 
