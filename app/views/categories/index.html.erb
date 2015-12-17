@@ -17,15 +17,17 @@
             <h4>
               <%= link_to "#{p.name}", product_path(p) %>
             </h4>
-            <div>
-              <% if @current_user != nil %>
-                <% if p.user_id != @current_user.id %>
-                  <%= button_to "Add to Cart", buy_path(p.id), class: "btn btn-success" %>
-                <% end %>
-                <% elsif @current_user.nil? %>
-                  <%= button_to "Add to Cart", buy_path(p.id), class: "btn btn-success" %>
-              <% end %>
-            </div>
+           <div>
+            <% if @current_user != nil %>
+              <% if p.user_id != @current_user.id && !p.out_of_stock? %>
+                <%= button_to "Add to Cart", buy_path(p.id), class: "btn btn-success" %>
+               <% end %>
+              <% elsif @current_user.nil? && !p.out_of_stock? %>
+                <%= button_to "Add to Cart", buy_path(p.id), class: "btn btn-success" %>
+                <% elsif p.out_of_stock? %>
+                   <%= button_to "OUT OF STOCK" %>
+            <% end %>
+          </div>
         <% end %>
         </div>
       <% end %>
