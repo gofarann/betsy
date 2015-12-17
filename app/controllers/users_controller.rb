@@ -35,8 +35,6 @@ before_action :only_current_user, only: [:dash, :order_dash]
   def order_dash
     session[:rev_status] = params[:rev_status] if !params[:rev_status].nil?
     session[:order_status] = params[:order_status] if !params[:order_status].nil?
-    orders = @user.orders_by_status(session[:order_status])
-    # pull out only orderitems that relate to user
   end
 
   private
