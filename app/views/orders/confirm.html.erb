@@ -7,11 +7,11 @@
 
 <div class="row">
   <div class="col-sm-12">
-    <strong><%= @order.cc_name %></strong><br>
-    <%= @order.email_address %><br>
-    <%= @order.mailing_address %><br>
-    <%=  %><br>
-    <%=  %><br>
+    Name: <strong><%= @order.cc_name %></strong><br>
+    E-mail: <%= @order.email_address %><br>
+    Mailing Address: <%= @order.mailing_address %><br>
+    Order Placed: <%= @order.placed_at.strftime("%B %d, %Y") %><br>
+    Order Status: <%= @order.status.capitalize %><br>
     <%=  %><br>
   </div>
 </div>
