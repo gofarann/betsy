@@ -96,7 +96,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "rev_by_status" do
-  let(:paid_order) do  { 
+  let(:paid_order) do  {
         status: "paid",
         cc_name: "Kelly Phelly",
         email_address: "kelly@kellkell.com",
@@ -128,5 +128,33 @@ RSpec.describe User, type: :model do
       expect(user.rev_by_status('paid')).to eq(25)
     end
   end
+
+
+    describe "orderitems" do
+      let(:user) do
+        user = User.create(good_hash)
+        p = Product.create!(product_hash)
+        p2 = Product.create!(second_product)
+        p3 = Product.create!(third_product)
+        user.products << [p, p2]
+        order = Order.pending(p)
+        order2 = Order.pending(p2)
+        order3 = Order.pending(p3)
+        return user
+      end
+
+      it "returns an array" do
+
+
+      end
+
+      it "contains Orderitems"  do
+
+      end
+
+      it "returns orderitems associated with user"
+
+      end
+  
 
 end
