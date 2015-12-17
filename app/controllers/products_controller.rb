@@ -84,6 +84,7 @@ class ProductsController < ApplicationController
   def update
     @product = Product.update(params[:id], product_params)
     @product.category_ids = params[:product][:category_ids]
+    @product.price = (params[:product][:price].to_f * 100).to_i
     if @product.save
       redirect_to product_path(@product)
     else
