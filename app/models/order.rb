@@ -27,9 +27,9 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def decrement_products_stock(order)
+  def decrement_products_stock
     Order.transaction do
-      order.products.each do |product|
+      self.products.each do |product|
       product.stock -= 1
       end
     end
