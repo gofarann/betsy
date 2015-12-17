@@ -23,13 +23,13 @@
       <% @order.orderitems.each do |orderitem| %>
       <tr>
         <td>
-          <%= link_to "orderitem.product.name", product_path(orderitem.product) %>
+          <%= link_to "#{orderitem.product.name}", product_path(orderitem.product) %>
         </td>
         <td>
           <%= orderitem.product.description%>
         </td>
         <td>
-          <%= orderitem.product.price %>
+          <%= nice_price(orderitem.product.price) %>
         </td>
         <td>
           <%= image_tag orderitem.product.photo_url, class: "img-responsive cart-img" %>
