@@ -4,26 +4,34 @@
   </h1>
 </div>
 <div class="row">
-  <h2>Total Revenue: <%= nice_price(@user.revenue) %></h2>
-  <h4>
-    order revenue by: 
-    <%= link_to "pending", user_order_dash_path(@user, rev_status: "pending") %> / 
-    <%= link_to "paid", user_order_dash_path(@user, rev_status: "paid") %> / 
-    <%= link_to "completed", user_order_dash_path(@user, rev_status: "completed") %> / 
-    <%= link_to "canceled", user_order_dash_path(@user, rev_status: "canceled") %> 
-  </h4>
-  <% if !session[:rev_status].nil? %>
-     <h3>
-      <% if @user.rev_by_status(session[:rev_status]).nil? %> 
-          You don't have any <%= session[:rev_status]%> orders.
-       <% else %>
-         Revenue for <%= session[:rev_status]%> orders is: <%= nice_price(@user.rev_by_status(session[:rev_status])) %>
-       <% end %>
-     </h3>
-  <% elsif session[:rev_status].nil? %>
-    <h3>
-      select a status for which you want to see total revenue
-    </h3>
+  <% if @user.revenue.nil? %>
+    <h2>
+      You haven't made any money yet! Get sellin'. 
+    </h2>
+  <% elsif !@user.revenue.nil? %>
+    <h2>
+      Total Revenue: <%= nice_price(@user.revenue) %>
+    </h2>
+    <h4>
+      order revenue by: 
+      <%= link_to "pending", user_order_dash_path(@user, rev_status: "pending") %> / 
+      <%= link_to "paid", user_order_dash_path(@user, rev_status: "paid") %> / 
+      <%= link_to "completed", user_order_dash_path(@user, rev_status: "completed") %> / 
+      <%= link_to "canceled", user_order_dash_path(@user, rev_status: "canceled") %> 
+    </h4>
+    <% if !session[:rev_status].nil? %>
+       <h3>
+        <% if @user.rev_by_status(session[:rev_status]).nil? %> 
+            You don't have any <%= session[:rev_status]%> orders.
+         <% else %>
+           Revenue for <%= session[:rev_status]%> orders is: <%= nice_price(@user.rev_by_status(session[:rev_status])) %>
+         <% end %>
+       </h3>
+    <% elsif session[:rev_status].nil? %>
+      <h3>
+        select a status for which you want to see total revenue
+      </h3>
+    <% end %>
   <% end %>
 </div>
 <div class="row">
