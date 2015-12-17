@@ -6,18 +6,18 @@
 <div class="row">
   <% if @user.revenue.nil? %>
     <h2>
-      You haven't made any money yet! Get sellin'. 
+      You haven't made any money yet! Get sellin'.
     </h2>
   <% elsif !@user.revenue.nil? %>
     <h2>
       Total Revenue: <%= nice_price(@user.revenue) %>
     </h2>
     <h4>
-      order revenue by: 
-      <%= link_to "pending", user_order_dash_path(@user, rev_status: "pending") %> / 
-      <%= link_to "paid", user_order_dash_path(@user, rev_status: "paid") %> / 
-      <%= link_to "completed", user_order_dash_path(@user, rev_status: "completed") %> / 
-      <%= link_to "canceled", user_order_dash_path(@user, rev_status: "cancelled") %> 
+      order revenue by:
+      <%= link_to "pending", user_order_dash_path(@user, rev_status: "pending") %> /
+      <%= link_to "paid", user_order_dash_path(@user, rev_status: "paid") %> /
+      <%= link_to "completed", user_order_dash_path(@user, rev_status: "completed") %> /
+      <%= link_to "canceled", user_order_dash_path(@user, rev_status: "cancelled") %>
     </h4>
     <% if !session[:rev_status].nil? %>
        <h3>
@@ -42,11 +42,11 @@
     orders by status: <br>
   </h3>
   <h4>
-    <%= link_to "all", user_order_dash_path(@user, order_status: "all") %> / 
-    <%= link_to "pending", user_order_dash_path(@user, order_status: "pending") %> / 
-    <%= link_to "paid", user_order_dash_path(@user, order_status: "paid") %> / 
-    <%= link_to "completed", user_order_dash_path(@user, order_status: "completed") %> / 
-    <%= link_to "cancelled", user_order_dash_path(@user, order_status: "canceled") %> 
+    <%= link_to "all", user_order_dash_path(@user, order_status: "all") %> /
+    <%= link_to "pending", user_order_dash_path(@user, order_status: "pending") %> /
+    <%= link_to "paid", user_order_dash_path(@user, order_status: "paid") %> /
+    <%= link_to "completed", user_order_dash_path(@user, order_status: "completed") %> /
+    <%= link_to "cancelled", user_order_dash_path(@user, order_status: "canceled") %>
   </h4>
 </div>
 <div class="row">
