@@ -95,7 +95,7 @@ class ProductsController < ApplicationController
        @product.retired = true
     end
     @product.save
-    redirect_to request.referrer
+    redirect_to request.referer
   end
 
   def destroy

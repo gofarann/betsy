@@ -222,8 +222,8 @@ RSpec.describe ProductsController, type: :controller do
       expect(product.retired).to_not eq before_retired
     end
 
-    it "redirects to the user path" do
-      patch :retire, product_id: product.id
+    it "goes back to product show page on submit" do
+      patch :retire, update_product
       expect(subject).to redirect_to "back"
     end
 
