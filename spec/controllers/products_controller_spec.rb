@@ -222,17 +222,17 @@ RSpec.describe ProductsController, type: :controller do
       expect(product.retired).to_not eq before_retired
     end
 
-    it "goes back to product show page on submit" do
+    it "goes back to product show page on submit/update" do
       patch :retire, update_product
       expect(subject).to redirect_to "back"
     end
 
     it "doesn't let a user retire a product that is not theirs" do
-      user
-      session[:user_id] = user_2.id
-      post :retire, product_id: product.id, user_id: user.id
-      expect(subject).to redirect_to user_path(user_2.id)
-      expect(flash[:error]).to include "You can't view"
+      current_user
+      session[:user_id] = current_user_2.id
+      patch :retire, update_product
+      expect(subject).to redirect_to "back"
+      expect(flash[:error]).to eq "You are not authorized to view this section"
     end
   end
 
