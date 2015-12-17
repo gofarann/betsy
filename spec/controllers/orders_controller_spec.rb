@@ -85,6 +85,7 @@ RSpec.describe OrdersController, type: :controller do
     end
   end
 
+  #need to add more!
   describe "PATCH 'finalize'" do
     it "sets the session order_id to nil" do
       patch :finalize, {:id => order.id}, {:order_id => order.id }
@@ -96,13 +97,14 @@ RSpec.describe OrdersController, type: :controller do
     end
   end
 
-  describe "GET 'ship'" do
-    it "renders the confirm view" do
+  describe "PATCH 'ship'" do
+    it "" do
       get :confirm, {:id => order.id}, {:order_id => order.id }
       expect(subject).to render_template :confirm
     end
   end
 
+  #finalize needs work
   # ship
   # pay
   # edit

@@ -18,12 +18,6 @@ class Order < ActiveRecord::Base
   validates :cc_exp, presence: true, on: :pay
   validates :cc_cvv, presence: true, on: :pay
 
-  # def session_over
-  #   if self.status = "pending"
-  #     self.destroy!
-  #   end
-  # end
-
   def self.pending(first_product)
     Order.transaction do
       order = Order.new(status: 'pending')
