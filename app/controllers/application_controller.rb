@@ -30,10 +30,10 @@ class ApplicationController < ActionController::Base
 
   # checks that the user/:id, the :id is equal to current user
   def only_current_user
-    if current_user.id != params[:id].to_i
-      flash[:error] = "You are not authorized to view this section"
-      redirect_to :back
-    end
+      if !@current_user || @current_user.id != params[:id].to_i
+        flash[:error] = "You are not authorized to view that section"
+        redirect_to root_path
+      end
   end
 
   def current_user_owns_product
@@ -42,4 +42,5 @@ class ApplicationController < ActionController::Base
       redirect_to :back
     end
   end
+
 end
