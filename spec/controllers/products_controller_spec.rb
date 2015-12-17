@@ -172,6 +172,55 @@ RSpec.describe ProductsController, type: :controller do
     end
   end
 
+  # describe "PATCH 'retire'" do
+  #   before :each do
+  #       request.env["HTTP_REFERER"] = "back"
+  #   end
+  #
+  #   let(:product) do
+  #     Product.create(name: "necklace",
+  #                    price: 10,
+  #                    user_id: 2,
+  #                    stock: 3)
+  #   end
+  #
+  #   let(:current_user) do
+  #     User.create(username: "FancyPants",
+  #                 email_address: "fancypants@fancypants.com",
+  #                 password: "123",
+  #                 password_confirmation: "123")
+  #   end
+  #
+  #   let(:current_user_2) do
+  #     User.create(username: "SoiledPants",
+  #                 email_address: "soiledpants@soiledpants.com",
+  #                 password: "123",
+  #                 password_confirmation: "123")
+  #   end
+  #
+  #   before :each do
+  #     session[:user_id] = current_user.id
+  #   end
+  #
+  #   it "sets the status of a product to retired" do
+  #     patch :retire, product_id: product.id
+  #     product.reload
+  #     expect(product.retired).to eq true
+  #   end
+  #
+    # it "redirects to the user path" do
+    #   patch :retire, product_id: product.id
+    #   expect(subject).to redirect_to "back"
+    # end
+    #
+    # it "doesn't let a user retire a product that is not theirs" do
+    #   user
+    #   session[:user_id] = user_2.id
+    #   post :retire, product_id: product.id, user_id: user.id
+    #   expect(subject).to redirect_to user_path(user_2.id)
+    #   expect(flash[:error]).to include "You can't view"
+    # end
+  # end
 
   describe "DELETE 'destroy'" do
     before :each do
