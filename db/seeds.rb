@@ -422,9 +422,7 @@ categories = [
   {name: "Quartz"},
   {name: "Amethyst"},
   {name: "Tourmaline"},
-  {name: "Jasper"},
-  {name: "Turquoise"},
-  {name: "Azurite"},
+  {name: "Tourquoise"},
 ]
 
 category_products = [
