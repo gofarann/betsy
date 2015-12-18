@@ -10,6 +10,7 @@ $rust: #C18763;
 $yellow: #D6D8A6;
 
 $light-contrast: $teal-grey;
+$flash: #75E8E1;
 $highlight: $teal;
 $neutral: $yellow;
 
@@ -20,7 +21,7 @@ $header: 'Tinos';
 
 
 .flash {
-  background-color: $highlight;
+  background-color: $flash;
   text-align: center;
   font-size: 16px;
   padding: 5px;
