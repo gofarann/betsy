@@ -74,7 +74,7 @@
         <td><%= orderitem.quantity %></td>
         <td><%= nice_price(orderitem.product.price * orderitem.quantity) %></td>
         <% if orderitem.status != 'shipped' && orderitem.order.status != 'cancelled' %>
-          <td><%= link_to "Mark Shipped", ship_path(orderitem), class: "mark_shipped" %></td>
+          <td><%= link_to "Mark Shipped", ship_path(orderitem), class: "mark_shipped", method: :patch %></td>
         <% elsif orderitem.order.status == 'cancelled' %>
           <td>Order Canceled :(</td>
         <% else %>
