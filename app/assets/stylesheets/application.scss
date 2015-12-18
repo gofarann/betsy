@@ -140,8 +140,9 @@ h5 {
 }
 
 .product-page-img {
-  width: auto;
-  height: 200px;
+  max-width: 250px;
+  max-height: 200px;
+  min-height: 200px;
 }
 
 .cart-img {
