@@ -186,6 +186,18 @@ RSpec.describe Order, type: :model do
     end
   end
 
+  describe "decrement_products_stock" do
+    it "" do
+      
+    end
+  end
+
+  describe "total" do
+    it "" do
+      
+    end
+  end
+
   describe "total_by_user(user_id)" do
     let (:order) do
       order = Order.create(good_hash)
