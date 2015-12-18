@@ -18,6 +18,14 @@ $neutral: $yellow;
 $body: 'Tinos';
 $header: 'Tinos';
 
+.each-merchant {
+  padding-bottom: 70px;
+}
+
+.merchant-name {
+  padding-bottom: 20px;
+}
+
 .centerBlock {
   display: table;
   margin: 0 auto;
@@ -136,6 +144,7 @@ h5 {
 .cat-navbar {
 
 }
+
 
 .category-box{
   margin: auto;
