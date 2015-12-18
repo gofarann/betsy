@@ -3,7 +3,7 @@
 class ProductsController < ApplicationController
   include ApplicationHelper
   before_action :navbar_categories, only: [:index]
-  before_action :current_user_owns_product, only: [:update, :delete]
+  before_action :current_user_owns_product, only: [:update, :delete, :retire]
   before_action :find_product, only: [:retire, :buy, :show, :destroy]
 
 
@@ -102,8 +102,10 @@ class ProductsController < ApplicationController
      elsif !@product.retired
        @product.retired = true
     end
+
     @product.save
-    redirect_to request.referer
+
+    redirect_to request.referrer
   end
 
   def destroy
