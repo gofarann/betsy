@@ -44,7 +44,7 @@ users = [
     password: "123",
     password_confirmation: "123"
   },
-  { username: "Treasure Trolls Precious Gems",
+  { username: "Treasure Trolls Gems",
     email_address: "troll@troll.com",
     password: "123",
     password_confirmation: "123"
