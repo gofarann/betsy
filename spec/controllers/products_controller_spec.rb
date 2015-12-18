@@ -1,6 +1,13 @@
 require 'rails_helper'
 require 'support/app_controller'
 
+# RSpec::Matchers.define :fail_redirect_and_flash do |path,flash|
+#   match do |response|
+#     response.should_not be_success
+#     response.should redirect_to(path)
+#     flash[:error].should == flash
+#   end
+# end
 
 RSpec.describe ProductsController, type: :controller do
   describe "GET 'new'" do
@@ -180,7 +187,7 @@ RSpec.describe ProductsController, type: :controller do
     let(:product) do
       Product.create(name: "necklace",
                      price: 10,
-                     user_id: 2,
+                     user_id: 1,
                      stock: 3)
     end
 
@@ -190,7 +197,7 @@ RSpec.describe ProductsController, type: :controller do
          product: {
            name: "necklace",
            price: 10,
-           user_id: 2,
+           user_id: 1,
            stock: 3,
            retired: true
          }
@@ -204,7 +211,7 @@ RSpec.describe ProductsController, type: :controller do
                   password_confirmation: "123")
     end
 
-    let(:current_user_2) do
+    let(:current_user2) do
       User.create(username: "SoiledPants",
                   email_address: "soiledpants@soiledpants.com",
                   password: "123",
@@ -222,17 +229,22 @@ RSpec.describe ProductsController, type: :controller do
       expect(product.retired).to_not eq before_retired
     end
 
+    # after(:each) { response.should fail_redirect_and_flash(root_path, 'Permission denied.') }
+
     it "goes back to product show page on submit/update" do
       patch :retire, update_product
       expect(subject).to redirect_to "back"
     end
 
-    it "doesn't let a user retire a product that is not theirs" do
-      current_user
-      session[:user_id] = current_user_2.id
+    it "doesn't let a user retire a product that they do not own" do
+      update_product # trigger creation of product
+
+      expect_any_instance_of(Product).not_to receive(:save)
+
+      session[:user_id] = current_user2.id
       patch :retire, update_product
-      expect(subject).to redirect_to "back"
-      expect(flash[:error]).to eq "You are not authorized to view this section"
+
+      expect(flash[:error]).to eq("You are not authorized to view this section")
     end
   end
 
