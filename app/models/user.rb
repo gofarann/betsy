@@ -65,10 +65,10 @@ class User < ActiveRecord::Base
     rev = []
     self.products.each do |product|
       product.orderitems.each do |orderitem|
-        rev.push(orderitem.product.price)
+        rev.push(orderitem.product.price * orderitem.quantity)
       end
     end
-    total = rev.inject{|r, e| r + e}
+    total = rev.inject(0) {|r, e| r + e}
     return total
   end
 
