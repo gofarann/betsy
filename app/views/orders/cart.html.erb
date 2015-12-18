@@ -6,7 +6,8 @@
 <div class="row">
   <div class="col-sm-12">
     <% if @current_order == nil %>
-      <p> Your cart is empty <p>
+      <h3 class="emptycart"> Your cart is empty </h3>
+      <h3 class="emptycart"> <%= link_to "Go shopping!", products_path %> </h3>
     <% else %>
   </div>
 </div>
