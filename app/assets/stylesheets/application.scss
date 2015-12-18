@@ -236,6 +236,10 @@ a:hover {
   background-color: $flash;
 }
 
+.btn-success:active {
+  background-color: $flash;
+}
+
 .btn-danger {
  background-color: $rust;
  border: none;
@@ -243,11 +247,14 @@ a:hover {
 
 .btn-default {
   background-color: $other-highlight;
-  
   border: none;
 }
 
 .btn-default:hover {
+  background-color: $rust;
+}
+
+.btn-default:active {
   background-color: $rust;
 }
 
