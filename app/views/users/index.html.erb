@@ -25,12 +25,12 @@
                  <% end %>
                 <% elsif @current_user.nil? && !p.out_of_stock? %>
                   <%= button_to "Add to Cart", buy_path(p.id), class: "btn btn-success" %>
-                  <% elsif p.out_of_stock? %>
-                     <%= button_to "OUT OF STOCK" %>
+                <% elsif p.out_of_stock? %>
+                  <%= button_to "OUT OF STOCK" %>
               <% end %>
             </div>
-        </div>
         <% end %>
+        </div>
       </div>
     <% end %>
   </div>
