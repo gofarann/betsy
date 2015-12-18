@@ -18,7 +18,7 @@
             <h4>
               <%= link_to "#{p.name}", product_path(p) %>
             </h4>
-            <div>
+            <div class="centerBlock">
               <% if @current_user != nil %>
                 <% if p.user_id != @current_user.id && !p.out_of_stock? %>
                   <%= button_to "Add to Cart", buy_path(p.id), class: "btn btn-success" %>

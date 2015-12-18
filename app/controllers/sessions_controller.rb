@@ -22,7 +22,8 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil if session[:user_id]
-    if !!session[:order_id]
+    current_order
+    if !!@current_order
       @current_order = Order.find(session[:order_id])
       @current_order.destroy!  #destroys whatever order is in the session so long as it was only pending, which is done in an order validation
       session[:order_id] = nil
