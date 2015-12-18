@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
     if !@user.nil?
       if @user.authenticate(data[:password])
         session[:user_id] = @user.id
+        flash[:notice] = "Welcome, #{@user.username}!"
         redirect_to root_path
       else
         flash.now[:error] = "Your email was not found or password did not match. Please try again."

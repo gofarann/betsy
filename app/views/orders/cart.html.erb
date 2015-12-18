@@ -18,7 +18,7 @@
       <tr>
         <th>Product</th>
         <th>Description</th>
-        <th>Price</th>
+        <th>Total</th>
         <th>Photo</th>
       </tr>
       <% @current_order.orderitems.each do |orderitem| %>
@@ -30,7 +30,7 @@
           <%= orderitem.product.description%>
         </td>
         <td>
-          <%= nice_price(orderitem.product.price) %>
+          <%= nice_price(orderitem.product.price * orderitem.quantity) %>
         </td>
         <td>
           <%= image_tag orderitem.product.photo_url, class: "img-responsive cart-img" %>

@@ -78,7 +78,7 @@ class User < ActiveRecord::Base
     orders = self.orders_by_status(status)
     orders.each do |order|
       order.orderitems.each do |orderitem|
-        rev.push(orderitem.product.price)
+        rev.push(orderitem.product.price * orderitem.quantity)
       end
     end
 

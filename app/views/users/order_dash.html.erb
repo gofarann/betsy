@@ -17,7 +17,7 @@
       <%= link_to "pending", user_order_dash_path(@user, rev_status: "pending") %> /
       <%= link_to "paid", user_order_dash_path(@user, rev_status: "paid") %> /
       <%= link_to "completed", user_order_dash_path(@user, rev_status: "completed") %> /
-      <%= link_to "canceled", user_order_dash_path(@user, rev_status: "cancelled") %>
+      <%= link_to "cancelled", user_order_dash_path(@user, rev_status: "cancelled") %>
     </h4>
     <% if !session[:rev_status].nil? %>
        <h3>
@@ -46,7 +46,7 @@
     <%= link_to "pending", user_order_dash_path(@user, order_status: "pending") %> /
     <%= link_to "paid", user_order_dash_path(@user, order_status: "paid") %> /
     <%= link_to "completed", user_order_dash_path(@user, order_status: "completed") %> /
-    <%= link_to "cancelled", user_order_dash_path(@user, order_status: "canceled") %>
+    <%= link_to "cancelled", user_order_dash_path(@user, order_status: "cancelled") %>
   </h4>
 </div>
 <div class="row">
@@ -73,10 +73,12 @@
         <td><%= orderitem.order.status.capitalize %></td>
         <td><%= orderitem.quantity %></td>
         <td><%= nice_price(orderitem.product.price * orderitem.quantity) %></td>
-        <% if orderitem.status != 'shipped' && orderitem.order.status != 'cancelled' %>
+        <% if orderitem.status == "paid" %>
           <td><%= link_to "Mark Shipped", ship_path(orderitem), class: "mark_shipped", method: :patch %></td>
         <% elsif orderitem.order.status == 'cancelled' %>
           <td>Order Canceled :(</td>
+        <% elsif orderitem.order.status == 'pending' %>
+          <td>Order Pending</td>
         <% else %>
           <td><%= orderitem.status.capitalize %></td>
         <% end %>
