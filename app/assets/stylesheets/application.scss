@@ -220,6 +220,7 @@ a:hover {
 .btn {
   font-size: 14px;
   font-family: $header;
+  border: none;
 }
 
 .center {
@@ -231,6 +232,10 @@ a:hover {
   background-color: $dark-teal;
 }
 
+.btn-success:hover {
+  background-color: $flash;
+}
+
 .btn-danger {
  background-color: $rust;
  border: none;
@@ -238,7 +243,12 @@ a:hover {
 
 .btn-default {
   background-color: $other-highlight;
+  
   border: none;
+}
+
+.btn-default:hover {
+  background-color: $rust;
 }
 
 .btn-info {
