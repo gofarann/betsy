@@ -49,6 +49,7 @@ class OrdersController < ApplicationController
     @order.decrement_products_stock
     session[:order_id] = nil
     @cart_status = "empty"
+    flash[:notice] = "Thank you for your order!"
     redirect_to root_path
   end
 
