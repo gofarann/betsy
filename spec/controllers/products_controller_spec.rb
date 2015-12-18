@@ -196,18 +196,7 @@ RSpec.describe ProductsController, type: :controller do
        }
     end
 
-    let(:nonretired_product) do
-      {
-         id: product.id,
-         product: {
-           name: "necklace",
-           price: 10,
-           user_id: 1,
-           stock: 3,
-           retired: false
-         }
-       }
-    end
+
 
     let(:current_user) do
       User.create(username: "FancyPants",
@@ -216,41 +205,39 @@ RSpec.describe ProductsController, type: :controller do
                   password_confirmation: "123")
     end
 
-    let(:current_user2) do
-      User.create(username: "SoiledPants",
-                  email_address: "soiledpants@soiledpants.com",
-                  password: "123",
-                  password_confirmation: "123")
-    end
+    ## should go in model_spec
+    #  let(:current_user2) do
+    #   User.create(username: "SoiledPants",
+    #               email_address: "soiledpants@soiledpants.com",
+    #               password: "123",
+    #               password_confirmation: "123")
+    # end
 
     before :each do
       session[:user_id] = current_user.id
     end
 
-    it "creates an instance of Product with retired set to false" do
-      patch :retire, id: product.id
-      expect(product.retired).to eq false
-    end
-
-    it "sets the status of a product to retired" do
-      before_retired = product.retired
-      patch :retire, update_product
-      product.reload
-      expect(product.retired).to_not eq before_retired
-    end
+    ## should go in model_spec
+    # it "sets the status of a product to retired" do
+    #   before_retired = product.retired
+    #   patch :retire, update_product
+    #   product.reload
+    #   expect(product.retired).to_not eq before_retired
+    # end
 
     it "goes back to product show page on submit/update" do
       patch :retire, update_product
       expect(subject).to redirect_to "back"
     end
 
-    it "doesn't let a user retire a product that they do not own" do
-      update_product # trigger creation of product
-      expect_any_instance_of(Product).not_to receive(:save)
-      session[:user_id] = current_user2.id
-      patch :retire, update_product
-      expect(flash[:error]).to eq("You are not authorized to view this section")
-    end
+    ## should go in model_spec
+    # it "doesn't let a user retire a product that they do not own" do
+    #   update_product # trigger creation of product
+    #   expect_any_instance_of(Product).not_to receive(:save)
+    #   session[:user_id] = current_user2.id
+    #   patch :retire, update_product
+    #   expect(flash[:error]).to eq("You are not authorized to view this section")
+    # end
   end
 
   describe "DELETE 'destroy'" do

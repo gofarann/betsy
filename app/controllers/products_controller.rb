@@ -97,14 +97,8 @@ class ProductsController < ApplicationController
   def retire
     id = params[:id]
     @product = Product.find(id)
-    if @product.retired
-       @product.retired = false
-     elsif !@product.retired
-       @product.retired = true
-    end
-
+    @product.retire_toggle
     @product.save
-
     redirect_to request.referrer
   end
 

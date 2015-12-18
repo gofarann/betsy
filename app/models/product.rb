@@ -48,4 +48,12 @@ class Product < ActiveRecord::Base
     self.stock == 0
   end
 
+  def retire_toggle
+    if self.retired
+       self.retired = false
+     elsif !self.retired
+       self.retired = true
+    end
+  end
+
 end
