@@ -97,15 +97,8 @@ RSpec.describe OrdersController, type: :controller do
     end
   end
 
-  describe "PATCH 'ship'" do
-    it "" do
-      get :confirm, {:id => order.id}, {:order_id => order.id }
-      expect(subject).to render_template :confirm
-    end
-  end
 
-  #finalize needs work
-  # ship
+
   # pay
   # edit
   # update

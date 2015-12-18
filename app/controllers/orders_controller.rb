@@ -52,14 +52,6 @@ class OrdersController < ApplicationController
     redirect_to root_path
   end
 
-
-  def ship
-    @order = Order.find(params[:id])
-    @order.update_attribute(:status, "complete")
-    redirect_to request.referrer
-  end
-
-
   def pay
     @order = Order.find(session[:order_id])
     @order.update(order_params[:order])
