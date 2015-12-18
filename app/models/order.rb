@@ -38,8 +38,8 @@ class Order < ActiveRecord::Base
 
   def total
       sales = []
-      self.products.each do |product|
-        sales.push(product.price)
+      self.orderitems.each do |orderitem|
+        sales.push(orderitem.quantity * orderitem.product.price)
       end
       return sales.inject(0) {|r, e| r + e }
   end
