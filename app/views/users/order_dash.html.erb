@@ -73,7 +73,7 @@
         <td><%= orderitem.order.status.capitalize %></td>
         <td><%= orderitem.quantity %></td>
         <td><%= nice_price(orderitem.product.price * orderitem.quantity) %></td>
-        <% if orderitem.status == "paid" %>
+        <% if orderitem.order.status == "paid" && orderitem.status != 'shipped' %>
           <td><%= link_to "Mark Shipped", ship_path(orderitem), class: "mark_shipped", method: :patch %></td>
         <% elsif orderitem.order.status == 'cancelled' %>
           <td>Order Canceled :(</td>
