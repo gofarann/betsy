@@ -135,9 +135,9 @@
     <div class="form-group">
       <%= f.label :rating, "Rate It:" %>
       <%= f.select :rating, [1, 2, 3, 4, 5], class: "form-control" %><br>
-      <%= f.label :body, "Tell us why" %>
+      <%= f.label :body, "Tell us why" %>:
       <%= f.text_area :body, class: "form-control" %>
-      <%= f.submit class: "btn btn-default" %>
+      <%= f.submit class: "btn btn-default rating-btn" %>
     </div>
   </fieldset>
   <% end %>
@@ -169,11 +169,13 @@
     </div>
     <% end %>
   <% else %>
-  <% if !@product.out_of_stock? %>
-    <%= button_to "Add to Cart", buy_path(@product.id), class: "btn btn-success" %>
-  <% else %>
-    OUT OF STOCK
-  <% end %>
+  <div class="col-sm-6">
+    <% if !@product.out_of_stock? %>
+      <%= button_to "Add to Cart", buy_path(@product.id), class: "btn btn-success" %>
+    <% else %>
+      OUT OF STOCK
+    <% end %>
+  </div>
   <div class="col-sm-6">
     <%= button_to "All Products", products_path, method: :get, class: "btn btn-default" %>
   </div>
