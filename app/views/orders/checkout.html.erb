@@ -1,6 +1,6 @@
 <div class="row">
   <h1 class="header-box">
-    Enter Payment Info 
+    Enter Payment Info
   </h1>
 </div>
 <div class="row">
@@ -17,7 +17,7 @@
       <%= form_for @order, url: {controller: "orders", action: "pay" }, :html => { :class => "form" } do |f| %>
         <fieldset>
           <div class="form-group">
-            <%= f.label :cc_name, "Name on Card" %>
+            <%= f.label :cc_name, "Name on Credit Card" %>
             <%= f.text_field :cc_name, class: "form-control", :required => true %>
           </div>
 
@@ -27,7 +27,7 @@
           </div>
 
           <div class="form-group">
-            <%= f.label :mailing_address, "Mailing address" %>
+            <%= f.label :mailing_address, "Mailing Address" %>
             <%= f.text_field :mailing_address, class: "form-control", :required => true %>
           </div>
 
