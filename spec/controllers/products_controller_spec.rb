@@ -1,14 +1,6 @@
 require 'rails_helper'
 require 'support/app_controller'
 
-# RSpec::Matchers.define :fail_redirect_and_flash do |path,flash|
-#   match do |response|
-#     response.should_not be_success
-#     response.should redirect_to(path)
-#     flash[:error].should == flash
-#   end
-# end
-
 RSpec.describe ProductsController, type: :controller do
   describe "GET 'new'" do
     it "renders new view" do
@@ -204,6 +196,19 @@ RSpec.describe ProductsController, type: :controller do
        }
     end
 
+    let(:nonretired_product) do
+      {
+         id: product.id,
+         product: {
+           name: "necklace",
+           price: 10,
+           user_id: 1,
+           stock: 3,
+           retired: false
+         }
+       }
+    end
+
     let(:current_user) do
       User.create(username: "FancyPants",
                   email_address: "fancypants@fancypants.com",
@@ -222,14 +227,17 @@ RSpec.describe ProductsController, type: :controller do
       session[:user_id] = current_user.id
     end
 
+    it "creates an instance of Product with retired set to false" do
+      patch :retire, id: product.id
+      expect(product.retired).to eq false
+    end
+
     it "sets the status of a product to retired" do
       before_retired = product.retired
       patch :retire, update_product
       product.reload
       expect(product.retired).to_not eq before_retired
     end
-
-    # after(:each) { response.should fail_redirect_and_flash(root_path, 'Permission denied.') }
 
     it "goes back to product show page on submit/update" do
       patch :retire, update_product
@@ -238,12 +246,9 @@ RSpec.describe ProductsController, type: :controller do
 
     it "doesn't let a user retire a product that they do not own" do
       update_product # trigger creation of product
-
       expect_any_instance_of(Product).not_to receive(:save)
-
       session[:user_id] = current_user2.id
       patch :retire, update_product
-
       expect(flash[:error]).to eq("You are not authorized to view this section")
     end
   end
