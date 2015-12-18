@@ -212,8 +212,9 @@ RSpec.describe Order, type: :model do
       @order.orderitems[0].item_shipped
       @order.mark_shipped
 
-      @order2 = Order.create(good_hash)
-      @order2.products << [p, p2]
+      @order2 = Order.pending(p)
+      @order2.products << [p2]
+      # @order2.update(good_hash)
       @order2.orderitems[0].item_shipped
       @order2.orderitems[1].item_shipped
       @order2.mark_shipped
