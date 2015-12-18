@@ -11,9 +11,11 @@
       </h2>
       <ul class="dash-list">
         <% Product.top_selling(@user.products, 3).each do |product| %>
+        <h4>
           <li class="dash-list">
             <%= link_to "#{product.name}", product_path(product) %>
           </li>
+        </h4>
         <% end %>
       </ul>
       <% else %>
