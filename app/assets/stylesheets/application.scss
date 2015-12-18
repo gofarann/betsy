@@ -18,6 +18,13 @@ $neutral: $yellow;
 $body: 'Tinos';
 $header: 'Tinos';
 
+.centerBlock {
+  display: table;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+            }
+
 .product-names {
   text-align: center;
 }
