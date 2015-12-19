@@ -29,9 +29,10 @@ class Order < ActiveRecord::Base
 
   def decrement_products_stock
     Order.transaction do
-      self.products.each do |product|
-      product.stock -= 1
-      product.save!
+      self.orderitems.each do |orderitem|
+        product = orderitem.product
+        product.stock -= orderitem.quantity
+        product.save!
       end
     end
   end
