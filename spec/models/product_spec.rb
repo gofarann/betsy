@@ -89,12 +89,12 @@ RSpec.describe Product, type: :model do
       }
     end
 
-    let (:stock_of_zero) do
+    let (:stock_of_negative) do
       {
         name: "Harry",
         price: 435345,
         user_id: "2",
-        stock: 0,
+        stock: -1,
         photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
         description: "I drew this just for you."
       }
@@ -149,8 +149,8 @@ RSpec.describe Product, type: :model do
       expect(Product.new(price_of_zero)).to_not be_valid
     end
 
-    it "has a stock greater than zero on create" do
-      expect(Product.new(stock_of_zero)).to_not be_valid
+    it "has a stock that isn't negative" do
+      expect(Product.new(stock_of_negative)).to_not be_valid
     end
 
     # it "must belong to a User" do
