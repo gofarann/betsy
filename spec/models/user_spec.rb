@@ -59,6 +59,39 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "orders_by_status" do
+     let(:paid_order) do  {
+           status: "paid",
+           cc_name: "Kelly Phelly",
+           email_address: "kelly@kellkell.com",
+           mailing_address: "848 Magpie Lane",
+           cc_number: 340727812705850,
+           cc_exp: "03/11",
+           cc_cvv: "454",
+           zip: 94983,
+           placed_at: rand(1.year.ago..Time.now)
+         }
+       end
+     let(:user) do
+       user = User.create(good_hash)
+       p = Product.create!(product_hash)
+       p2 = Product.create!(second_product)
+       p3 = Product.create!(third_product)
+       user.products << [p, p2, p3]
+       order = Order.pending(p)
+       order2 = Order.pending(p2)
+       order3 = Order.pending(p3)
+       order2.update(paid_order)
+       order2.save
+       return user
+     end
+    it "returns user orders with given status" do
+      expect(user.orders_by_status("paid").length).to eq(1)
+      expect(user.orders_by_status("pending").length).to eq(2)
+    end
+  end
+
+
   describe "top(x)" do
     let(:user) do
       user = User.create(good_hash)
@@ -81,9 +114,11 @@ RSpec.describe User, type: :model do
       user = User.create(good_hash)
       p = Product.create!(product_hash)
       p2 = Product.create!(second_product)
+      p3 = Product.create!(third_product)
       user.products << [p, p2]
       order = Order.pending(p)
       order2 = Order.pending(p2)
+      order3 = Order.pending(p3)
       return user
     end
     # create an order
