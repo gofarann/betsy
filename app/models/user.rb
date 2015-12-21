@@ -75,13 +75,11 @@ class User < ActiveRecord::Base
   # returns revenue for user by order status
   def rev_by_status(status)
     rev = []
-    orders = self.orders_by_status(status)
-    orders.each do |order|
-      order.orderitems.each do |orderitem|
-        rev.push(orderitem.product.price * orderitem.quantity)
+    self.products.each do |product|
+      product.orderitems.each do |orderitem|
+        rev.push(orderitem.product.price * orderitem.quantity) if orderitem.order.status == "#{status}"
       end
     end
-
     total = rev.inject{|r, e| r + e}
     return total
   end
