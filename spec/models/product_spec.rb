@@ -130,7 +130,7 @@ RSpec.describe Product, type: :model do
     end
 #
     it "must have a unique name" do
-      @test_product = Product.new(good_hash)
+      @test_product = build(:product)
       @test_product.save
       expect(@test_product).to be_valid
       expect(Product.new(good_hash)).to_not be_valid
