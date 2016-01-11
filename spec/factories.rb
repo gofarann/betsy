@@ -8,4 +8,15 @@ FactoryGirl.define do
     description "I drew this for you"
     retired false
   end
+
+  factory :order do
+    status "pending"
+    cc_name "John Carlisle"
+    email_address "jcarl@gmail.com"
+    mailing_address "653 Gorge Way"
+    cc_number 5110538084994719
+    cc_exp "06/18"
+    cc_cvv "674"
+    zip 19583
+  end
 end
