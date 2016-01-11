@@ -19,4 +19,10 @@ FactoryGirl.define do
     cc_cvv "674"
     zip 19583
   end
+
+  factory :order_item do
+    quantity 1
+    association :order
+    association :product
+  end
 end
