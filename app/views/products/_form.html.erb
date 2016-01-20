@@ -48,6 +48,26 @@
       <%= f.label :retired, "Retired" %>
     </div>
 
+    <div class="form-group">
+      <%= f.label :weight, "Weight (grams)" %><br>
+      <%= f.number_field :weight, class: "form-control", :required => true  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :length, "Length (cm)" %><br>
+      <%= f.number_field :length, class: "form-control", :required => true  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :width, "Width (cm)" %><br>
+      <%= f.number_field :width, class: "form-control", :required => true  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :height, "Height (cm)" %><br>
+      <%= f.number_field :height, class: "form-control", :required => true  %>
+    </div>
+
     <%= f.hidden_field :user_id, :value => session[:user_id] %>
   </fieldset>
   <%= f.submit class: "btn btn-info" %>
