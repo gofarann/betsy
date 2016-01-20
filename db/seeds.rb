@@ -255,7 +255,7 @@ orders = [
 ]
 
 orderitems = [
-  { product_id:33 , order_id: 1, quantity: 1 },
+  { product_id: 33, order_id: 1, quantity: 1 },
   { product_id: 32, order_id: 2, quantity: 2 },
   { product_id: 31, order_id: 3, quantity: 1 },
   { product_id: 30, order_id: 4, quantity: 1 },
@@ -524,6 +524,10 @@ category_products = [
 
 products.each do |p|
   prod = Product.new(p)
+  prod.weight = rand(100..10000)
+  prod.length = rand(1..70)
+  prod.width = rand(1..70)
+  prod.height = rand(1..70)
   prod.save(validate: false)
 end
 
