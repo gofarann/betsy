@@ -5,7 +5,12 @@ RSpec.describe User, type: :model do
     username: "Burp",
     email_address: "thing@thing.com",
     password: "this",
-    password_confirmation: "this"
+    password_confirmation: "this",
+    name: "Burp",
+    street_address: "2146 Sherman Ave",
+    city: "Evanston",
+    state: "IL",
+    zip: 60201
   }
   end
   let(:product_hash) do

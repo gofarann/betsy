@@ -8,6 +8,12 @@ class User < ActiveRecord::Base
   validates :email_address, presence: true
   validates :email_address, uniqueness: true
 
+  validates :name, presence: true
+  validates :street_address, presence: true
+  validates :city, presence: true
+  validates :state, presence: true
+  validates :zip, presence: true
+
   validates_confirmation_of :password, :message => "Passwords should match"
   has_secure_password
 

@@ -7,14 +7,24 @@ RSpec.describe WelcomeController, type: :controller do
       username: "Burp",
       email_address: "thing@thing.com",
       password: "this",
-      password_confirmation: "this"
+      password_confirmation: "this",
+      name: "Burp",
+      street_address: "2146 Sherman Ave",
+      city: "Evanston",
+      state: "IL",
+      zip: 60201
     }
     end
     let(:second_user_hash) do {
       username: "Ugh",
       email_address: "athing@thing.com",
       password: "this",
-      password_confirmation: "this"
+      password_confirmation: "this",
+      name: "Burp",
+      street_address: "2146 Sherman Ave",
+      city: "Evanston",
+      state: "IL",
+      zip: 60201
     }
     end
     let(:product_hash) do

@@ -29,7 +29,12 @@ RSpec.describe CategoriesController, type: :controller do
       User.create(username: "Mister",
                   email_address: "stud@manly.com",
                   password: "pw",
-                  password_confirmation: "pw")
+                  password_confirmation: "pw",
+                  name: "Burp",
+                  street_address: "2146 Sherman Ave",
+                  city: "Evanston",
+                  state: "IL",
+                  zip: 60201)
     end
 
     let(:good_params) do

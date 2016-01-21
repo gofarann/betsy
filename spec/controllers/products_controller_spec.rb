@@ -14,7 +14,12 @@ RSpec.describe ProductsController, type: :controller do
       User.create(username: "Mister",
                   email_address: "stud@manly.com",
                   password: "pw",
-                  password_confirmation: "pw")
+                  password_confirmation: "pw",
+                  name: "Burp",
+                  street_address: "2146 Sherman Ave",
+                  city: "Evanston",
+                  state: "IL",
+                  zip: 60201)
     end
 
     let(:good_params) do
@@ -85,7 +90,12 @@ RSpec.describe ProductsController, type: :controller do
       User.create(username: "FancyPants",
                   email_address: "fancypants@fancypants.com",
                   password: "123",
-                  password_confirmation: "123")
+                  password_confirmation: "123",
+                  name: "Burp",
+                  street_address: "2146 Sherman Ave",
+                  city: "Evanston",
+                  state: "IL",
+                  zip: 60201)
       end
 
     before :each do
@@ -202,7 +212,12 @@ RSpec.describe ProductsController, type: :controller do
       User.create(username: "FancyPants",
                   email_address: "fancypants@fancypants.com",
                   password: "123",
-                  password_confirmation: "123")
+                  password_confirmation: "123",
+                  name: "Burp",
+                  street_address: "2146 Sherman Ave",
+                  city: "Evanston",
+                  state: "IL",
+                  zip: 60201)
     end
 
     ## should go in model_spec
