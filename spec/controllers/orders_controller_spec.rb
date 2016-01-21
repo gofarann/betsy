@@ -62,11 +62,69 @@ RSpec.describe OrdersController, type: :controller do
   end
 
   describe "GET 'confirm'" do
+      let(:order_hash) do
+      {
+        status: "pending",
+        cc_name: "John Carlisle",
+        email_address: "jcarl@gmail.com",
+        mailing_address: "653 Gorge Way",
+        cc_number: 5110538084994719,
+        cc_exp: "06/18",
+        cc_cvv: "674",
+        zip: 19583
+      }
+      end
+
+      let(:sized_order) do
+        Order.create!(order_hash)
+      end
+
+      let(:product_params) do
+        {
+          retired: false,
+          name: "Test Product",
+          price: 2040 ,
+          user_id: "1",
+          stock: "2" ,
+          photo_url: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSdu1XTO5gfUbPLLseSkv2QgYSoofnZ6tx3Yt3BXo2OQUMakGMQ",
+          description: "Let this delightful emerald sword help you thwack your way through the world." ,
+          length: 20,
+          width: 20,
+          height: 20,
+          weight: 100
+        }
+      end
+
+      let(:product) do
+        Product.create!(product_params)
+      end
+
+      let(:order_item_params) do
+        {
+          product_id: 1, order_id: 1, quantity: 10
+        }
+      end
+
+      let(:order_item) do
+        Orderitem.create!(order_item_params)
+      end
+
+
     it "renders the confirm view" do
       get :confirm, {:id => order.id}, {:order_id => order.id }
       expect(subject).to render_template :confirm
     end
+
+    it "returns the correct number of boxes" do
+      product
+      sized_order.orderitems << order_item
+      get :confirm, {:id => sized_order.id}, {:order_id => sized_order.id}
+
+      expect(@boxes.length).to eq 3
+    end
+
   end
+
 
   describe "PATCH 'cancel_as_guest'" do
     it "updates the order's status to cancelled" do

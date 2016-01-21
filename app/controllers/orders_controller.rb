@@ -35,8 +35,10 @@ class OrdersController < ApplicationController
   def confirm
     @order = Order.find(session[:order_id])
 
+
     # Handling box size logic
     user_orderitems = {}
+    binding.pry
     @order.orderitems.each do |oi|
       if user_orderitems[oi.product.user.username].nil?
         user_orderitems[oi.product.user.username] = [oi]
@@ -98,11 +100,10 @@ class OrdersController < ApplicationController
             boxes.push({ weight: weight_each, size: t_box})
           end
         end
-
       end
-
     end
-    binding.pry
+    @boxes = boxes
+    return @boxes
   end
 
   def cancel_as_guest
