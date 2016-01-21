@@ -17,6 +17,8 @@ class Order < ActiveRecord::Base
   validates :zip, presence: true, on: :pay
   validates :cc_exp, presence: true, on: :pay
   validates :cc_cvv, presence: true, on: :pay
+  validates :city, presence: true, on: :pay
+  validates :state, presence: true, on: :pay
 
   def self.pending(first_product)
     Order.transaction do
