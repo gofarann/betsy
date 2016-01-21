@@ -102,7 +102,16 @@ class OrdersController < ApplicationController
       end
     end
     @boxes = boxes
-    return @boxes
+
+    #httparty calls per box
+    @shipping_info = []
+    @boxes.each do |box|
+      r = HTTParty.get("http://localhost:3000/rates?destination_address[country]=US&destination_address[state]=#{@order.state}&destination_address[city]=#{@order.city}&destination_address[zip]=#{@order.zip}&origin_address[country]=US&origin_address[state]=FL&origin_address[city]=Ft. Lauderdale&origin_address[zip]=33316&package[weight]=#{box[:weight]}&package[length]=#{box[:size][:length]}&package[width]=#{box[:size][:length]}&package[height]=#{box[:size][:length]}&package[units]=metric",
+      headers: { 'Accept' => 'application/json' }, format: :json).parsed_response
+      @shipping_info.push(r)
+    
+    end
+    # do something to display the shipping info on the view
   end
 
   def cancel_as_guest
@@ -149,7 +158,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.permit(order:[:status, :cc_name, :email_address, :mailing_address, :cc_number, :cc_exp, :cc_cvv, :zip, :placed_at])
+    params.permit(order:[:status, :cc_name, :email_address, :mailing_address, :cc_number, :cc_exp, :cc_cvv, :zip, :placed_at, :city, :state])
   end
 
   #views will need to make sure they send in an id to use here

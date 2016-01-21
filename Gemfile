@@ -28,6 +28,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'font-awesome-rails'
 
+gem 'httparty'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

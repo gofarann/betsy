@@ -32,6 +32,16 @@
           </div>
 
           <div class="form-group">
+            <%= f.label :city, "City" %>
+            <%= f.text_field :city, class: "form-control", :required => true %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :state, "State" %>
+            <%= f.text_field :state, class: "form-control", :required => true %>
+          </div>
+
+          <div class="form-group">
             <%= f.label :cc_number, "Credit Card Number" %>
             <%= f.text_field :cc_cvv, class: "form-control", :required => true %>
           </div>

@@ -1,6 +1,6 @@
 <div class="row">
-  <h1 class="header-box"> 
-    Order #<%= @order.id %> Confirmation 
+  <h1 class="header-box">
+    Order #<%= @order.id %> Confirmation
   </h1>
 </div>
 
@@ -43,6 +43,9 @@
         <td><strong>Total: <%= nice_price(@order.total) %></strong></td>
       </tr>
     </table>
+    <p>
+      <%= @shipping_info[0] %>
+    </p>
   </div>
 
 </div>
