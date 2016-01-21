@@ -38,7 +38,6 @@ class OrdersController < ApplicationController
 
     # Handling box size logic
     user_orderitems = {}
-    binding.pry
     @order.orderitems.each do |oi|
       if user_orderitems[oi.product.user.username].nil?
         user_orderitems[oi.product.user.username] = [oi]
