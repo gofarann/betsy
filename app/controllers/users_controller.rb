@@ -42,7 +42,7 @@ before_action :only_current_user, only: [:dash, :order_dash]
   private
 
   def strong_params
-    params.require(:user).permit(:username, :email_address, :password, :password_confirmation)
+    params.require(:user).permit(:username, :email_address, :password, :password_confirmation, :name, :street_address, :city, :state, :zip)
   end
 
   def find_user

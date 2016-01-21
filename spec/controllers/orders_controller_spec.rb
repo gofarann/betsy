@@ -7,11 +7,13 @@ RSpec.describe OrdersController, type: :controller do
     status: "pending",
     cc_name: "John Carlisle",
     email_address: "jcarl@gmail.com",
-    mailing_address: "653 Gorge Way",
+    mailing_address: "123 Holly Lane",
     cc_number: 5110538084994719,
     cc_exp: "06/18",
     cc_cvv: "674",
-    zip: 19583
+    zip: 98040,
+    city: "Mercer Island",
+    state: "WA"
   }
   end
 
