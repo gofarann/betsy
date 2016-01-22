@@ -42,12 +42,12 @@
       <tr>
         <td></td>
         <td></td>
-        <td>Shipping cost: <% %></td>
+        <td>Shipping cost: <%= nice_price(@cost) %></td>
       </tr>
       <tr>
         <td></td>
         <td></td>
-        <td>Total: <% %></td>
+        <td>Total: <%= nice_price(@order_total) %></td>
       </tr>
     </table>
 

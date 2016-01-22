@@ -50,20 +50,21 @@
 
 <div class="row">
   <h3>Choose Shipping Option:</h3>
-  <% if @shipping_info == [nil] %>
+  <% if @shipping_info.nil? %>
     <h4>Shipping information not available at this time</h4>
   <% else %>
-    <%= form_tag do %>
+    <%= form_tag order_finalize_path, method: :patch do %>
       <% @shipping_info.each do |k,v| %>
       <%= k.upcase %> Shipping Rates:
       <br />
         <% v.each do |type| %>
-          <%= radio_button_tag(:shipping_service, type[1] ) %>
+          <%= radio_button_tag(:shipping_cost, type[1] ) %>
           <%= type[0] %>: $<%= type[1]/100.to_f %>
           <br />
         <% end %>
         <br />
       <% end %>
+      <%= submit_tag("Submit Order") %>
     <% end %>
   <% end %>
 </div>
@@ -72,7 +73,6 @@
   <div class="col-sm-3">
   </div>
   <div class="col-sm-3">
-    <%= button_to "Finalize Order", {action: :finalize, controller: :orders}, method: :patch, class: "btn btn-success"  %>
   </div>
   <div class="col-sm-3">
     <%= button_to "Cancel Order", {action: :cancel_as_guest, controller: :orders}, method: :patch, class: "btn btn-danger" %>
