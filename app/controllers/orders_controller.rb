@@ -110,8 +110,8 @@ class OrdersController < ApplicationController
 
     @boxes.each do |box|
       @merchant = User.find(box[:merchant])
-
-      r = HTTParty.get("http://localhost:3000/rates?destination_address[country]=US&destination_address[state]=#{@order.state}&destination_address[city]=#{@order.city}&destination_address[zip]=#{@order.zip}&origin_address[country]=US&origin_address[state]=FL&origin_address[city]=Ft. Lauderdale&origin_address[zip]=33316&package[weight]=#{box[:weight]}&package[length]=#{box[:size]}&package[width]=#{box[:size]}&package[height]=#{box[:size]}&package[units]=metric",
+      binding.pry
+      r = HTTParty.get("http://localhost:3000/rates?destination_address[country]=US&destination_address[state]=#{@order.state}&destination_address[city]=#{@order.city}&destination_address[zip]=#{@order.zip}&origin_address[country]=US&origin_address[state]=#{@merchant.state}&origin_address[city]=#{@merchant.city}&origin_address[zip]=#{@merchant.zip}&package[weight]=#{box[:weight]}&package[length]=#{box[:size]}&package[width]=#{box[:size]}&package[height]=#{box[:size]}&package[units]=metric",
       headers: { 'Accept' => 'application/json' }, format: :json).parsed_response
       binding.pry
       @shipping_info.push(r)
