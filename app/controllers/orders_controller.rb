@@ -72,7 +72,10 @@ class OrdersController < ApplicationController
   def finalize
     @order = Order.find(session[:order_id])
     @order.decrement_products_stock
-    @cost = params[:shipping_cost].to_i
+    @shipping_info = params[:shipping_info].split("|")
+    @carrier = @shipping_info[0]
+    @cost = @shipping_info[1].to_i
+    binding.pry
     @order.update_attribute(:shipping_cost, @cost)
     @order_total = @order.total_with_shipping
     session[:order_id] = nil

@@ -60,9 +60,9 @@
         <% counter = 0 %>
         <% v.each do |type| %>
           <% if counter == 0 %>
-              <%= radio_button_tag(:shipping_cost, type[1], checked = true ) %>
+              <%= radio_button_tag(:shipping_info, type[0] + "|" + type[1].to_s, checked = true ) %>
           <% else %>
-            <%= radio_button_tag(:shipping_cost, type[1] ) %>
+            <%= radio_button_tag(:shipping_info, type[0] + "|" + type[1].to_s) %>
           <% end %>
           <%= type[0] %>: <%= nice_price(type[1]) %>
           <br />

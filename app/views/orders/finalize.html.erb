@@ -40,8 +40,8 @@
         <td><strong>Subtotal: <%= nice_price(@order.total) %></strong></td>
       </tr>
       <tr>
-        <td></td>
-        <td></td>
+        <td>Shipping service:</td>
+        <td><%= @carrier %></td>
         <td>Shipping cost: <%= nice_price(@cost) %></td>
       </tr>
       <tr>
