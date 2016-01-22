@@ -168,11 +168,11 @@ RSpec.describe OrdersController, type: :controller do
   #need to add more!
   describe "PATCH 'finalize'" do
     it "sets the session order_id to nil" do
-      patch :finalize, {:id => order.id}, {:order_id => order.id }
+      patch :finalize, {:id => order.id, :shipping_info => "UPS Second Day Air|9019"}, {:order_id => order.id }
       expect(session[:order_id]).to be_nil
     end
     it "renders the finalize view" do
-      patch :finalize, {:id => order.id}, {:order_id => order.id }
+      patch :finalize, {:id => order.id, :shipping_info => "UPS Second Day Air|9019"}, {:order_id => order.id }
       expect(subject).to render_template :finalize
     end
   end
