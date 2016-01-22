@@ -9,7 +9,7 @@
   <div class="col-sm-12">
     Name: <strong><%= @order.cc_name %></strong><br>
     E-mail: <%= @order.email_address %><br>
-    Mailing Address: <%= @order.mailing_address %><br>
+    Mailing Address: <%= @order.mailing_address %>, <%= @order.city %>, <%= @order.state %>, <%= @order.zip %><br>
     Order Placed: <%= @order.placed_at.strftime("%B %d, %Y") %><br>
     Order Status: <%= @order.status.capitalize %><br>
     <%=  %><br>
@@ -64,7 +64,7 @@
           <% else %>
             <%= radio_button_tag(:shipping_cost, type[1] ) %>
           <% end %>
-          <%= type[0] %>: $<%= type[1]/100.to_f %>
+          <%= type[0] %>: <%= nice_price(type[1]) %>
           <br />
           <% counter += 1 %>
         <% end %>
