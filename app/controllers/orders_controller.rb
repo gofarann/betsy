@@ -69,7 +69,7 @@ class OrdersController < ApplicationController
     @order.decrement_products_stock
     @cost = params[:shipping_cost].to_i
     @order.update_attribute(:shipping_cost, @cost)
-    @order_total = @order.total.to_i + @cost
+    @order_total = @order.total_with_shipping
     session[:order_id] = nil
     @cart_status = "empty"
     flash[:notice] = "Thank you for your order!"

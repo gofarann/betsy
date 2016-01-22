@@ -48,6 +48,10 @@ class Order < ActiveRecord::Base
       return sales.inject(0) {|r, e| r + e }
   end
 
+  def total_with_shipping
+    self.total.to_i + self.shipping_cost
+  end
+
   def total_by_user(user_id)
     sales = []
     self.products.each do |product|
