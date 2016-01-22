@@ -53,14 +53,17 @@
   <% if @shipping_info == [nil] %>
     <h4>Shipping information not available at this time</h4>
   <% else %>
-    <% @shipping_info.each do |k,v| %>
-    <%= k.upcase %> Shipping Rates:
-    <br />
-      <% v.each do |type| %>
-        <%= type[0] %>: $<%= type[1]/100.to_f %>
+    <%= form_tag do %>
+      <% @shipping_info.each do |k,v| %>
+      <%= k.upcase %> Shipping Rates:
+      <br />
+        <% v.each do |type| %>
+          <%= radio_button_tag(:shipping_service, type[1] ) %>
+          <%= type[0] %>: $<%= type[1]/100.to_f %>
+          <br />
+        <% end %>
         <br />
       <% end %>
-      <br />
     <% end %>
   <% end %>
 </div>
