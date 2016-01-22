@@ -50,7 +50,7 @@ class OrdersController < ApplicationController
        :body => { :destination => {:country => "US", :state => "#{@order.state}", :city => "#{@order.city}", :zip => "#{@order.zip}" },
                  :origin => {:country => "US", :state => "WA", :city => "Seattle", :zip => "98161"},
                  :package => {:weight => @box[:weight], :length => @box[:size], :width => @box[:size], :height => @box[:size], :units => "metric"}})
-    
+
 
     #?destination_address[country]=US&destination_address[state]=#{@order.state}&destination_address[city]=#{@order.city}&destination_address[zip]=#{@order.zip}&origin_address[country]=US&origin_address[state]=WA&origin_address[city]=Seattle&origin_address[zip]=98161&package[weight]=#{@box[:weight]}&package[length]=#{@box[:size]}&package[width]=#{@box[:size]}&package[height]=#{@box[:size]}&package[units]=metric",
     #headers:  body: , format: :json).parsed_response
@@ -68,6 +68,7 @@ class OrdersController < ApplicationController
     @order = Order.find(session[:order_id])
     @order.decrement_products_stock
     @cost = params[:shipping_cost].to_i
+    @order.update_attribute(:shipping_cost, @cost)
     @order_total = @order.total.to_i + @cost
     session[:order_id] = nil
     @cart_status = "empty"
