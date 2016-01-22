@@ -60,7 +60,6 @@ class OrdersController < ApplicationController
     session[:order_id] = nil
     @cart_status = "empty"
     flash[:notice] = "Thank you for your order!"
-    redirect_to root_path
   end
 
   def pay

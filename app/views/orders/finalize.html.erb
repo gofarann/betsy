@@ -1,0 +1,56 @@
+<div class="row">
+  <h1 class="header-box">
+    Your Order Information
+  </h1>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    Name: <strong><%= @order.cc_name %></strong><br>
+    E-mail: <%= @order.email_address %><br>
+    Mailing Address: <%= @order.mailing_address %><br>
+    Order Placed: <%= @order.placed_at.strftime("%B %d, %Y") %><br>
+    Order Status: <%= @order.status.capitalize %><br>
+    <%=  %><br>
+  </div>
+</div>
+<div class="row">
+  <div class="table-master">
+    <table class='table table-hover'>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+      <% @order.orderitems.each do |orderitem| %>
+      <tr>
+        <td>
+          <%= link_to "#{orderitem.product.name}", product_path(orderitem.product) %>
+        </td>
+        <td>
+          <%= orderitem.quantity %>
+        </td>
+        <td>
+          <%= nice_price(orderitem.product.price * orderitem.quantity) %>
+        </td>
+      </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td><strong>Subtotal: <%= nice_price(@order.total) %></strong></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Shipping cost: <% %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Total: <% %></td>
+      </tr>
+    </table>
+
+  </div>
+
+</div>
