@@ -169,9 +169,9 @@ RSpec.describe OrdersController, type: :controller do
       patch :finalize, {:id => order.id}, {:order_id => order.id }
       expect(session[:order_id]).to be_nil
     end
-    it "redirects to root path" do
+    it "renders the finalize view" do
       patch :finalize, {:id => order.id}, {:order_id => order.id }
-      expect(subject).to redirect_to(root_path)
+      expect(subject).to render_template :finalize
     end
   end
 
