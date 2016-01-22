@@ -2,6 +2,7 @@ require 'rails_helper'
 require 'support/app_controller'
 
 RSpec.describe OrdersController, type: :controller do
+
   let(:order_hash) do
   {
     status: "pending",
@@ -64,6 +65,21 @@ RSpec.describe OrdersController, type: :controller do
   end
 
   describe "GET 'confirm'" do
+      let(:good_hash) do {
+        username: "Burp",
+        email_address: "thing@thing.com",
+        password: "this",
+        password_confirmation: "this",
+        name: "Burp",
+        street_address: "2146 Sherman Ave",
+        city: "Evanston",
+        state: "IL",
+        zip: 60201
+        }
+      end
+
+      let(:user) {User.create(good_hash)}
+
       let(:order_hash) do
       {
         status: "pending",
@@ -103,7 +119,7 @@ RSpec.describe OrdersController, type: :controller do
 
       let(:order_item_params) do
         {
-          product_id: 1, order_id: 1, quantity: 10
+          product_id: 1, order_id: 2, quantity: 10
         }
       end
 
@@ -118,11 +134,13 @@ RSpec.describe OrdersController, type: :controller do
     end
 
     it "returns the correct number of boxes" do
+      user
       product
-      sized_order.orderitems << order_item
+      order_item
+      sized_order.orderitems << Orderitem.find(1)
       get :confirm, {:id => sized_order.id}, {:order_id => sized_order.id}
 
-      expect(@boxes.length).to eq 3
+      expect(@shipping_info.length).to eq 3
     end
 
   end

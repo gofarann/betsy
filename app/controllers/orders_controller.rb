@@ -34,40 +34,17 @@ class OrdersController < ApplicationController
 
   def confirm
     @order = Order.find(session[:order_id])
-
-    user_orderitems = {}
-    @order.orderitems.each do |oi|
-      if user_orderitems[oi.product.user.username].nil?
-        user_orderitems[oi.product.user.username] = [oi]
-      else
-        user_orderitems[oi.product.user.username] = user_orderitems[oi.product.user.username].push(oi)
-      end
-    end
-
-    boxes = []
     volume = 0
-    user_orderitems.each do |store, order_items|
-      volume = 0
-      weight = 0
-      order_items.each do |oi|
-        volume += ((oi.product.length ** 3.0) * oi.quantity)
-        weight += (oi.product.weight * oi.quantity)
-        @user = oi.product.user
-      end
-      boxes.push({weight: weight, size: (volume ** (1/3.0)).ceil , merchant: @user.id})
+    weight = 0
+    @order.orderitems.each do |oi|
+      volume += ((oi.product.length ** 3.0) * oi.quantity)
+      weight += (oi.product.weight * oi.quantity)
     end
-    @boxes = boxes
+    @box = {weight: weight, size: (volume ** (1/3.0)).ceil }
 
-    @shipping_info = []
-    @boxes.each do |box|
-      @merchant = User.find(box[:merchant])
-      r = HTTParty.get("http://localhost:3000/rates?destination_address[country]=US&destination_address[state]=#{@order.state}&destination_address[city]=#{@order.city}&destination_address[zip]=#{@order.zip}&origin_address[country]=US&origin_address[state]=#{@merchant.state}&origin_address[city]=#{@merchant.city}&origin_address[zip]=#{@merchant.zip}&package[weight]=#{box[:weight]}&package[length]=#{box[:size]}&package[width]=#{box[:size]}&package[height]=#{box[:size]}&package[units]=metric",
-      headers: { 'Accept' => 'application/json' }, format: :json).parsed_response
-
-      @shipping_info.push(r)
-    end
-
-    # do something to display the shipping info on the view
+    @shipping_info = HTTParty.get("http://localhost:3000/rates?destination_address[country]=US&destination_address[state]=#{@order.state}&destination_address[city]=#{@order.city}&destination_address[zip]=#{@order.zip}&origin_address[country]=US&origin_address[state]=WA&origin_address[city]=Seattle&origin_address[zip]=98161&package[weight]=#{@box[:weight]}&package[length]=#{@box[:size]}&package[width]=#{@box[:size]}&package[height]=#{@box[:size]}&package[units]=metric",
+    headers: { 'Accept' => 'application/json' }, format: :json).parsed_response
+    binding.pry
   end
 
   def cancel_as_guest
