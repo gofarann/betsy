@@ -56,61 +56,68 @@ class OrdersController < ApplicationController
         weight += oi.product.weight * oi.quantity
         height += oi.product.height * oi.quantity
         width += oi.product.width * oi.quantity
+        @user = oi.product.user
       end
       hash = {length: length, width: width, height: height}
       max = hash.key(hash.values.max)
       # NEED TO HANDLE CASE WHERE MULTIPLE BOXES ARE NEEDED
 
-      if hash[max] <= 91.4
-        if hash[max] <= 7.6
-          box = {length: 7.6, width: 7.6, height: 7.6}
-        elsif hash[max] <= 17.8
-          box = {length: 17.8, width: 17.8, height: 17.8}
-        elsif hash[max] <= 35.6
-          box = {length: 35.6, width: 35.6, height: 35.6}
-        elsif hash[max] <= 71.1
-          box = {length: 71.1, width: 71.1, height: 71.1}
-        elsif hash[max] <= 91.4
-          box = {length: 91.4, width: 91.4, height: 91.4}
+      if hash[max] <= 91
+        if hash[max] <= 8
+          box = 8
+        elsif hash[max] <= 18
+          box = 18
+        elsif hash[max] <= 36
+          box = 36
+        elsif hash[max] <= 71
+          box = 71
+        elsif hash[max] <= 91
+          box = 91
         end
-        boxes.push({weight: weight, size: box})
+        boxes.push({weight: weight, size: box, merchant: @user.id})
       else
-        options = [7.6, 17.8, 35.6, 71.1, 91.4]
-        hash[max] -= 91.4
-        box = {length: 91.4, width: 91.4, height: 91.4}
-        boxes.push({weight: weight, size: box})
+        options = [8, 18, 36, 71, 91]
+        hash[max] -= 91
+        box = 91
+        boxes.push({weight: weight, size: box, merchant: @user.id})
         temp_box = []
 
         while hash[max] >= 0
 
           options.each do |option|
-            if hash[max] > 91.4
-              hash[max] -= 91.4
-              box = {length: 91.4, width: 91.4, height: 91.4}
+            if hash[max] > 91
+              hash[max] -= 91
+              box = 91
               temp_box.push(box)
             elsif hash[max] <= option
               hash[max] -= option
-              box = {length: option, width: option, height: option}
+              box = option
               temp_box.push(box)
             end
           end
           weight_each = weight/temp_box.length
           temp_box.each do |t_box|
-            boxes.push({ weight: weight_each, size: t_box})
+            boxes.push({ weight: weight_each, size: t_box, merchant: @user.id})
           end
         end
       end
     end
+
     @boxes = boxes
 
     #httparty calls per box
     @shipping_info = []
+
     @boxes.each do |box|
-      r = HTTParty.get("http://localhost:3000/rates?destination_address[country]=US&destination_address[state]=#{@order.state}&destination_address[city]=#{@order.city}&destination_address[zip]=#{@order.zip}&origin_address[country]=US&origin_address[state]=FL&origin_address[city]=Ft. Lauderdale&origin_address[zip]=33316&package[weight]=#{box[:weight]}&package[length]=#{box[:size][:length]}&package[width]=#{box[:size][:length]}&package[height]=#{box[:size][:length]}&package[units]=metric",
+      @merchant = User.find(box[:merchant])
+
+      r = HTTParty.get("http://localhost:3000/rates?destination_address[country]=US&destination_address[state]=#{@order.state}&destination_address[city]=#{@order.city}&destination_address[zip]=#{@order.zip}&origin_address[country]=US&origin_address[state]=FL&origin_address[city]=Ft. Lauderdale&origin_address[zip]=33316&package[weight]=#{box[:weight]}&package[length]=#{box[:size]}&package[width]=#{box[:size]}&package[height]=#{box[:size]}&package[units]=metric",
       headers: { 'Accept' => 'application/json' }, format: :json).parsed_response
+      binding.pry
       @shipping_info.push(r)
-    
+
     end
+
     # do something to display the shipping info on the view
   end
 
@@ -158,7 +165,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.permit(order:[:status, :cc_name, :email_address, :mailing_address, :cc_number, :cc_exp, :cc_cvv, :zip, :placed_at, :city, :state])
+    params.permit(order:[:status, :cc_name, :email_address, :mailing_address, :cc_number, :cc_exp, :cc_cvv, :zip, :placed_at, :city, :state, :zip])
   end
 
   #views will need to make sure they send in an id to use here
