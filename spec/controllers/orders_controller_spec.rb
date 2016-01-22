@@ -138,9 +138,9 @@ RSpec.describe OrdersController, type: :controller do
       product
       order_item
       sized_order.orderitems << Orderitem.find(1)
-      get :confirm, { :id => 1 }, { :order_id => 1 }
-      expect(@shipping_info).to_not eq nil
-
+      session[:order_id] = 1
+      get :confirm, { :id => 1 }
+      expect(assigns(:shipping_info).keys).to eq ["ups"]
     end
 
   end
