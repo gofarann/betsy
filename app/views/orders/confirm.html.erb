@@ -51,7 +51,7 @@
 <div class="row">
   <h3>Choose Shipping Option:</h3>
   <% if @shipping_info.nil? %>
-    <h4>Shipping information not available at this time</h4>
+    <h4>Shipping information not available at this time, please try again!</h4>
   <% else %>
     <%= form_tag order_finalize_path, method: :patch do %>
       <% @shipping_info.each do |k,v| %>
