@@ -27,22 +27,18 @@ RSpec.describe WelcomeController, type: :controller do
       zip: 60201
     }
     end
-    let(:product_hash) do
-       {name: "Geometry Like Woahhh",
-        price: 5645,
-        stock: "1",
-        photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
-        description: "I drew this just for you.",
-        retired: false
-      }
-    end
+
     let(:second_product) do
        {name: "Another Product Thing",
         price: 5645245,
         stock: "2",
         photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
         description: "I drew this just for you.",
-        retired: false
+        retired: false,
+        weight: 100,
+        height: 10,
+        length: 10,
+        width: 10
       }
     end
     let(:third_product) do
@@ -60,18 +56,24 @@ RSpec.describe WelcomeController, type: :controller do
         stock: "2",
         photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
         description: "I drew this just for you.",
-        retired: false
+        retired: false,
+        weight: 100,
+        height: 10,
+        length: 10,
+        width: 10
+
       }
     end
     it 'is successful' do
-      user = User.create(user_hash)
+      user = create(:user)
       user1 = User.create(second_user_hash)
       cat = Category.create(name: "Cool Shit")
       cat2 = Category.create(name: "Better Shit")
-      p = Product.create(product_hash)
+      p = create(:product)
+      #p2 = create(:product_2)
       p2 = Product.create(second_product)
       user.products << [p, p2]
-      user1.products << [Product.create(third_product), Product.create(fourth_product)]
+      user1.products << [create(:product_3), Product.create(fourth_product)]
       cat.products << [p, p2]
       cat2.products << [p, p2]
       get :index

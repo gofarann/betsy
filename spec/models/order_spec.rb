@@ -1,146 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-  let(:good_hash) do
-  {
-    status: "pending",
-    cc_name: "John Carlisle",
-    email_address: "jcarl@gmail.com",
-    mailing_address: "653 Gorge Way",
-    cc_number: 5110538084994719,
-    cc_exp: "06/18",
-    cc_cvv: "674",
-    zip: 19583
-  }
-  end
-  let(:product_hash) do
-     {name: "Geometry Like Woahhh",
-      price: 5645,
-      stock: "1",
-      photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
-      description: "I drew this just for you.",
-      user_id: 2,
-      retired: false
-    }
-  end
-  let(:second_product) do
-     {name: "Another Product Thing",
-      price: 5645245,
-      stock: "2",
-      photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
-      description: "I drew this just for you.",
-      user_id: 1,
-      retired: false
-    }
-  end
 
   describe ".validates" do
-    let (:no_status_hash) do
-      {
-        status: nil,
-        cc_name: "John Carlisle",
-        email_address: "jcarl@gmail.com",
-        mailing_address: "653 Gorge Way",
-        cc_number: 5110538084994719,
-        cc_exp: "06/18",
-        cc_cvv: "674",
-        zip: 19583
-      }
-    end
-  #   let (:no_name_hash) do
-  #     {
-  #       status: "pending",
-  #       cc_name: nil,
-  #       email_address: "jcarl@gmail.com",
-  #       mailing_address: "653 Gorge Way",
-  #       cc_number: 5110538084994719,
-  #       cc_exp: "06/18",
-  #       cc_cvv: "674",
-  #       zip: 19583
-  #     }
-  #   end
-  #
-  #   let (:no_email_hash) do
-  #     {
-  #       status: "pending",
-  #       cc_name: "John",
-  #       email_address: nil,
-  #       mailing_address: "653 Gorge Way",
-  #       cc_number: 5110538084994719,
-  #       cc_exp: "06/18",
-  #       cc_cvv: "674",
-  #       zip: 19583
-  #     }
-  #   end
-  #
-  #   let (:no_mailing_hash) do
-  #     {
-  #       status: "pending",
-  #       cc_name: "John",
-  #       email_address: "jcarl@gmail.com",
-  #       mailing_address: nil,
-  #       cc_number: 5110538084994719,
-  #       cc_exp: "06/18",
-  #       cc_cvv: "674",
-  #       zip: 19583
-  #     }
-  #   end
-  #
-  #   let (:no_cc_num_hash) do
-  #     {
-  #       status: "pending",
-  #       cc_name: "John",
-  #       email_address: "jcarl@gmail.com",
-  #       mailing_address: "123 Fake Street",
-  #       cc_number: nil,
-  #       cc_exp: "06/18",
-  #       cc_cvv: "674",
-  #       zip: 19583
-  #     }
-  #   end
-  #
-  #   let (:no_cc_exp_hash) do
-  #     {
-  #       status: "pending",
-  #       cc_name: "John",
-  #       email_address: "jcarl@gmail.com",
-  #       mailing_address: "123 Fake Street",
-  #       cc_number: 5110538084994719,
-  #       cc_exp: nil,
-  #       cc_cvv: "674",
-  #       zip: 19583
-  #     }
-  #   end
-  #
-  #   let (:no_cc_cvv_hash) do
-  #     {
-  #       status: "pending",
-  #       cc_name: "John",
-  #       email_address: "jcarl@gmail.com",
-  #       mailing_address: "123 Fake Street",
-  #       cc_number: 5110538084994719,
-  #       cc_exp: "06/18",
-  #       cc_cvv: nil,
-  #       zip: 19583
-  #     }
-  #   end
-    #
-    # let (:no_zip_hash) do
-    #   {
-    #     status: "pending",
-    #     cc_name: "John",
-    #     email_address: "jcarl@gmail.com",
-    #     mailing_address: "123 Fake Street",
-    #     cc_number: 5110538084994719,
-    #     cc_exp: "06/18",
-    #     cc_cvv: "123",
-    #     zip: nil
-    #   }
-    # end
 
     it "must have a status" do
-      expect(Order.new(no_status_hash)).to_not be_valid
-      expect(Order.new(good_hash)).to be_valid
+      expect(build(:order, status: nil)).to_not be_valid
+      expect(build(:order)).to be_valid
     end
     #
     # it "must have a credit card name on pay" do
@@ -182,27 +48,27 @@ RSpec.describe Order, type: :model do
 
   describe "self.pending" do
     it "" do
-      
+
     end
   end
 
   describe "decrement_products_stock" do
     it "" do
-      
+
     end
   end
 
   describe "total" do
     it "" do
-      
+
     end
   end
 
   describe "total_by_user(user_id)" do
     let (:order) do
-      order = Order.create(good_hash)
-      p = Product.create!(product_hash)
-      p2 = Product.create!(second_product)
+      order = create(:order)
+      p = create(:product)
+      p2 = create(:product_2)
       order.products << [p, p2]
       return order
     end
@@ -210,15 +76,15 @@ RSpec.describe Order, type: :model do
       expect(order.total_by_user(1)).to be_a(Integer)
     end
     it "returns the total sales for a given user" do
-      expect(order.total_by_user(2)).to eq(5645)
-      expect(order.total_by_user(1)).to eq(5645245)
+      expect(order.total_by_user(2)).to eq(2100)
+      expect(order.total_by_user(1)).to eq(0)
     end
   end
 
   describe "mark_shipped?" do
     before :each do
-      p = Product.create!(product_hash)
-      p2 = Product.create!(second_product)
+      p = create(:product)
+      p2 = create(:product_2)
       @order = Order.pending(p)
       @order.products << p2
       @order.orderitems[0].item_shipped

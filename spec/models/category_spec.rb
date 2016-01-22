@@ -17,28 +17,11 @@ RSpec.describe Category, type: :model do
   end
 
   describe "top(x)" do
-    let(:product_hash) do
-       {name: "Geometry Like Woahhh",
-        price: 5645245,
-        stock: "1",
-        photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
-        description: "I drew this just for you.",
-        retired: false
-      }
-    end
-    let(:second_product) do
-       {name: "Another Product Thing",
-        price: 5645245,
-        stock: "2",
-        photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
-        description: "I drew this just for you.",
-        retired: false
-      }
-    end
+
     let(:category) do
       category = Category.create(name: "Some Stuff")
-      p = Product.create(product_hash)
-      p2 = Product.create(second_product)
+      p = create(:product)
+      p2 = create(:product_2)
       category.products << [p, p2]
       return category
     end

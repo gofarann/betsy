@@ -1,5 +1,6 @@
 require 'simplecov'
 require 'rails_helper'
+require 'factory_girl'
 SimpleCov.start do
   add_filter '/support/'
 end
@@ -40,6 +41,7 @@ RSpec.configure do |config|
   config.alias_example_to :fit, focused: true
   config.filter_run focused: true
   config.run_all_when_everything_filtered = true
+  config.include FactoryGirl::Syntax::Methods
   # rspec-mocks config goes here. You can use an alternate test double
   # library (such as bogus or mocha) by changing the `mock_with` option here.
   config.mock_with :rspec do |mocks|

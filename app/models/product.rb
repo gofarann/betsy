@@ -11,6 +11,10 @@ class Product < ActiveRecord::Base
   validates :price, presence: true
   validates_numericality_of :price, :greater_than => 0
   validates_numericality_of :stock, :greater_than_or_equal_to => 0
+  validates :weight, numericality: { greater_than: 0 }
+  validates :length, numericality: { greater_than: 0 }
+  validates :height, numericality: { greater_than: 0 }
+  validates :width,  numericality: { greater_than: 0 }
   # validates :retired, inclusion: { in: %w(false) }, on: :create
   validate :belongs_to_user?
 

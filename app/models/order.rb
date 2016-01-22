@@ -19,6 +19,7 @@ class Order < ActiveRecord::Base
   validates :cc_cvv, presence: true, on: :pay
   validates :city, presence: true, on: :pay
   validates :state, presence: true, on: :pay
+  validates_length_of :state, :maximum=>2
 
   def self.pending(first_product)
     Order.transaction do
