@@ -142,7 +142,7 @@ RSpec.describe OrdersController, type: :controller do
       sized_order.orderitems << Orderitem.find(1)
       session[:order_id] = 1
       get :confirm, { :id => 1 }
-      expect(assigns(:shipping_info).keys).to eq ["ups"]
+      expect(assigns(:shipping_info).keys).to include "ups"
     end
 
   end
