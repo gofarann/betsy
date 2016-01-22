@@ -49,19 +49,21 @@
 </div>
 
 <div class="row">
+  <h3>Choose Shipping:</h3>
   <% if @shipping_info == [nil] %>
     <h4>Shipping information not available at this time</h4>
   <% else %>
     <% @shipping_info.each do |carrier| %>
       <% carrier.each do |k,v| %>
-        <h4><%= k.upcase %> Shipping Rates:</h4>
-        <br />
-        <% v.each do |service| %>
-          <%= service[0] %>: $<%= service[1]/100.to_f %>
+        <div class="col-sm-6">
+          <h4><%= k.upcase %> Shipping Rates:</h4>
           <br />
-        <% end %>
+          <% v.each do |service| %>
+            <%= service[0] %>: $<%= service[1]/100.to_f %>
+            <br />
+          <% end %>
+        </div>
       <% end %>
-      <br />
     <% end %>
   <% end %>
 </div>
