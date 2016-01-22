@@ -1,53 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:good_hash) do {
-    username: "Burp",
-    email_address: "thing@thing.com",
-    password: "this",
-    password_confirmation: "this",
-    name: "Burp",
-    street_address: "2146 Sherman Ave",
-    city: "Evanston",
-    state: "IL",
-    zip: 60201
-  }
-  end
-  let(:product_hash) do
-     {name: "Geometry Like Woah",
-      price: 20,
-      stock: "1",
-      photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
-      description: "I drew this just for you.",
-      retired: "false"
-    }
-  end
-  let(:second_product) do
-     {name: "Another Nother Product",
-      price: 25,
-      stock: "2",
-      photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
-      description: "I drew this just for you.",
-      retired: "false"
-    }
-  end
-  let(:third_product) do
-     {name: "Another Product",
-      price: 50,
-      stock: "2",
-      photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
-      description: "I drew this just for you.",
-      user_id: 15,
-      retired: "false"
-    }
-  end
-  # create a let for some some orders
+
   describe "orders" do
     let(:user) do
-      user = User.create(good_hash)
-      p = Product.create!(product_hash)
-      p2 = Product.create!(second_product)
-      p3 = Product.create!(third_product)
+      user = create(:user)
+      p = create(:product)
+      p2 = create(:product_2)
+      p3 = create(:product_3)
       user.products << [p, p2]
       order = Order.pending(p)
       order2 = Order.pending(p2)
@@ -78,10 +38,10 @@ RSpec.describe User, type: :model do
          }
        end
      let(:user) do
-       user = User.create(good_hash)
-       p = Product.create!(product_hash)
-       p2 = Product.create!(second_product)
-       p3 = Product.create!(third_product)
+       user = create(:user)
+       p = create(:product)
+       p2 = create(:product_2)
+       p3 = create(:product_3)
        user.products << [p, p2, p3]
        order = Order.pending(p)
        order2 = Order.pending(p2)
@@ -99,9 +59,9 @@ RSpec.describe User, type: :model do
 
   describe "top(x)" do
     let(:user) do
-      user = User.create(good_hash)
-      p = Product.create!(product_hash)
-      p2 = Product.create!(second_product)
+      user = create(:user)
+      p = create(:product)
+      p2 = create(:product_2)
       user.products << [p, p2]
       return user
     end
@@ -116,10 +76,10 @@ RSpec.describe User, type: :model do
 
   describe "revenue" do
     let(:user) do
-      user = User.create(good_hash)
-      p = Product.create!(product_hash)
-      p2 = Product.create!(second_product)
-      p3 = Product.create!(third_product)
+      user = create(:user)
+      p = create(:product)
+      p2 = create(:product_2)
+      p3 = create(:product_3)
       user.products << [p, p2]
       order = Order.pending(p)
       order2 = Order.pending(p2)
@@ -131,7 +91,7 @@ RSpec.describe User, type: :model do
       expect(user.revenue).to be_a(Integer)
     end
     it "returns total of all products that have been orderitems" do
-      expect(user.revenue).to eq(45)
+      expect(user.revenue).to eq(2100)
     end
   end
 
@@ -149,9 +109,9 @@ RSpec.describe User, type: :model do
       }
     end
     let(:user) do
-      user = User.create(good_hash)
-      p = Product.create!(product_hash)
-      p2 = Product.create!(second_product)
+      user = create(:user)
+      p = create(:product)
+      p2 = create(:product_2)
       user.products << [p, p2]
       order = Order.pending(p)
       order2 = Order.pending(p2)
@@ -164,17 +124,17 @@ RSpec.describe User, type: :model do
       expect(user.rev_by_status('pending')).to be_a(Integer)
     end
     it "returns total sales of products from orders with given status"  do
-      expect(user.rev_by_status('pending')).to eq(20)
-      expect(user.rev_by_status('paid')).to eq(25)
+      expect(user.rev_by_status('pending')).to eq(100)
+      expect(user.rev_by_status('paid')).to eq(2000)
     end
   end
 
   describe "orderitems" do
     let(:user) do
-      user = User.create(good_hash)
-      p = Product.create!(product_hash)
-      p2 = Product.create!(second_product)
-      p3 = Product.create!(third_product)
+      user = create(:user)
+      p = create(:product)
+      p2 = create(:product_2)
+      p3 = create(:product_3)
       user.products << [p, p2]
       order = Order.pending(p)
       order2 = Order.pending(p2)
@@ -198,10 +158,10 @@ RSpec.describe User, type: :model do
 
   describe "orderitems_by_order" do
     let(:user) do
-      user = User.create(good_hash)
-      p = Product.create!(product_hash)
-      p2 = Product.create!(second_product)
-      p3 = Product.create!(third_product)
+      user = create(:user)
+      p = create(:product)
+      p2 = create(:product_2)
+      p3 = create(:product_3)
       user.products << [p, p2]
       order = Order.pending(p)
       order2 = Order.pending(p2)

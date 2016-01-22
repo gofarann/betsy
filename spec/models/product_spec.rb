@@ -1,17 +1,10 @@
 require 'rails_helper'
+require 'spec_helper'
 require 'pry'
 
 RSpec.describe Product, type: :model do
-  let(:good_hash) do
-    {name: "Geometry Like Woah",
-     price: 5645245,
-     user_id: "2",
-     stock: "1",
-     photo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDeCvOq-lfd-xau5kCj_RZ5WOD1wldXJybYd9abKVYwZKaGAay",
-     description: "I drew this just for you.",
-     retired: false
-   }
-  end
+
+
   let(:second_hash) do
     {name: "Geometry 4",
      price: 5645245,
@@ -125,15 +118,15 @@ RSpec.describe Product, type: :model do
     end
 
     it "must have a name" do
-      expect(Product.new(good_hash)).to be_valid
-      expect(Product.new(no_name_hash)).to_not be_valid
+      expect(build(:product)).to be_valid
+      expect(build(:product, name: nil)).to_not be_valid
     end
 #
     it "must have a unique name" do
-      @test_product = Product.new(good_hash)
+      @test_product = build(:product)
       @test_product.save
       expect(@test_product).to be_valid
-      expect(Product.new(good_hash)).to_not be_valid
+      expect(build(:product)).to_not be_valid
       @test_product.destroy
     end
 
@@ -151,6 +144,22 @@ RSpec.describe Product, type: :model do
 
     it "has a stock that isn't negative" do
       expect(Product.new(stock_of_negative)).to_not be_valid
+    end
+
+    it "must have a weight greater than 0" do
+
+    end
+
+    it "must have a length greater than 0" do
+
+    end
+
+    it "must have a height greater than 0" do
+
+    end
+
+    it "must have a width greater than 0" do
+
     end
 
     # it "must belong to a User" do
@@ -177,7 +186,7 @@ RSpec.describe Product, type: :model do
 
   describe "avg_rating" do
     let (:product) do
-      product = Product.create(good_hash)
+      product = create(:product)
       r1 = Review.create(rating: 1, product_id: product.id)
       r2 = Review.create(rating: 5, product_id: product.id)
       product.reviews << [r1, r2]
@@ -193,7 +202,7 @@ RSpec.describe Product, type: :model do
     end
 
     it "returns zero if product has no reviews" do
-      expect(Product.create(good_hash).avg_rating).to eq(0)
+      expect(create(:product).avg_rating).to eq(0)
     end
 
   end
@@ -201,7 +210,7 @@ RSpec.describe Product, type: :model do
   describe "self.top_selling(product_array, x)" do
     let(:p)  do
       p = []
-      p << Product.create(good_hash)
+      p << create(:product)
       p << Product.create(second_hash)
       p << Product.create(third_hash)
       return p
