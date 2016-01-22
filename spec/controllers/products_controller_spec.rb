@@ -28,7 +28,11 @@ RSpec.describe ProductsController, type: :controller do
           name: "necklace",
           price: 10,
           user_id: 2,
-          stock: 3
+          stock: 3,
+          weight: 100,
+          length: 10,
+          width: 10,
+          height: 10,
         },
         categories: []
       }
@@ -60,8 +64,22 @@ RSpec.describe ProductsController, type: :controller do
   end
 
   describe "GET 'edit'" do
+
+    let(:good_params) do
+      {
+        name: "necklace",
+        price: 10,
+        user_id: 2,
+        stock: 3,
+        weight: 100,
+        length: 10,
+        width: 10,
+        height: 10,
+      }
+    end
+
     let(:product) do
-      Product.create(name: "necklace", price: 10, user_id: 2, stock: 3)
+      Product.create(good_params)
     end
 
     it "renders edit view" do
@@ -103,10 +121,12 @@ RSpec.describe ProductsController, type: :controller do
     end
 
     let(:product) do
-      Product.create(name: "necklace",
-                      price: 10,
-                      user_id: current_user.id,
-                      stock: 3)
+      Product.create(name: "dog", price: 10, user_id: 1,stock: 3,
+      weight: 100,
+      length: 10,
+      width: 10,
+      height: 10)
+
     end
 
     let(:good_product_update) do
@@ -116,6 +136,10 @@ RSpec.describe ProductsController, type: :controller do
           price: 25,
           user_id: current_user.id,
           stock: 3,
+          weight: 100,
+          length: 10,
+          width: 10,
+          height: 10
         },
         id: product.id
       }
@@ -123,8 +147,8 @@ RSpec.describe ProductsController, type: :controller do
 
     it "updates a good product" do
       before_update = product.attributes
-      params = good_product_update
-      patch :update, params
+      #params = good_product_update
+      patch :update, good_product_update
       product.reload
       expect(product.attributes).to_not eq before_update
     end
@@ -166,7 +190,7 @@ RSpec.describe ProductsController, type: :controller do
     # end
     let(:review_params) do
     {
-      id: product.id,
+      id: 1,
       review: {
         rating: 4,
         body: "so pretty!"
@@ -186,16 +210,10 @@ RSpec.describe ProductsController, type: :controller do
         request.env["HTTP_REFERER"] = "back"
     end
 
-    let(:product) do
-      Product.create(name: "necklace",
-                     price: 10,
-                     user_id: 1,
-                     stock: 3)
-    end
 
     let(:update_product) do
       {
-         id: product.id,
+         id: create(:product).id,
          product: {
            name: "necklace",
            price: 10,
@@ -259,12 +277,10 @@ RSpec.describe ProductsController, type: :controller do
     before :each do
         request.env["HTTP_REFERER"] = "back"
     end
-    let(:product) do
-      Product.create(name: "necklace", price: 10, user_id: 2, stock: 3)
-    end
+
 
     it "redirects to products index page" do
-      delete :destroy, id: product.id
+      delete :destroy, id: create(:product).id
       expect(subject).to redirect_to "back"
     end
   end

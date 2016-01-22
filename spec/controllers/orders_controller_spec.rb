@@ -80,21 +80,23 @@ RSpec.describe OrdersController, type: :controller do
 
       let(:user) {User.create(good_hash)}
 
-      let(:order_hash) do
-      {
-        status: "pending",
-        cc_name: "John Carlisle",
-        email_address: "jcarl@gmail.com",
-        mailing_address: "653 Gorge Way",
-        cc_number: 5110538084994719,
-        cc_exp: "06/18",
-        cc_cvv: "674",
-        zip: 19583
-      }
-      end
+      # let(:order_hash) do
+      # {
+      #   status: "pending",
+      #   cc_name: "John Carlisle",
+      #   email_address: "jcarl@gmail.com",
+      #   mailing_address: "653 Gorge Way",
+      #   cc_number: 5110538084994719,
+      #   cc_exp: "06/18",
+      #   cc_cvv: "674",
+      #   city: "Hinsdale",
+      #   state: "IL",
+      #   zip: 60521
+      # }
+      # end
 
       let(:sized_order) do
-        Order.create!(order_hash)
+        create(:order)
       end
 
       let(:product_params) do
