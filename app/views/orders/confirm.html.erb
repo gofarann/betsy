@@ -40,14 +40,24 @@
       <tr>
         <td></td>
         <td></td>
-        <td><strong>Total: <%= nice_price(@order.total) %></strong></td>
+        <td><strong>Subtotal: <%= nice_price(@order.total) %></strong></td>
       </tr>
     </table>
-    <p>
-      <%= @shipping_info[0] %>
-    </p>
   </div>
 
+</div>
+<div class="row">
+  <% @shipping_info.each do |carrier| %>
+    <% carrier.each do |k,v| %>
+      <h4><%= k.upcase %> Shipping Rates:</h4>
+      <br />
+      <% v.each do |service| %>
+        <%= service[0] %>: $<%= service[1]/100.to_f %>
+        <br />
+      <% end %>
+    <% end %>
+    <br />
+  <% end %>
 </div>
 
 <div class="row header-box">
