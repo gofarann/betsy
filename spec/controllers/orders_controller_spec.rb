@@ -119,7 +119,7 @@ RSpec.describe OrdersController, type: :controller do
 
       let(:order_item_params) do
         {
-          product_id: 1, order_id: 2, quantity: 10
+          product_id: 1, order_id: 1, quantity: 10
         }
       end
 
@@ -138,9 +138,9 @@ RSpec.describe OrdersController, type: :controller do
       product
       order_item
       sized_order.orderitems << Orderitem.find(1)
-      get :confirm, {:id => sized_order.id}, {:order_id => sized_order.id}
-
-      expect(@shipping_info.length).to eq 3
+      session[:order_id] = 1
+      get :confirm, { :id => 1 }
+      expect(assigns(:shipping_info).keys).to eq ["ups"]
     end
 
   end
