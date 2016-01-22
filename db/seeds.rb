@@ -646,10 +646,11 @@ category_products = [
 
 products.each do |p|
   prod = Product.new(p)
-  prod.weight = rand(100..10000)
-  prod.length = rand(1..70)
-  prod.width = rand(1..70)
-  prod.height = rand(1..70)
+  prod.weight = rand(100..7000)
+  dim = rand(1..30)
+  prod.length = dim
+  prod.width = dim
+  prod.height = dim
   prod.save(validate: false)
 end
 
