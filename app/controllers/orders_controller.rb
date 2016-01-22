@@ -46,7 +46,7 @@ class OrdersController < ApplicationController
     # headers: { 'Accept' => 'application/json' }, format: :json).parsed_response
 
     begin
-    @shipping_info = HTTParty.get("http://localhost:3000/rates",
+    @shipping_info = HTTParty.get("https://junked.herokuapp.com/rates",
        :headers => { 'Accept' => 'application/json' },
        :body => { :destination => {:country => "US", :state => "#{@order.state}", :city => "#{@order.city}", :zip => "#{@order.zip}" },
                  :origin => {:country => "US", :state => "WA", :city => "Seattle", :zip => "98161"},
