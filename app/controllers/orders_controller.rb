@@ -35,8 +35,6 @@ class OrdersController < ApplicationController
   def confirm
     @order = Order.find(session[:order_id])
 
-
-    # Handling box size logic
     user_orderitems = {}
     @order.orderitems.each do |oi|
       if user_orderitems[oi.product.user.username].nil?
@@ -45,77 +43,28 @@ class OrdersController < ApplicationController
         user_orderitems[oi.product.user.username] = user_orderitems[oi.product.user.username].push(oi)
       end
     end
+
     boxes = []
+    volume = 0
     user_orderitems.each do |store, order_items|
-      length = 0
-      width = 0
-      height = 0
+      volume = 0
       weight = 0
       order_items.each do |oi|
-        length += oi.product.length * oi.quantity
-        weight += oi.product.weight * oi.quantity
-        height += oi.product.height * oi.quantity
-        width += oi.product.width * oi.quantity
+        volume += ((oi.product.length ** 3.0) * oi.quantity)
+        weight += (oi.product.weight * oi.quantity)
         @user = oi.product.user
       end
-      hash = {length: length, width: width, height: height}
-      max = hash.key(hash.values.max)
-      # NEED TO HANDLE CASE WHERE MULTIPLE BOXES ARE NEEDED
-
-      if hash[max] <= 91
-        if hash[max] <= 8
-          box = 8
-        elsif hash[max] <= 18
-          box = 18
-        elsif hash[max] <= 36
-          box = 36
-        elsif hash[max] <= 71
-          box = 71
-        elsif hash[max] <= 91
-          box = 91
-        end
-        boxes.push({weight: weight, size: box, merchant: @user.id})
-      else
-        options = [8, 18, 36, 71, 91]
-        hash[max] -= 91
-        box = 91
-        boxes.push({weight: weight, size: box, merchant: @user.id})
-        temp_box = []
-
-        while hash[max] >= 0
-
-          options.each do |option|
-            if hash[max] > 91
-              hash[max] -= 91
-              box = 91
-              temp_box.push(box)
-            elsif hash[max] <= option
-              hash[max] -= option
-              box = option
-              temp_box.push(box)
-            end
-          end
-          weight_each = weight/temp_box.length
-          temp_box.each do |t_box|
-            boxes.push({ weight: weight_each, size: t_box, merchant: @user.id})
-          end
-        end
-      end
+      boxes.push({weight: weight, size: volume ** (1/3.0) , merchant: @user.id})
     end
-
     @boxes = boxes
 
-    #httparty calls per box
     @shipping_info = []
-
     @boxes.each do |box|
       @merchant = User.find(box[:merchant])
-      binding.pry
       r = HTTParty.get("http://localhost:3000/rates?destination_address[country]=US&destination_address[state]=#{@order.state}&destination_address[city]=#{@order.city}&destination_address[zip]=#{@order.zip}&origin_address[country]=US&origin_address[state]=#{@merchant.state}&origin_address[city]=#{@merchant.city}&origin_address[zip]=#{@merchant.zip}&package[weight]=#{box[:weight]}&package[length]=#{box[:size]}&package[width]=#{box[:size]}&package[height]=#{box[:size]}&package[units]=metric",
       headers: { 'Accept' => 'application/json' }, format: :json).parsed_response
-      binding.pry
-      @shipping_info.push(r)
 
+      @shipping_info.push(r)
     end
 
     # do something to display the shipping info on the view
