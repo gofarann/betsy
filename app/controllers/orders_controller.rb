@@ -54,7 +54,7 @@ class OrdersController < ApplicationController
         weight += (oi.product.weight * oi.quantity)
         @user = oi.product.user
       end
-      boxes.push({weight: weight, size: volume ** (1/3.0) , merchant: @user.id})
+      boxes.push({weight: weight, size: (volume ** (1/3.0)).ceil , merchant: @user.id})
     end
     @boxes = boxes
 
